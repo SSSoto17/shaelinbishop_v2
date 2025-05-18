@@ -1,24 +1,13 @@
-import { Field, Block } from 'payload'
-// import { AuthorBio } from './AuthorBio/ConfigAuthorBio'
-// import { Newsletter } from './Newsletter/ConfigNewsletter'
-
-const TestBlock: Block = {
-  slug: 'testblock',
-  fields: [
-    {
-      type: 'text',
-      name: 'test',
-    },
-  ],
-}
+import { Field } from 'payload'
+import { AuthorBio } from './AuthorBio/config'
+import { Newsletter } from './Newsletter/config'
 
 const Components: Field = {
   name: 'sections',
   type: 'blocks',
   minRows: 1,
   maxRows: 20,
-  blocks: [TestBlock],
-  //   blocks: [AuthorBio, Newsletter],
+  blocks: [AuthorBio, Newsletter],
 }
 
 export const PageSections = {

@@ -228,12 +228,31 @@ export interface Page {
     };
   };
   sections?:
-    | {
-        test?: string | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'testblock';
-      }[]
+    | (
+        | {
+            headshot?: (string | null) | Image;
+            headline?: string | null;
+            description?: string | null;
+            images?: {
+              imageGroup?: (string | Image)[] | null;
+              imagesTitle?: string | null;
+            };
+            imgTest?: (string | null) | Image;
+            bgImg?: (string | null) | Image;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'bio';
+          }
+        | {
+            img?: (string | null) | Image;
+            heading?: string | null;
+            body?: string | null;
+            buttonLabel?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'newsletter';
+          }
+      )[]
     | null;
   updatedAt: string;
   createdAt: string;
@@ -427,10 +446,30 @@ export interface PagesSelect<T extends boolean = true> {
   sections?:
     | T
     | {
-        testblock?:
+        bio?:
           | T
           | {
-              test?: T;
+              headshot?: T;
+              headline?: T;
+              description?: T;
+              images?:
+                | T
+                | {
+                    imageGroup?: T;
+                    imagesTitle?: T;
+                  };
+              imgTest?: T;
+              bgImg?: T;
+              id?: T;
+              blockName?: T;
+            };
+        newsletter?:
+          | T
+          | {
+              img?: T;
+              heading?: T;
+              body?: T;
+              buttonLabel?: T;
               id?: T;
               blockName?: T;
             };
