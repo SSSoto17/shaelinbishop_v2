@@ -1,19 +1,19 @@
-// import { getPage } from '@/lib/PageQueries'
+import { getPage } from '@/lib/pageQueries'
 // import { Nav } from 'src/components/Navigation/Header/RenderHeader'
 // import { Footer } from 'src/components/Navigation/Header/RenderHeader'
 // import AdminBar from '@/components/Navigation/AdminBar/RenderAdminBar'
 
-// async function getPageID(slug) {
-//   const selector = { id: true }
-//   const filter = { slug: { equals: `/${slug}` } }
-//   const page = await getPage(selector, filter)
+async function getPageID(slug) {
+  const selector = { id: true }
+  const filter = { slug: { equals: `/${slug}` } }
+  const page = await getPage(selector, filter)
 
-//   return page
-// }
+  return page
+}
 
 export default async function PageLayout({ children, params }) {
-  //   const { slug = 'home' } = await params
-  //   const pageID = await getPageID(slug)
+  const { slug = 'home' } = await params
+  const pageID = await getPageID(slug)
 
   return (
     <>
