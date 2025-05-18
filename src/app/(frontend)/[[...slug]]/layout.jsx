@@ -1,7 +1,8 @@
-import { getPage } from '@/lib/pageQueries'
-// import { Nav } from 'src/components/Navigation/Header/RenderHeader'
-// import { Footer } from 'src/components/Navigation/Header/RenderHeader'
-// import AdminBar from '@/components/Navigation/AdminBar/RenderAdminBar'
+import { getPage } from '@/app/local/pages/route'
+
+// COMPONENTS
+import { Nav, Footer } from 'src/components/Navigation/Header/RenderHeader'
+import AdminBar from '@/components/Navigation/AdminBar/RenderAdminBar'
 
 async function getPageID(slug) {
   const selector = { id: true }
@@ -17,11 +18,11 @@ export default async function PageLayout({ children, params }) {
 
   return (
     <>
-      {/* <Nav>
+      <Nav>
         <AdminBar {...pageID} />
-      </Nav> */}
+      </Nav>
       {children}
-      {/* <Footer /> */}
+      <Footer />
     </>
   )
 }

@@ -1,5 +1,3 @@
-// import './styles.css'
-
 import '@/styles/global.css'
 import { Nanum_Myeongjo, Nanum_Gothic_Coding, Nanum_Myeongjo, Raleway } from 'next/font/google'
 

@@ -2,10 +2,10 @@ import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
 
 // import { RefreshRouteOnSave } from './RefreshRouteOnSave'
-import { getPage, getPages } from '@/lib/pageQueries'
+import { getPage, getPages } from '@/app/local/pages/route'
 
-// import RenderHero from '@/components/Hero/RenderHero'
-// import RenderContent from '@/components/RenderContent'
+import RenderHero from '@/components/Hero'
+import RenderContent from '@/components/RenderContent'
 
 export async function generateStaticParams() {
   const selector = { slug: true }
@@ -36,17 +36,13 @@ export default async function Page({ params }) {
   const { slug = 'home' } = await params
   const { isEnabled } = await draftMode()
 
-  const { title } = await getPageBySlug(slug, isEnabled)
-  // const { hero, sections } = await getPageBySlug(slug, isEnabled)
-
-  console.log(slug)
+  const { hero, sections } = await getPageBySlug(slug, isEnabled)
 
   return (
     <main className="full-bleed">
-      <h1>{title}</h1>
-      {/* <RefreshRouteOnSave />
+      {/* <RefreshRouteOnSave /> */}
       <RenderHero {...hero} />
-      <RenderContent content={sections} /> */}
+      <RenderContent content={sections} />
     </main>
   )
 }
