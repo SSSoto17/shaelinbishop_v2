@@ -68,8 +68,8 @@ export interface Config {
   blocks: {};
   collections: {
     users: User;
-    pages: Page;
     images: Image;
+    pages: Page;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -77,8 +77,8 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
-    pages: PagesSelect<false> | PagesSelect<true>;
     images: ImagesSelect<false> | ImagesSelect<true>;
+    pages: PagesSelect<false> | PagesSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -138,36 +138,6 @@ export interface User {
   loginAttempts?: number | null;
   lockUntil?: string | null;
   password?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "pages".
- */
-export interface Page {
-  id: string;
-  title: string;
-  slug?: string | null;
-  meta?: {
-    description?: string | null;
-  };
-  hero: {
-    type: 'highImpact' | 'lowImpact' | 'banner' | 'none';
-    content?: {
-      heading?: string | null;
-      image: string | Image;
-    };
-  };
-  sections?:
-    | {
-        test?: string | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'testblock';
-      }[]
-    | null;
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -241,6 +211,36 @@ export interface Image {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages".
+ */
+export interface Page {
+  id: string;
+  title: string;
+  slug?: string | null;
+  meta?: {
+    description?: string | null;
+  };
+  hero: {
+    type: 'highImpact' | 'lowImpact' | 'banner' | 'none';
+    content?: {
+      heading?: string | null;
+      image: string | Image;
+    };
+  };
+  sections?:
+    | {
+        test?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'testblock';
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -251,12 +251,12 @@ export interface PayloadLockedDocument {
         value: string | User;
       } | null)
     | ({
-        relationTo: 'pages';
-        value: string | Page;
-      } | null)
-    | ({
         relationTo: 'images';
         value: string | Image;
+      } | null)
+    | ({
+        relationTo: 'pages';
+        value: string | Page;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -317,44 +317,6 @@ export interface UsersSelect<T extends boolean = true> {
   hash?: T;
   loginAttempts?: T;
   lockUntil?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "pages_select".
- */
-export interface PagesSelect<T extends boolean = true> {
-  title?: T;
-  slug?: T;
-  meta?:
-    | T
-    | {
-        description?: T;
-      };
-  hero?:
-    | T
-    | {
-        type?: T;
-        content?:
-          | T
-          | {
-              heading?: T;
-              image?: T;
-            };
-      };
-  sections?:
-    | T
-    | {
-        testblock?:
-          | T
-          | {
-              test?: T;
-              id?: T;
-              blockName?: T;
-            };
-      };
-  updatedAt?: T;
-  createdAt?: T;
-  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -438,6 +400,44 @@ export interface ImagesSelect<T extends boolean = true> {
               filename?: T;
             };
       };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages_select".
+ */
+export interface PagesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  meta?:
+    | T
+    | {
+        description?: T;
+      };
+  hero?:
+    | T
+    | {
+        type?: T;
+        content?:
+          | T
+          | {
+              heading?: T;
+              image?: T;
+            };
+      };
+  sections?:
+    | T
+    | {
+        testblock?:
+          | T
+          | {
+              test?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

@@ -1,4 +1,4 @@
-import { headers as getHeaders } from 'next/headers'
+import { headers as getHeaders, cookies, draftMode } from 'next/headers'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 
@@ -8,10 +8,12 @@ import { MdCompassCalibration, MdEdit, MdFolder, MdPerson, MdLogout } from 'reac
 export default async function RenderAdminBar({ id }) {
   const headers = await getHeaders()
   const payload = await getPayload({ config })
+  const cookieStore = await cookies()
+  const { isEnabled } = await draftMode()
 
   const { user } = await payload.auth({ headers })
 
-  if (!user) return null
+  if (!user || cookieStore.has('preview')) return null
 
   const actions = [
     {
@@ -41,6 +43,7 @@ export default async function RenderAdminBar({ id }) {
       <nav className="grid grid-cols-[auto_1fr] items-center justify-items-end gap-lg justify-self-stretch">
         <DisplayUser {...user} />
         <ul className="flex gap-md">
+          {isEnabled && <li>Preview</li>}
           {actions.map((action, id) => {
             return <AdminAction key={id} {...action} />
           })}

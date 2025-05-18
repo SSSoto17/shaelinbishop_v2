@@ -32,7 +32,7 @@ export default buildConfig({
     preserveExtension: 16,
   },
   globals: [Header],
-  collections: [Users, Pages, Images],
+  collections: [Users, Images, Pages],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

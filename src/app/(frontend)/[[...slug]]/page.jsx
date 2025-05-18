@@ -1,8 +1,9 @@
-import { draftMode } from 'next/headers'
+import { draftMode, headers as getHeaders } from 'next/headers'
 import { notFound } from 'next/navigation'
 
-// import { RefreshRouteOnSave } from './RefreshRouteOnSave'
+import { RefreshRouteOnSave } from '@/hooks/RefreshRouteonSave'
 import { getPage, getPages } from '@/app/local/pages/route'
+import { payload } from '@/lib/utils'
 
 import RenderHero from '@/components/Hero'
 import RenderContent from '@/components/RenderContent'
@@ -34,13 +35,20 @@ async function getPageBySlug(slug, draft) {
 
 export default async function Page({ params }) {
   const { slug = 'home' } = await params
-  const { isEnabled } = await draftMode()
+  const draft = await draftMode()
+  const headers = await getHeaders()
 
-  const { hero, sections } = await getPageBySlug(slug, isEnabled)
+  const { user } = await payload.auth({ headers })
+
+  if (!user) {
+    draft.disable()
+  }
+
+  const { hero, sections } = await getPageBySlug(slug, draft.isEnabled)
 
   return (
     <main className="full-bleed">
-      {/* <RefreshRouteOnSave /> */}
+      <RefreshRouteOnSave />
       <RenderHero {...hero} />
       <RenderContent content={sections} />
     </main>

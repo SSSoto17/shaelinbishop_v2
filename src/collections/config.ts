@@ -34,6 +34,22 @@ export const Pages: CollectionConfig = {
     useAsTitle: 'title',
     group: 'Content',
     defaultColumns: ['title', 'slug', 'status', 'updatedAt'],
+    preview: ({ slug }, { req: { protocol, host, user } }) => {
+      let token
+      if (user) {
+        token = process.env.PREVIEW_SECRET
+      }
+      return `${protocol}//${host}/preview?direct=${slug}&secret=${token}`
+    },
+    livePreview: {
+      url: ({ data: { slug }, req: { user, protocol, host } }) => {
+        let token
+        if (user) {
+          token = process.env.PREVIEW_SECRET
+        }
+        return `${protocol}//${host}/preview?live=${slug}&secret=${token}`
+      },
+    },
   },
   versions: {
     drafts: {
