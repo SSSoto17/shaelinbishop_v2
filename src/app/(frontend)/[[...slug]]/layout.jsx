@@ -1,4 +1,4 @@
-import { getPage } from '@/app/local/pages/route'
+import { getPage } from '@/lib/pages'
 
 // COMPONENTS
 import { Nav, Footer } from 'src/components/Navigation/Header/RenderHeader'

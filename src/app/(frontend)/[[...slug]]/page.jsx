@@ -2,7 +2,7 @@ import { draftMode, headers as getHeaders } from 'next/headers'
 import { notFound } from 'next/navigation'
 
 import { RefreshRouteOnSave } from '@/hooks/RefreshRouteonSave'
-import { getPage, getPages } from '@/app/local/pages/route'
+import { getPage, getPages } from '@/lib/pages'
 import { payload } from '@/lib/utils'
 
 import RenderHero from '@/components/Hero'
