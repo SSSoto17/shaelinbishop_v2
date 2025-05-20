@@ -258,6 +258,7 @@ export interface Page {
             blockType: 'accordion';
           }
         | {
+            image?: (string | null) | Image;
             tagline?: string | null;
             heading?: string | null;
             description?: {
@@ -275,8 +276,6 @@ export interface Page {
               };
               [k: string]: unknown;
             } | null;
-            content?: string | null;
-            image?: (string | null) | Image;
             id?: string | null;
             blockName?: string | null;
             blockType: 'mediaBlock';
@@ -519,11 +518,10 @@ export interface PagesSelect<T extends boolean = true> {
         mediaBlock?:
           | T
           | {
+              image?: T;
               tagline?: T;
               heading?: T;
               description?: T;
-              content?: T;
-              image?: T;
               id?: T;
               blockName?: T;
             };

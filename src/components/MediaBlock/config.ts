@@ -7,6 +7,11 @@ export const MediaBlock: Block = {
   },
   fields: [
     {
+      type: 'upload',
+      relationTo: 'images',
+      name: 'image',
+    },
+    {
       type: 'text',
       name: 'tagline',
     },
@@ -17,15 +22,6 @@ export const MediaBlock: Block = {
     {
       type: 'richText',
       name: 'description',
-    },
-    {
-      type: 'textarea',
-      name: 'content',
-    },
-    {
-      type: 'upload',
-      relationTo: 'images',
-      name: 'image',
     },
   ],
 }
