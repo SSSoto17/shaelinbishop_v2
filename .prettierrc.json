@@ -2,5 +2,14 @@
   "singleQuote": true,
   "trailingComma": "all",
   "printWidth": 100,
-  "semi": false
+  "semi": false,
+  "plugins": [
+    "prettier-plugin-css-order",
+    "prettier-plugin-style-order",
+    "prettier-plugin-multiline-arrays",
+    "prettier-plugin-organize-attributes",
+    "prettier-plugin-organize-imports",
+    "prettier-plugin-tailwindcss"
+  ],
+  "tailwindStylesheet": "./src/app/(frontend)/global.css"
 }

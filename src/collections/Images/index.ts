@@ -1,4 +1,4 @@
-import type { Field, UploadConfig, ImageSize, GenerateImageName } from 'payload'
+import type { Field, GenerateImageName, ImageSize, UploadConfig } from 'payload'
 
 // FIELDS
 export const imgName: Field = {
@@ -26,6 +26,8 @@ const imgSize: ImageSize = {
     format: 'webp',
   },
   generateImageName: autoName,
+  fit: 'cover',
+  position: 'centre',
 }
 
 const imgSizes = [

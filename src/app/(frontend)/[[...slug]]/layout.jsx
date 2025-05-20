@@ -1,8 +1,7 @@
 import { getPage } from '@/lib/pages'
 
 // COMPONENTS
-import { Nav, Footer } from 'src/components/Navigation/Header/RenderHeader'
-import AdminBar from '@/components/Navigation/AdminBar/RenderAdminBar'
+import { AdminBar, Header, Footer } from '@/components/Navigation'
 
 async function getPageID(slug) {
   const selector = { id: true }
@@ -18,9 +17,9 @@ export default async function PageLayout({ children, params }) {
 
   return (
     <>
-      <Nav>
+      <Header>
         <AdminBar {...pageID} />
-      </Nav>
+      </Header>
       {children}
       <Footer />
     </>

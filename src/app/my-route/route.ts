@@ -1,11 +1,6 @@
-import configPromise from '@payload-config'
-import { getPayload } from 'payload'
+import { payload } from '@/lib/utils'
 
 export const GET = async () => {
-  const payload = await getPayload({
-    config: configPromise,
-  })
-
   const data = await payload.find({
     collection: 'users',
   })

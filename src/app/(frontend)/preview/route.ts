@@ -1,4 +1,4 @@
-import { headers, draftMode, cookies } from 'next/headers'
+import { headers as getHeaders, draftMode } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { payload } from '@/lib/utils'
 
@@ -6,8 +6,7 @@ export async function GET(
   req: { cookies: { get: (name: string) => { value: string } } } & Request,
 ): Promise<Response> {
   const draft = await draftMode()
-  const nextHeaders = await headers()
-  const cookieStore = await cookies()
+  const headers = await getHeaders()
 
   const status403 = 'Please log in to preview this page'
 
@@ -17,6 +16,7 @@ export async function GET(
   const previewSecret = searchParams.get('secret')
 
   if (previewSecret !== process.env.PREVIEW_SECRET) {
+    draft.disable()
     return new Response(status403, { status: 403 })
   }
 
@@ -28,7 +28,7 @@ export async function GET(
   let user
 
   try {
-    user = await payload.auth({ headers: nextHeaders }).then((data) => data.user)
+    user = await payload.auth({ headers }).then((data) => data.user)
   } catch (error) {
     console.error(error)
     return new Response(status403, {
@@ -44,12 +44,6 @@ export async function GET(
   }
 
   draft.enable()
-
-  if (searchParams.has('live')) {
-    cookieStore.set('preview', 'live', { maxAge: 10000 })
-  } else {
-    cookieStore.delete('preview')
-  }
 
   redirect(page)
 }

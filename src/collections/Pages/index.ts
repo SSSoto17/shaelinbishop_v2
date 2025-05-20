@@ -7,6 +7,9 @@ export const PageTitle: Field = {
   type: 'text',
   required: true,
   unique: true,
+  admin: {
+    position: 'sidebar',
+  },
 }
 
 export const PageSlug: Field = {
@@ -14,6 +17,9 @@ export const PageSlug: Field = {
   label: 'Path',
   type: 'text',
   unique: true,
+  admin: {
+    position: 'sidebar',
+  },
   // hooks: {
   //   beforeValidate: [Slugify],
   // },
@@ -23,7 +29,6 @@ export const PageSlug: Field = {
 
 export const PageMeta: Field = {
   name: 'meta',
-  label: 'Details',
   type: 'group',
   admin: {
     position: 'sidebar',

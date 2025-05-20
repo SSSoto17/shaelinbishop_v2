@@ -1,14 +1,14 @@
-import '@/styles/global.css'
-import { Nanum_Myeongjo, Nanum_Gothic_Coding, Nanum_Myeongjo, Raleway } from 'next/font/google'
+import { Nanum_Gothic_Coding, Nanum_Myeongjo, Raleway } from 'next/font/google'
+import './global.css'
 
 const nanum = Nanum_Myeongjo({
-  variable: '--font-main',
+  variable: '--font-copy',
   weight: ['400', '700', '800'],
   subsets: ['latin'],
 })
 
 const nanumGothic = Nanum_Gothic_Coding({
-  variable: '--font-accent',
+  variable: '--font-display',
   weight: ['400', '700'],
   subsets: ['latin'],
 })

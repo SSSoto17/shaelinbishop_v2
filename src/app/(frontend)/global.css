@@ -1,0 +1,183 @@
+@import 'tailwindcss';
+
+@theme {
+  /* COLOR PALETTE*/
+  --color-*: initial;
+
+  --color-accent-50: oklch(97.89% 0.001 106.42);
+  --color-accent-100: oklch(95.76% 0.003 106.45);
+  --color-accent-200: oklch(91.37% 0.007 115.71);
+  --color-accent-300: oklch(86.18% 0.01 106.6);
+  --color-accent-400: oklch(80.18% 0.014 106.71);
+  --color-accent-500: oklch(72.68% 0.02 110.2);
+  --color-accent-600: oklch(64.73% 0.026 109.7);
+  --color-accent-700: oklch(58.73% 0.025 109.9);
+  --color-accent-800: oklch(52.24% 0.023 110.28);
+  --color-accent-900: oklch(41.58% 0.018 111.39);
+  --color-accent-950: oklch(31.07% 0.012 107.09);
+
+  --color-primary-50: oklch(96.84% 0.003 48.72);
+  --color-primary-100: oklch(93.66% 0.005 48.68);
+  --color-primary-200: oklch(86.06% 0.011 45.7);
+  --color-primary-300: oklch(78.83% 0.018 50.38);
+  --color-primary-400: oklch(70.59% 0.025 48.35);
+  --color-primary-500: oklch(62.14% 0.033 47.09);
+  --color-primary-600: oklch(54.48% 0.032 49.27);
+  --color-primary-700: oklch(45.55% 0.026 51.11);
+  --color-primary-800: oklch(35.93% 0.02 48.15);
+  --color-primary-900: oklch(26.84% 0.013 41.64);
+  --color-primary-950: oklch(21.42% 0.009 43.07);
+
+  --color-secondary-50: #fafafa;
+  --color-secondary-100: #f5f5f5;
+  --color-secondary-200: #ebebeb;
+  --color-secondary-300: #e0e0e0;
+  --color-secondary-400: #d1d1d1;
+  --color-secondary-500: #bfbfbf;
+  --color-secondary-600: #b0b0b0;
+  --color-secondary-700: #999999;
+  --color-secondary-800: #7d7d7d;
+  --color-secondary-900: #5e5e5e;
+  --color-secondary-950: #404040;
+
+  /* TEXT */
+  --font-*: initial;
+  --text-*: initial;
+  --font-weight-*: initial;
+
+  /* TEXT | FONT */
+
+  --font-display: var(--font-display);
+  --font-copy: var(--font-copy);
+  --font-logo: var(--font-logo);
+
+  /* TEXT | WEIGHT */
+
+  --font-weight-normal: 400;
+  --font-weight-bold: 700;
+  --font-weight-black: 800;
+
+  /* TEXT | TYPESCALE */
+
+  /* @link https://utopia.fyi/type/calculator?c=320,14,1.333,1120,16,1.414,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+  /* --text-xs: clamp(0.6564rem, 0.6361rem + 0.1016vw, 0.7072rem);
+  --text-sm: clamp(0.875rem, 0.825rem + 0.25vw, 1rem);
+  --text-base: clamp(1.1664rem, 1.0673rem + 0.4953vw, 1.414rem);
+  --text-lg: clamp(1.5548rem, 1.3769rem + 0.8892vw, 1.9994rem);
+  --text-xl: clamp(2.0725rem, 1.7707rem + 1.5093vw, 2.8271rem);
+  --text-2xl: clamp(2.7627rem, 2.2687rem + 2.4698vw, 3.9976rem);
+  --text-3xl: clamp(3.6826rem, 2.8947rem + 3.9399vw, 5.6526rem);
+  --text-4xl: clamp(4.909rem, 3.6754rem + 6.1676vw, 7.9928rem); */
+
+  /* @link https://utopia.fyi/type/calculator?c=320,18.66,1.333,1120,22.62,1.414,6,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+
+  --text-xs: clamp(0.6563rem, 0.636rem + 0.1015vw, 0.7071rem);
+  --text-sm: clamp(0.8749rem, 0.8249rem + 0.2498vw, 0.9998rem);
+  --text-base: clamp(1.1663rem, 1.0673rem + 0.495vw, 1.4138rem);
+  --text-lg: clamp(1.5546rem, 1.3768rem + 0.8889vw, 1.999rem);
+  --text-xl: clamp(2.0723rem, 1.7706rem + 1.5087vw, 2.8266rem);
+  --text-2xl: clamp(2.7624rem, 2.2686rem + 2.469vw, 3.9969rem);
+  --text-3xl: clamp(3.6822rem, 2.8945rem + 3.9387vw, 5.6516rem);
+  --text-4xl: clamp(4.9084rem, 3.6753rem + 6.1658vw, 7.9913rem);
+  --text-5xl: clamp(6.5429rem, 4.6402rem + 9.5136vw, 11.2998rem);
+
+  /* SPACING */
+
+  /* @link https://utopia.fyi/space/calculator?c=320,18,1.333,1240,22,1.414,6,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+  --spacing-3xs: clamp(0.25rem, 0.25rem + 0vw, 0.25rem);
+  --spacing-2xs: clamp(0.4375rem, 0.4125rem + 0.125vw, 0.5rem);
+  --spacing-xs: clamp(0.6875rem, 0.6625rem + 0.125vw, 0.75rem);
+  --spacing-sm: clamp(0.875rem, 0.825rem + 0.25vw, 1rem);
+  --spacing-md: clamp(1.3125rem, 1.2375rem + 0.375vw, 1.5rem);
+  --spacing-lg: clamp(1.75rem, 1.65rem + 0.5vw, 2rem);
+  --spacing-xl: clamp(2.625rem, 2.475rem + 0.75vw, 3rem);
+  --spacing-2xl: clamp(3.5rem, 3.3rem + 1vw, 4rem);
+  --spacing-3xl: clamp(5.25rem, 4.95rem + 1.5vw, 6rem);
+
+  /* One-up pairs */
+  --spacing-3xs-2xs: clamp(0.25rem, 0.15rem + 0.5vw, 0.5rem);
+  --spacing-2xs-xs: clamp(0.4375rem, 0.3125rem + 0.625vw, 0.75rem);
+  --spacing-xs-sm: clamp(0.6875rem, 0.5625rem + 0.625vw, 1rem);
+  --spacing-sm-md: clamp(0.875rem, 0.625rem + 1.25vw, 1.5rem);
+  --spacing-md-lg: clamp(1.3125rem, 1.0375rem + 1.375vw, 2rem);
+  --spacing-lg-xl: clamp(1.75rem, 1.25rem + 2.5vw, 3rem);
+  --spacing-xl-2xl: clamp(2.625rem, 2.075rem + 2.75vw, 4rem);
+  --spacing-2xl-3xl: clamp(3.5rem, 2.5rem + 5vw, 6rem);
+
+  /* SIZING */
+  --container-content: clamp(320px, 0px + 100vw, 1120px);
+}
+
+@layer base {
+  body {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns:
+      [full-bleed-start] minmax(var(--spacing-md), 1fr)
+      [main-content]
+      repeat(12, minmax(0, calc(var(--container-content) / 12)))
+      minmax(var(--spacing-md), 1fr) [full-bleed-end];
+    align-content: start;
+    min-height: 100svh;
+    color: var(--color-primary-900);
+    font-weight: var(--font-weight-normal);
+    font-size: var(--text-base);
+    font-family: var(--font-copy);
+    background-color: var(--color-primary-50);
+
+    > header,
+    > main,
+    > footer {
+      display: grid;
+      grid-column: main-content;
+      grid-template-columns: subgrid;
+
+      > * {
+        grid-column: span 12;
+      }
+    }
+  }
+}
+
+@layer components {
+  .img-placeholder {
+    @apply max-h-200 min-h-40 max-w-200 min-w-60 bg-accent-800;
+  }
+}
+
+@utility full-bleed {
+  display: grid;
+  grid-column: full-bleed;
+  grid-template-columns: subgrid;
+  align-content: start;
+
+  > *:not(.full-bleed) {
+    grid-column: 2 / span 12;
+  }
+}
+
+@utility span-1/2 {
+  @apply col-span-6 [.full-bleed>&]:col-span-7;
+}
+
+@utility span-1/3 {
+  @apply col-span-4 [.full-bleed>&]:col-span-5;
+}
+
+@utility span-2/3 {
+  @apply col-span-8 [.full-bleed>&]:col-span-9;
+}
+
+@utility span-1/4 {
+  @apply col-span-3 [.full-bleed>&]:col-span-4;
+}
+
+@utility span-3/4 {
+  @apply col-span-9 [.full-bleed>&]:col-span-10;
+}
+
+@utility flow-space {
+  > * + * {
+    margin-block-start: var(--flow-space, 1em);
+  }
+}

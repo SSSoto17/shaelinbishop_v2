@@ -11,7 +11,7 @@ export default function AuthorBio({ headshot, headline, description, images, img
           alt={alt}
           width={sizes.card.width}
           height={sizes.card.height}
-          className="place-self-stretch object-cover sm:order-2 lg:col-span-2"
+          className="object-cover sm:order-2 lg:col-span-2"
         />
         <article className="grid content-center flow-space lg:col-span-3">
           <h2 className="text-3xl/22 font-black">{headline}</h2>
@@ -20,8 +20,8 @@ export default function AuthorBio({ headshot, headline, description, images, img
       </section>
       <MediaWithTitle {...images} />
       <TextColumns />
-      <section className="grid gap-lg place-self-stretch">
-        <h2 className="text-right font-accent text-3xl/relaxed uppercase">
+      <section className="grid gap-lg">
+        <h2 className="text-right font-display text-3xl/28 uppercase">
           <span className="italic">Part</span> of
           <br />
           the <span className="text-4xl italic">solution</span>
@@ -33,11 +33,11 @@ export default function AuthorBio({ headshot, headline, description, images, img
           height={imgTest?.sizes.screen.height}
         />
       </section>
-      <section className="place-self-stretch py-3xl">
+      <section className="py-3xl">
         <h2 className="grid grid-cols-3 text-2xl">
           <span className="text-3xl italic">Dreaming</span>
           <br />
-          <span className="col-start-3 row-start-2 text-center font-accent">in</span>
+          <span className="col-start-3 row-start-2 text-center font-display">in</span>
           <br />
           <span className="col-start-2 row-start-3 text-center text-4xl font-black">sepia.</span>
         </h2>
@@ -50,7 +50,7 @@ export default function AuthorBio({ headshot, headline, description, images, img
 
 function MediaWithTitle({ imageGroup, imagesTitle }) {
   return (
-    <section className="grid grid-cols-3 gap-x-md-lg gap-y-sm place-self-stretch py-md">
+    <section className="grid grid-cols-3 gap-x-md-lg gap-y-sm py-xl">
       <Image
         src={imageGroup?.[0].sizes.card.url}
         alt={imageGroup?.[0].alt}
@@ -92,14 +92,14 @@ function ParallaxScroll({ sizes, alt }) {
   return (
     <section
       style={{ backgroundImage: img }}
-      className="relative -z-10 full-bleed min-h-screen bg-cover bg-fixed py-4xl text-neutral-50"
+      className="py-4xl relative -z-10 full-bleed min-h-screen bg-cover bg-fixed text-primary-50"
     >
       <article className="absolute inset-0 full-bleed backdrop-blur-md" />
       <article
         style={{ backgroundImage: img }}
-        className="absolute top-50 bottom-50 z-0 w-120 border border-neutral-50 bg-right"
+        className="absolute top-50 bottom-50 z-0 w-120 border border-primary-50 bg-right"
       />
-      <h2 className="z-10 place-self-end font-accent text-2xl">Scrolling...</h2>
+      <h2 className="z-10 place-self-end font-display text-2xl">Scrolling...</h2>
       {/* <Image
         src={sizes?.screen.url}
         alt={alt}
@@ -117,17 +117,17 @@ function ImginImg({ sizes, alt }) {
   return (
     <section
       style={{ backgroundImage: img }}
-      className="relative -z-10 full-bleed min-h-screen gap-y-lg bg-cover bg-fixed py-4xl text-neutral-50"
+      className="relative -z-10 full-bleed min-h-screen place-content-center gap-y-lg bg-cover bg-fixed py-3xl text-primary-50"
     >
       <article className="absolute inset-0 -z-10 full-bleed backdrop-blur-md" />
-      {/* <article className="row-span-3 w-50 border border-neutral-50 backdrop-blur-3xl" /> */}
-      <h2 className="place-self-end font-accent text-2xl">Scrolling...</h2>
+      {/* <article className="row-span-3 w-50 border border-primary-50 backdrop-blur-3xl" /> */}
+      <h2 className="justify-self-end font-display text-2xl">Scrolling...</h2>
       <Image
         src={sizes?.screen.url}
         alt={alt}
         width={sizes?.screen.width}
         height={sizes?.screen.height}
-        className="border border-neutral-50"
+        className="border border-primary-50"
       />
     </section>
   )

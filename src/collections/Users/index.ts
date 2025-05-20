@@ -15,15 +15,15 @@ const lastName: Field = {
 const userRoleOptions = [
   {
     label: 'Admin',
-    value: 'admin',
+    value: 'Admin',
   },
   {
     label: 'Editor',
-    value: 'editor',
+    value: 'Editor',
   },
   {
     label: 'Guest',
-    value: 'guest',
+    value: 'Guest',
   },
 ]
 
@@ -36,5 +36,5 @@ export const userRole: Field = {
   type: 'select',
   name: 'role',
   options: userRoleOptions,
-  defaultValue: 'editor',
+  defaultValue: 'Editor',
 }

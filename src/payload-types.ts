@@ -127,7 +127,7 @@ export interface User {
   id: string;
   firstName?: string | null;
   lastName?: string | null;
-  role?: ('admin' | 'editor' | 'guest') | null;
+  role?: ('Admin' | 'Editor' | 'Guest') | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -242,6 +242,44 @@ export interface Page {
             id?: string | null;
             blockName?: string | null;
             blockType: 'bio';
+          }
+        | {
+            image?: (string | null) | Image;
+            heading?: string | null;
+            questions?:
+              | {
+                  q?: string | null;
+                  a?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'accordion';
+          }
+        | {
+            tagline?: string | null;
+            heading?: string | null;
+            description?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            content?: string | null;
+            image?: (string | null) | Image;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'mediaBlock';
           }
         | {
             img?: (string | null) | Image;
@@ -460,6 +498,32 @@ export interface PagesSelect<T extends boolean = true> {
                   };
               imgTest?: T;
               bgImg?: T;
+              id?: T;
+              blockName?: T;
+            };
+        accordion?:
+          | T
+          | {
+              image?: T;
+              heading?: T;
+              questions?:
+                | T
+                | {
+                    q?: T;
+                    a?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        mediaBlock?:
+          | T
+          | {
+              tagline?: T;
+              heading?: T;
+              description?: T;
+              content?: T;
+              image?: T;
               id?: T;
               blockName?: T;
             };

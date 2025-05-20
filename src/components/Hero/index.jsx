@@ -6,7 +6,7 @@ export default function RenderHero({ type, content }) {
     return (
       <section
         style={{ backgroundImage: heroImg }}
-        className="full-bleed bg-accent-500 bg-cover bg-fixed py-xl text-neutral-50 bg-blend-darken"
+        className="full-bleed bg-accent-500 bg-cover bg-fixed py-xl text-primary-50 bg-blend-darken"
       >
         {type === 'highImpact' && <HighImpact {...content} />}
         {type === 'lowImpact' && <LowImpact {...content} />}
@@ -21,10 +21,10 @@ export default function RenderHero({ type, content }) {
 function HighImpact({ heading }) {
   return (
     <article className="h-224 max-h-screen place-content-center py-xs flow-space">
-      <h1 className="font-accent text-4xl/26 font-extrabold tracking-tighter text-balance uppercase">
+      <h1 className="font-display text-4xl/26 font-bold tracking-tighter text-balance uppercase">
         {heading}
       </h1>
-      <h2 className="text-lg font-extrabold">Nanum Myeongjo</h2>
+      <h2 className="text-lg font-black">Nanum Myeongjo</h2>
       <p className="max-w-prose font-bold tracking-wide">
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad vitae, voluptatibus repellendus
         enim, maiores vel animi neque id magni dolores adipisci accusantium cupiditate ipsa est,
@@ -38,7 +38,7 @@ function HighImpact({ heading }) {
 function LowImpact({ heading }) {
   return (
     <article className="justify-self-end">
-      <h1 className="font-accent text-2xl font-extrabold tracking-tighter">{heading}</h1>
+      <h1 className="font-display text-2xl font-bold tracking-tighter">{heading}</h1>
       <p className="max-w-prose tracking-wide">
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolores labore molestias provident
         voluptas earum, minus magni quas sapiente recusandae saepe doloribus cumque ratione

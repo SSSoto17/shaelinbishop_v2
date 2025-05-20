@@ -2,7 +2,7 @@
 import { RefreshRouteOnSave as PayloadLivePreview } from '@payloadcms/live-preview-react'
 import { useRouter } from 'next/navigation'
 
-export const RefreshRouteOnSave = () => {
+export default function LivePreview() {
   const router = useRouter()
 
   return (

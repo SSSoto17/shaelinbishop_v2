@@ -19,7 +19,7 @@ export const Users: CollectionConfig = {
 }
 
 // Pages
-import { PageTitle, PageSlug, PageMeta, PageContent } from './Pages'
+import { PageContent, PageMeta, PageSlug, PageTitle } from './Pages'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -54,7 +54,7 @@ export const Pages: CollectionConfig = {
   versions: {
     drafts: {
       autosave: {
-        interval: 100,
+        interval: 300,
       },
     },
   },
@@ -62,7 +62,7 @@ export const Pages: CollectionConfig = {
 }
 
 // IMAGES
-import { imgName, altText, upload } from './Images'
+import { altText, imgName, upload } from './Images'
 import { autoImgFileName, updateImgFileName } from './Images/hooks'
 
 export const Images: CollectionConfig = {
