@@ -1,50 +1,41 @@
+import { Content } from '@/components'
+import LivePreview from '@/hooks/LivePreview'
 import { getPage, getPages } from '@/lib/pages'
+import { draftMode } from 'next/headers'
+import { notFound } from 'next/navigation'
 
 // GENERATING PARAMS
 export async function generateStaticParams() {
-  const selector = { slug: true }
-  const filter = {
-    slug: {
-      not_equals: '/home',
+  const pages = await getPages(
+    { slug: true },
+    {
+      slug: {
+        not_equals: '/home',
+      },
     },
-  }
-  const pages = await getPages(selector, filter)
+  )
 
-  return pages.map((page) => ({
-    slug: [page.slug],
+  return pages.map(({ slug }) => ({
+    slug: [slug],
   }))
 }
 
-// FUNCTIONS
-async function getPageBySlug(slug, draft) {
-  const filter = { slug: { equals: '/' + slug } }
-  const page = await getPage(null, filter, draft)
+// PAGE
+export default async function Page({ params }) {
+  const { slug = 'home' } = await params
+  const { isEnabled } = await draftMode()
+
+  const page = await getPage(null, { slug: { equals: `/${slug}` } }, isEnabled)
 
   if (!page) {
     notFound()
   }
 
-  return page
-}
-
-// RENDERED PAGE
-import { draftMode } from 'next/headers'
-import { notFound } from 'next/navigation'
-
-import { Content, Hero } from '@/components'
-import LivePreview from '@/hooks/LivePreview'
-
-export default async function Page({ params }) {
-  const { slug = 'home' } = await params
-  const { isEnabled } = await draftMode()
-
-  const { hero, sections } = await getPageBySlug(slug, isEnabled)
-
   return (
-    <main className="full-bleed">
+    // <main id="main" className="full-bleed scroll-m-xl-2xl">
+    <main id="main" className="full-bleed snap-y snap-start scroll-m-xl-2xl">
       {isEnabled && <LivePreview />}
-      <Hero {...hero} />
-      <Content content={sections} />
+      <Content {...page} />
       {slug[0] === 'about' && <AboutHardcoded />}
       {slug[0] === 'services' && <ServicesHardcoded />}
     </main>

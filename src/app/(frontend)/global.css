@@ -71,7 +71,7 @@
 
   /* @link https://utopia.fyi/type/calculator?c=320,18.66,1.333,1120,22.62,1.414,6,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
 
-  --text-xs: clamp(0.6563rem, 0.636rem + 0.1015vw, 0.7071rem);
+  /* --text-xs: clamp(0.6563rem, 0.636rem + 0.1015vw, 0.7071rem);
   --text-sm: clamp(0.8749rem, 0.8249rem + 0.2498vw, 0.9998rem);
   --text-base: clamp(1.1663rem, 1.0673rem + 0.495vw, 1.4138rem);
   --text-lg: clamp(1.5546rem, 1.3768rem + 0.8889vw, 1.999rem);
@@ -79,33 +79,64 @@
   --text-2xl: clamp(2.7624rem, 2.2686rem + 2.469vw, 3.9969rem);
   --text-3xl: clamp(3.6822rem, 2.8945rem + 3.9387vw, 5.6516rem);
   --text-4xl: clamp(4.9084rem, 3.6753rem + 6.1658vw, 7.9913rem);
-  --text-5xl: clamp(6.5429rem, 4.6402rem + 9.5136vw, 11.2998rem);
+  --text-5xl: clamp(6.5429rem, 4.6402rem + 9.5136vw, 11.2998rem); */
+
+  /* @link https://utopia.fyi/type/calculator?c=320,20,1.25,1120,23.99,1.333,6,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+
+  --text-xs: clamp(0.8rem, 0.7825rem + 0.0876vw, 0.8438rem);
+  --text-sm: clamp(1rem, 0.9501rem + 0.2496vw, 1.1248rem);
+  --text-base: clamp(1.25rem, 1.1503rem + 0.4988vw, 1.4994rem);
+  --text-lg: clamp(1.5625rem, 1.388rem + 0.8723vw, 1.9987rem);
+  --text-xl: clamp(1.9531rem, 1.6687rem + 1.4222vw, 2.6642rem);
+  --text-2xl: clamp(2.4414rem, 1.9974rem + 2.22vw, 3.5514rem);
+  --text-3xl: clamp(3.0518rem, 2.3788rem + 3.3645vw, 4.734rem);
+  --text-4xl: clamp(3.8147rem, 2.8164rem + 4.9915vw, 6.3105rem);
+  --text-5xl: clamp(4.7684rem, 3.311rem + 7.2869vw, 8.4118rem);
 
   /* SPACING */
 
-  /* @link https://utopia.fyi/space/calculator?c=320,18,1.333,1240,22,1.414,6,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
-  --spacing-3xs: clamp(0.25rem, 0.25rem + 0vw, 0.25rem);
-  --spacing-2xs: clamp(0.4375rem, 0.4125rem + 0.125vw, 0.5rem);
-  --spacing-xs: clamp(0.6875rem, 0.6625rem + 0.125vw, 0.75rem);
-  --spacing-sm: clamp(0.875rem, 0.825rem + 0.25vw, 1rem);
-  --spacing-md: clamp(1.3125rem, 1.2375rem + 0.375vw, 1.5rem);
-  --spacing-lg: clamp(1.75rem, 1.65rem + 0.5vw, 2rem);
-  --spacing-xl: clamp(2.625rem, 2.475rem + 0.75vw, 3rem);
-  --spacing-2xl: clamp(3.5rem, 3.3rem + 1vw, 4rem);
-  --spacing-3xl: clamp(5.25rem, 4.95rem + 1.5vw, 6rem);
+  /* @link https://utopia.fyi/space/calculator?c=320,20,1.25,1120,23.99,1.333,6,2,&s=0.75|0.5|0.25,1.5|2|3|4|6|7|8|10,s-l&g=s,l,xl,12 */
+
+  --spacing-3xs: clamp(0.3125rem, 0.2875rem + 0.125vw, 0.375rem);
+  --spacing-2xs: clamp(0.625rem, 0.575rem + 0.25vw, 0.75rem);
+  --spacing-xs: clamp(0.9375rem, 0.8625rem + 0.375vw, 1.125rem);
+  --spacing-sm: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
+  --spacing-md: clamp(1.875rem, 1.725rem + 0.75vw, 2.25rem);
+  --spacing-lg: clamp(2.5rem, 2.3rem + 1vw, 3rem);
+  --spacing-xl: clamp(3.75rem, 3.45rem + 1.5vw, 4.5rem);
+  --spacing-2xl: clamp(5rem, 4.6rem + 2vw, 6rem);
+  --spacing-3xl: clamp(7.5rem, 6.9rem + 3vw, 9rem);
+  --spacing-4xl: clamp(8.75rem, 8.05rem + 3.5vw, 10.5rem);
+  --spacing-5xl: clamp(10rem, 9.2rem + 4vw, 12rem);
+  --spacing-6xl: clamp(12.5rem, 11.5rem + 5vw, 15rem);
 
   /* One-up pairs */
-  --spacing-3xs-2xs: clamp(0.25rem, 0.15rem + 0.5vw, 0.5rem);
-  --spacing-2xs-xs: clamp(0.4375rem, 0.3125rem + 0.625vw, 0.75rem);
-  --spacing-xs-sm: clamp(0.6875rem, 0.5625rem + 0.625vw, 1rem);
-  --spacing-sm-md: clamp(0.875rem, 0.625rem + 1.25vw, 1.5rem);
-  --spacing-md-lg: clamp(1.3125rem, 1.0375rem + 1.375vw, 2rem);
-  --spacing-lg-xl: clamp(1.75rem, 1.25rem + 2.5vw, 3rem);
-  --spacing-xl-2xl: clamp(2.625rem, 2.075rem + 2.75vw, 4rem);
-  --spacing-2xl-3xl: clamp(3.5rem, 2.5rem + 5vw, 6rem);
+  --spacing-3xs-2xs: clamp(0.3125rem, 0.1375rem + 0.875vw, 0.75rem);
+  --spacing-2xs-xs: clamp(0.625rem, 0.425rem + 1vw, 1.125rem);
+  --spacing-xs-sm: clamp(0.9375rem, 0.7125rem + 1.125vw, 1.5rem);
+  --spacing-sm-md: clamp(1.25rem, 0.85rem + 2vw, 2.25rem);
+  --spacing-md-lg: clamp(1.875rem, 1.425rem + 2.25vw, 3rem);
+  --spacing-lg-xl: clamp(2.5rem, 1.7rem + 4vw, 4.5rem);
+  --spacing-xl-2xl: clamp(3.75rem, 2.85rem + 4.5vw, 6rem);
+  --spacing-2xl-3xl: clamp(5rem, 3.4rem + 8vw, 9rem);
+  --spacing-3xl-4xl: clamp(7.5rem, 6.3rem + 6vw, 10.5rem);
+  --spacing-4xl-5xl: clamp(8.75rem, 7.45rem + 6.5vw, 12rem);
+  --spacing-5xl-6xl: clamp(10rem, 8rem + 10vw, 15rem);
 
   /* SIZING */
   --container-content: clamp(320px, 0px + 100vw, 1120px);
+
+  /* ANIMATIONS */
+  --animate-fade-in: fade-in 0.5s ease-in 1;
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 }
 
 @layer base {
@@ -131,6 +162,7 @@
       display: grid;
       grid-column: main-content;
       grid-template-columns: subgrid;
+      scroll-behavior: smooth;
 
       > * {
         grid-column: span 12;

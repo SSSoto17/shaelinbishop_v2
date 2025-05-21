@@ -28,10 +28,9 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${nanum.variable} ${nanumGothic.variable} ${raleway.variable} scroll-smooth`}
-      >
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+      {/* <html lang="en" className="snap-y snap-proximity scroll-smooth" suppressHydrationWarning> */}
+      <body className={`${nanum.variable} ${nanumGothic.variable} ${raleway.variable}`}>
         {children}
       </body>
     </html>

@@ -1,4 +1,6 @@
-export default function RenderHero({ type, content }) {
+import Link from 'next/link'
+
+export default function Hero({ type, content }) {
   // const { type, image } = props
   const heroImg = `url(${content?.image?.url})`
 
@@ -6,7 +8,7 @@ export default function RenderHero({ type, content }) {
     return (
       <section
         style={{ backgroundImage: heroImg }}
-        className="full-bleed bg-accent-500 bg-cover bg-fixed py-xl text-primary-50 bg-blend-darken"
+        className="full-bleed content-around bg-accent-500 bg-cover bg-fixed py-xl text-primary-50 bg-blend-darken"
       >
         {type === 'highImpact' && <HighImpact {...content} />}
         {type === 'lowImpact' && <LowImpact {...content} />}
@@ -17,20 +19,34 @@ export default function RenderHero({ type, content }) {
   return null
 }
 
+import { MdOutlineArrowDropDownCircle } from 'react-icons/md'
 // LARGE HERO
 function HighImpact({ heading }) {
   return (
-    <article className="h-224 max-h-screen place-content-center py-xs flow-space">
-      <h1 className="font-display text-4xl/26 font-bold tracking-tighter text-balance uppercase">
-        {heading}
-      </h1>
-      <h2 className="text-lg font-black">Nanum Myeongjo</h2>
-      <p className="max-w-prose font-bold tracking-wide">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad vitae, voluptatibus repellendus
-        enim, maiores vel animi neque id magni dolores adipisci accusantium cupiditate ipsa est,
-        excepturi dolorum. Et, eligendi repellendus!
-      </p>
-    </article>
+    <>
+      <article className="place-content-center py-xs flow-space">
+        <h1 className="font-display text-4xl/26 font-bold tracking-tighter text-balance uppercase">
+          {heading}
+        </h1>
+        {/* <h2 className="text-lg font-black">Nanum Myeongjo</h2> */}
+        <h2 className="font-display text-lg lowercase">Writer. Editor. Educator.</h2>
+        <p className="max-w-prose font-bold tracking-wide">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad vitae, voluptatibus
+          repellendus enim, maiores vel animi neque id magni dolores adipisci accusantium cupiditate
+          ipsa est, excepturi dolorum. Et, eligendi repellendus!
+        </p>
+      </article>
+      <Link
+        href="#main"
+        className="grid place-items-center gap-y-xs self-end justify-self-center font-display lowercase"
+        aria-label="Jump to Site"
+      >
+        <MdOutlineArrowDropDownCircle className="peer order-2 text-xl transition duration-150 hover:translate-y-2xs" />
+        <p className="transition duration-150 not-peer-hover:opacity-0 peer-hover:-translate-y-3xs">
+          Enter Site
+        </p>
+      </Link>
+    </>
   )
 }
 

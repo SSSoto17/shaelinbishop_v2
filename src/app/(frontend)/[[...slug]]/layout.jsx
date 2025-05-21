@@ -1,25 +1,16 @@
+import { Footer, Header } from '@/components/Navigation'
 import { getPage } from '@/lib/pages'
-
-// COMPONENTS
-import { AdminBar, Header, Footer } from '@/components/Navigation'
-
-async function getPageID(slug) {
-  const selector = { id: true }
-  const filter = { slug: { equals: `/${slug}` } }
-  const page = await getPage(selector, filter)
-
-  return page
-}
+import { draftMode } from 'next/headers'
 
 export default async function PageLayout({ children, params }) {
   const { slug = 'home' } = await params
-  const pageID = await getPageID(slug)
+  const { isEnabled } = await draftMode()
+
+  const page = await getPage(null, { slug: { equals: `/${slug}` } }, isEnabled)
 
   return (
     <>
-      <Header>
-        <AdminBar {...pageID} />
-      </Header>
+      <Header {...page} />
       {children}
       <Footer />
     </>

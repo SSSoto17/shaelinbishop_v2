@@ -1,7 +1,16 @@
-import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
+import {
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel,
+  Tab,
+  TabGroup,
+  TabList,
+  TabPanel,
+  TabPanels,
+} from '@headlessui/react'
 import Image from 'next/image'
 
-export default function Accordion({
+export function Accordionv1({
   image: {
     alt,
     sizes: {
@@ -58,5 +67,40 @@ function Question({ q, a }) {
         </DisclosurePanel>
       </div>
     </Disclosure>
+  )
+}
+
+export default function Accordion({ heading, questions: qs }) {
+  return (
+    <TabGroup as="section" vertical className="full-bleed gap-2xl border-y border-y-primary-700">
+      <article className="span-1/3 grid grid-cols-subgrid content-start gap-y-lg border-r border-r-primary-700 py-2xl">
+        <h2 className="col-span-full col-start-2 cursor-default px-md text-right font-bold">
+          {heading}
+        </h2>
+        <TabList as="ul" className="span-1/3 col-span-full grid grid-cols-subgrid gap-xs">
+          {qs.map(({ q }, id) => {
+            return (
+              <Tab
+                as="li"
+                key={id}
+                className="col-span-full grid cursor-pointer grid-cols-subgrid border-r border-r-primary-700 bg-accent-200 px-md py-2xs text-right font-display text-sm lowercase transition duration-150 data-active:bg-accent-700 data-active:text-accent-50 data-hover:bg-accent-300 data-selected:bg-accent-700 data-selected:text-accent-50 data-selected:hover:bg-accent-500"
+              >
+                <p className="col-span-full col-start-2">{q}</p>
+              </Tab>
+            )
+          })}
+        </TabList>
+      </article>
+      <TabPanels className="span-2/3 grid grid-cols-subgrid content-center">
+        {qs.map(({ q, a }, id) => {
+          return (
+            <TabPanel key={id} className="col-span-full -col-end-2 animate-fade-in flow-space">
+              <h3 className="font-black">{q}</h3>
+              <p>{a}</p>
+            </TabPanel>
+          )
+        })}
+      </TabPanels>
+    </TabGroup>
   )
 }

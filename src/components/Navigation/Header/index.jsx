@@ -1,11 +1,20 @@
 import { payload } from '@/lib/utils'
 import Link from 'next/link'
 
-export default function Header({ children }) {
+import { Hero } from '@/components'
+import AdminBar from '../AdminBar'
+
+export default function Header({ id, hero }) {
   return (
-    <header className="sticky top-0 full-bleed bg-primary-50 drop-shadow-md">
-      {children}
-      <NavBar />
+    <header
+      className={`full-bleed grid ${hero?.type === 'highImpact' && 'h-screen'} snap-start grid-cols-subgrid grid-rows-[auto_1fr]`}
+    >
+      {/* <section className="full-bleed bg-primary-50 drop-shadow-md"> */}
+      <section className="sticky top-0 z-10 full-bleed bg-primary-50 drop-shadow-md">
+        <AdminBar id={id} />
+        <NavBar />
+      </section>
+      {hero && <Hero {...hero} />}
     </header>
   )
 }

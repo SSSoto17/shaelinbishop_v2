@@ -82,3 +82,22 @@ export const Images: CollectionConfig = {
     beforeValidate: [updateImgFileName],
   },
 }
+
+// PUBLICATIONS
+import { Blurb, Cover, PublishedDate, Title } from './Publications/config'
+
+export const Publications: CollectionConfig = {
+  slug: 'work',
+  admin: {
+    useAsTitle: 'title',
+  },
+  access: {
+    read: () => true,
+  },
+  fields: [
+    Title,
+    Cover,
+    Blurb,
+    PublishedDate,
+  ],
+}

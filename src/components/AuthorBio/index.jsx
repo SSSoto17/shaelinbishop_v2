@@ -5,7 +5,7 @@ export default function AuthorBio({ headshot, headline, description, images, img
 
   return (
     <>
-      <section className="grid gap-x-md-lg gap-y-xl py-2xl-3xl sm:grid-cols-2 lg:grid-cols-5">
+      <section className="grid gap-x-md-lg gap-y-xl py-xl-2xl sm:grid-cols-2 lg:grid-cols-5">
         <Image
           src={sizes.card.url}
           alt={alt}
@@ -33,7 +33,7 @@ export default function AuthorBio({ headshot, headline, description, images, img
           height={imgTest?.sizes.screen.height}
         />
       </section>
-      <section className="py-3xl">
+      <section className="py-2xl">
         <h2 className="grid grid-cols-3 text-2xl">
           <span className="text-3xl italic">Dreaming</span>
           <br />
@@ -50,7 +50,7 @@ export default function AuthorBio({ headshot, headline, description, images, img
 
 function MediaWithTitle({ imageGroup, imagesTitle }) {
   return (
-    <section className="grid grid-cols-3 gap-x-md-lg gap-y-sm py-xl">
+    <section className="grid grid-cols-3 gap-x-md-lg gap-y-sm py-lg">
       <Image
         src={imageGroup?.[0].sizes.card.url}
         alt={imageGroup?.[0].alt}
@@ -72,7 +72,7 @@ function MediaWithTitle({ imageGroup, imagesTitle }) {
 
 function TextColumns() {
   return (
-    <section className="grid grid-cols-2 gap-x-md-lg py-3xl">
+    <section className="grid grid-cols-2 gap-x-md-lg py-md">
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem voluptates molestiae
         voluptas repellat doloribus. Voluptate pariatur minima quod saepe? Consectetur provident
@@ -92,7 +92,7 @@ function ParallaxScroll({ sizes, alt }) {
   return (
     <section
       style={{ backgroundImage: img }}
-      className="py-4xl relative -z-10 full-bleed min-h-screen bg-cover bg-fixed text-primary-50"
+      className="relative -z-10 full-bleed min-h-screen bg-cover bg-fixed py-4xl text-primary-50"
     >
       <article className="absolute inset-0 full-bleed backdrop-blur-md" />
       <article
