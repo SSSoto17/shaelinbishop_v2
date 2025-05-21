@@ -42,7 +42,7 @@ function HighImpact({ heading }) {
         aria-label="Jump to Site"
       >
         <MdOutlineArrowDropDownCircle className="peer order-2 text-xl transition duration-150 hover:translate-y-2xs" />
-        <p className="transition duration-150 not-peer-hover:opacity-0 peer-hover:-translate-y-3xs">
+        <p className="transition duration-150 not-peer-hover:opacity-30 peer-hover:-translate-y-3xs">
           Enter Site
         </p>
       </Link>
