@@ -76,9 +76,6 @@ export const upload: UploadConfig = {
   formatOptions: { format: 'webp' },
   imageSizes: imgSizes,
   resizeOptions: {
-    width: 3840,
-    position: 'centre',
-    fit: 'outside',
     withoutEnlargement: true,
   },
 }

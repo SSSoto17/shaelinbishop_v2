@@ -6,10 +6,9 @@ import { MdOutlineArrowRight, MdOutlineArrowRightAlt } from 'react-icons/md'
 import { RichText } from '../RichText'
 
 const getContent = async (id) => {
-  // console.log(id)
   const { docs } = await payload.find({
     collection: 'publications',
-    sort: '-createdAt',
+    sort: ['-releaseDate', '-createdAt'],
     where: {
       id: {
         in: id,
@@ -24,12 +23,10 @@ const getContent = async (id) => {
 }
 
 export default async function Archive({ content }) {
-  // console.log(content)
   return (
     <section className="grid grid-cols-subgrid gap-x-xl">
       <NavSidebar navData={content} />
       {content.map((cat) => {
-        // console.log(cat)
         return <Group key={cat.id} {...cat} />
       })}
     </section>
@@ -73,38 +70,38 @@ async function Group({ title, categoryJoin: { docs } }) {
   return (
     <article id={title.replaceAll(' ', '')} className="col-span-9 grid scroll-mt-md gap-y-xs py-md">
       <header
-        className={`sticky cursor-default ${user ? 'top-27' : 'top-lg'} z-10 bg-primary-50/75 backdrop-blur-xs`}
+        className={`sticky col-span-9 cursor-default ${user ? 'top-27' : 'top-lg'} z-10 bg-primary-50/75 backdrop-blur-xs`}
       >
         <h3 className="font-display text-xl/16 font-bold tracking-tight lowercase">{title}</h3>
       </header>
       <ul className={`grid ${title === 'Short Fiction' ? 'gap-y-xs' : 'gap-y-lg'}`}>
         {data.map((item, id) => {
-          // console.log(item)
-          if (item.categoryName !== 'Short Fiction') return <BookCard key={id} {...item} />
-          if (item.categoryName === 'Short Fiction')
-            return <ShortFictionListItem key={id} {...item} />
+          if (item.coverImg || item.categoryName === 'Books' || item.categoryName === 'Collections')
+            return <CardItem key={id} {...item} />
+          return <ListItem key={id} {...item} />
         })}
       </ul>
     </article>
   )
 }
 
-function ShortFictionListItem({ title, releaseDetails: { isPublished, publishedIn } }) {
+function ListItem({ title, releaseDetails: { isPublished, publishedIn } }) {
+  console.log(publishedIn)
   const {
     magazine: { title: litMag, date, url },
   } = publishedIn[0]
   return (
-    <li className="relative flex justify-between border-l-4 border-l-accent-600 p-3xs transition duration-150 ease-in has-hover:text-primary-700">
-      <header className="flex grow items-center gap-x-sm">
+    <li className="relative flex justify-between gap-sm border-l-4 border-l-accent-600 p-3xs transition duration-150 ease-in has-hover:text-primary-700">
+      <header className="flex flex-wrap items-center gap-x-sm">
         <h3 className="font-bold">{title}</h3>
         <p className="font-display text-sm text-primary-800">
-          {`${litMag}, ${date}` || isPublished}
+          {isPublished == 'Published' ? `${litMag}, ${date}` : isPublished}
         </p>
       </header>
       <Link
         href={url}
         target="_blank"
-        className="group inline-flex items-center gap-3xs font-display text-sm/4 font-bold uppercase transition duration-150 not-hover:opacity-0 after:absolute after:inset-0"
+        className="group flex flex-none items-center gap-3xs font-display text-sm/4 font-bold uppercase transition duration-150 not-hover:opacity-0 after:absolute after:inset-0"
       >
         Read now{' '}
         <MdOutlineArrowRightAlt className="transition duration-150 group-hover:translate-x-3xs" />
@@ -113,9 +110,9 @@ function ShortFictionListItem({ title, releaseDetails: { isPublished, publishedI
   )
 }
 
-function BookCard({
+function CardItem({
   title,
-  releaseDetails: { isPublished, publishedDate, publishedIn },
+  releaseDetails: { isPublished, publishedDate },
   description,
   coverImg,
 }) {

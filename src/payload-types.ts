@@ -332,7 +332,6 @@ export interface PublicationCategory {
 export interface Publication {
   id: string;
   title: string;
-  categoryName?: string | null;
   blurb?: {
     root: {
       type: string;
@@ -349,38 +348,6 @@ export interface Publication {
     [k: string]: unknown;
   } | null;
   coverImg?: (string | null) | Image;
-  description?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  releaseDetails?: {
-    category?: (string | null) | PublicationCategory;
-    isPublished?: ('In Early Development' | 'Draft' | 'Editing Stage' | 'On Submission' | 'TBA' | 'Published') | null;
-    publishedDate?: string | null;
-    publishedIn?:
-      | {
-          publicationType?: ('Collection' | 'Literary magazine') | null;
-          magazine?: {
-            title?: string | null;
-            date?: string | null;
-            url?: string | null;
-          };
-          collectionTitle?: (string | null) | Publication;
-          id?: string | null;
-        }[]
-      | null;
-  };
   quotes?:
     | {
         quote?: {
@@ -422,6 +389,40 @@ export interface Publication {
         id?: string | null;
       }[]
     | null;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  releaseDetails?: {
+    category?: (string | null) | PublicationCategory;
+    isPublished?: ('In Early Development' | 'Draft' | 'Editing Stage' | 'On Submission' | 'TBA' | 'Published') | null;
+    publishedDate?: string | null;
+    publishedIn?:
+      | {
+          publicationType?: ('Collection' | 'Literary magazine') | null;
+          magazine?: {
+            title?: string | null;
+            date?: string | null;
+            url?: string | null;
+          };
+          collectionTitle?: (string | null) | Publication;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  categoryName?: string | null;
+  releaseDate?: string | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -693,9 +694,21 @@ export interface PagesSelect<T extends boolean = true> {
  */
 export interface PublicationsSelect<T extends boolean = true> {
   title?: T;
-  categoryName?: T;
   blurb?: T;
   coverImg?: T;
+  quotes?:
+    | T
+    | {
+        quote?: T;
+        id?: T;
+      };
+  testimonials?:
+    | T
+    | {
+        quote?: T;
+        quotee?: T;
+        id?: T;
+      };
   description?: T;
   releaseDetails?:
     | T
@@ -718,19 +731,8 @@ export interface PublicationsSelect<T extends boolean = true> {
               id?: T;
             };
       };
-  quotes?:
-    | T
-    | {
-        quote?: T;
-        id?: T;
-      };
-  testimonials?:
-    | T
-    | {
-        quote?: T;
-        quotee?: T;
-        id?: T;
-      };
+  categoryName?: T;
+  releaseDate?: T;
   updatedAt?: T;
   createdAt?: T;
   _status?: T;

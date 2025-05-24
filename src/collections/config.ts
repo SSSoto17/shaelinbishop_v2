@@ -91,10 +91,11 @@ import {
   Description,
   Quotes,
   ReadCategory,
-  ReleaseDetails,
+  ReadReleaseDate,
   Testimonials,
   Title,
 } from './Publications/config'
+import { ReleaseDetails } from './Publications/release.config'
 
 export const Publications: CollectionConfig = {
   slug: 'publications',
@@ -102,20 +103,25 @@ export const Publications: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     group: 'Content',
-    defaultColumns: ['title', 'categoryName', 'description'],
+    defaultColumns: ['title', 'categoryName'],
   },
   access: {
     read: () => true,
+    update: ({ req: { user } }) => {
+      return Boolean(user)
+    },
   },
+  defaultSort: 'releaseDate',
   fields: [
     Title,
-    ReadCategory,
     Blurb,
     Cover,
-    Description,
-    ReleaseDetails,
     Quotes,
     Testimonials,
+    Description,
+    ReleaseDetails,
+    ReadCategory,
+    ReadReleaseDate,
   ],
   defaultPopulate: {
     slug: true,

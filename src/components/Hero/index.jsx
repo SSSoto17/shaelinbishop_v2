@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 export default function Hero({ type, content }) {
-  const heroImg = `url(${content?.image?.url})`
+  const heroImg = `url(${content?.image?.sizes?.screen?.url})`
 
   if (type !== 'none')
     return (
