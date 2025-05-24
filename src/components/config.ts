@@ -2,6 +2,7 @@ import { Field } from 'payload'
 import { Accordion } from './Accordion/config'
 import { Archive } from './Archive/config'
 import { AuthorBio } from './AuthorBio/config'
+import { ContactForm } from './ContactForm/config'
 import { MediaBlock } from './MediaBlock/config'
 import { Newsletter } from './Newsletter/config'
 
@@ -10,7 +11,7 @@ const Components: Field = {
   type: 'blocks',
   minRows: 1,
   maxRows: 20,
-  blocks: [AuthorBio, Archive, Accordion, MediaBlock, Newsletter],
+  blocks: [AuthorBio, Archive, Accordion, ContactForm, MediaBlock, Newsletter],
 }
 
 export const PageSections = {

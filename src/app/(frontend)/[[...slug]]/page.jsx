@@ -64,27 +64,31 @@ export default async function Page({ params }) {
       {isEnabled && <LivePreview />}
       <Content {...page} />
       {slug[0] === 'services' && <ServicesHardcoded />}
-      {slug[0] === 'about' && <AboutHardcoded />}
+      {/* {slug[0] === 'about' && <AboutHardcoded />} */}
+      {slug[0] === 'contact' && <ContactHardcoded />}
     </main>
   )
 }
 
+function ContactHardcoded() {
+  return <ContactForm />
+}
+
 function AboutHardcoded() {
   return (
-    <>
-      <section className="full-bleed">
-        <article className="subgrid span-1/2 grid py-2xl">
-          <div className="col-span-6 col-start-4 background-primary p-md drop-shadow-md">
-            <h2>Check out Shaelin's YouTube</h2>
-          </div>
-        </article>
-        <div className="span-1/2 bg-accent-600" />
-      </section>
-    </>
+    <section className="full-bleed">
+      <article className="subgrid span-1/2 grid py-2xl">
+        <div className="col-span-6 col-start-4 background-primary p-md drop-shadow-md">
+          <h2>Check out Shaelin's YouTube</h2>
+        </div>
+      </article>
+      <div className="span-1/2 bg-accent-600" />
+    </section>
   )
 }
 
 import { PublicationContent } from '@/collections/Publications'
+import ContactForm from '@/components/ContactForm'
 import Link from 'next/link'
 import { MdInfo, MdOutlineArrowRightAlt } from 'react-icons/md'
 
@@ -163,7 +167,7 @@ function ServicesHardcoded() {
           <li className="row-span-3 grid content-center gap-y-md px-lg">
             <p className="cursor-default font-display">Ready to work on your project?</p>
             <Link
-              href="/contact"
+              href="/about#Contact"
               className="group flex items-center justify-center gap-2xs bg-accent-900 px-md py-sm font-display text-primary-50 uppercase transition duration-150 hover:bg-accent-800"
             >
               Inquire Now

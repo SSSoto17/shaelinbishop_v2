@@ -9,6 +9,7 @@ import {
   TabPanels,
 } from '@headlessui/react'
 import Image from 'next/image'
+import { RichText } from '../RichText'
 
 export function Accordionv1({
   image: {
@@ -62,7 +63,7 @@ function Question({ q, a }) {
           transition
           className="origin-top transition duration-300 ease-in-out data-closed:h-0 data-closed:-translate-y-6 data-closed:opacity-0"
         >
-          {a}
+          <RichText data={a} />
         </DisclosurePanel>
       </div>
     </Disclosure>
@@ -95,7 +96,11 @@ export default function Accordion({ heading, questions: qs }) {
           return (
             <TabPanel key={id} className="col-span-full -col-end-2 animate-fade-in flow-space">
               <h3 className="font-black">{q}</h3>
-              <p>{a}</p>
+              <RichText
+                data={a}
+                className="flow-space [&_a]:underline [&_a]:transition [&_a]:duration-150 [&_a]:ease-in [&_a]:hover:text-primary-600"
+              />
+              {/* <p>{a}</p> */}
             </TabPanel>
           )
         })}

@@ -35,9 +35,9 @@ export default function RenderNewsletter({ heading, body, buttonLabel, img }) {
             name="email"
             type="email"
             placeholder="Enter email"
-            className="border-display-600 col-span-3 border bg-primary-50 p-2xs"
+            className="col-span-3 border border-accent-600 bg-primary-50 p-2xs"
           />
-          <Button className="hover:bg-display-800 active:bg-display-950 col-span-2 grid cursor-pointer place-content-center bg-accent-900 p-2xs font-display text-primary-50 uppercase transition-colors duration-150">
+          <Button className="font-accent col-span-2 grid cursor-pointer place-content-center bg-accent-900 p-2xs text-primary-50 uppercase transition-colors duration-150 hover:bg-accent-800 active:bg-accent-950">
             {buttonLabel}
           </Button>
         </Form>

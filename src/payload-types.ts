@@ -264,13 +264,56 @@ export interface Page {
             questions?:
               | {
                   q?: string | null;
-                  a?: string | null;
+                  a?: {
+                    root: {
+                      type: string;
+                      children: {
+                        type: string;
+                        version: number;
+                        [k: string]: unknown;
+                      }[];
+                      direction: ('ltr' | 'rtl') | null;
+                      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                      indent: number;
+                      version: number;
+                    };
+                    [k: string]: unknown;
+                  } | null;
                   id?: string | null;
                 }[]
               | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'accordion';
+          }
+        | {
+            info?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            formFields?:
+              | {
+                  label?: string | null;
+                  fieldType: 'Text' | 'Email' | 'Textarea' | 'Button';
+                  placeholder?: string | null;
+                  buttonAction?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'form';
           }
         | {
             image?: (string | null) | Image;
@@ -666,6 +709,22 @@ export interface PagesSelect<T extends boolean = true> {
                 | {
                     q?: T;
                     a?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        form?:
+          | T
+          | {
+              info?: T;
+              formFields?:
+                | T
+                | {
+                    label?: T;
+                    fieldType?: T;
+                    placeholder?: T;
+                    buttonAction?: T;
                     id?: T;
                   };
               id?: T;
