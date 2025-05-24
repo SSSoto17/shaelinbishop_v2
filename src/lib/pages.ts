@@ -6,7 +6,7 @@ export const getPage = cache(async (selector: object, filter: Where, isDraft: bo
   const page = await payload
     .find({
       collection: 'pages',
-      depth: 10,
+      depth: 2,
       limit: 1,
       draft: isDraft,
       select: selector,

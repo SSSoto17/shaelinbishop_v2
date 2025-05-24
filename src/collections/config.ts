@@ -84,20 +84,61 @@ export const Images: CollectionConfig = {
 }
 
 // PUBLICATIONS
-import { Blurb, Cover, PublishedDate, Title } from './Publications/config'
+import {
+  Blurb,
+  CategoryJoin,
+  Cover,
+  Description,
+  Quotes,
+  ReadCategory,
+  ReleaseDetails,
+  Testimonials,
+  Title,
+} from './Publications/config'
 
 export const Publications: CollectionConfig = {
-  slug: 'work',
+  slug: 'publications',
+  labels: { singular: 'Publication', plural: 'Publications' },
   admin: {
     useAsTitle: 'title',
+    group: 'Content',
+    defaultColumns: ['title', 'categoryName', 'description'],
   },
   access: {
     read: () => true,
   },
   fields: [
     Title,
-    Cover,
+    ReadCategory,
     Blurb,
-    PublishedDate,
+    Cover,
+    Description,
+    ReleaseDetails,
+    Quotes,
+    Testimonials,
+  ],
+  defaultPopulate: {
+    slug: true,
+    fields: true,
+  },
+  versions: {
+    drafts: true,
+  },
+}
+
+// PUBLICATION CATEGORIES
+export const PublicationCategories: CollectionConfig = {
+  slug: 'publicationCategories',
+  labels: { singular: 'Category', plural: 'Categories' },
+  access: {
+    read: () => true,
+  },
+  admin: {
+    useAsTitle: 'title',
+    group: 'Admin',
+  },
+  fields: [
+    Title,
+    CategoryJoin,
   ],
 }

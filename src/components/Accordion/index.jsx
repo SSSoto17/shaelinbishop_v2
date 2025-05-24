@@ -30,7 +30,6 @@ export function Accordionv1({
           alt={alt}
           className="col-span-full col-start-2 min-h-140 object-cover"
         />
-        {/* <div className="img-placeholder col-start-2 h-180" /> */}
       </article>
       <article className="span-2/3 grid grid-cols-subgrid content-end border-l border-primary-700 py-2xl">
         <header className="col-span-full border-b border-primary-700 font-bold">

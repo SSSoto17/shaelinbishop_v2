@@ -32,12 +32,12 @@ export default async function Page({ params }) {
   }
 
   return (
-    // <main id="main" className="full-bleed scroll-m-xl-2xl">
-    <main id="main" className="full-bleed snap-y snap-start scroll-m-xl-2xl">
+    <main id="main" className="full-bleed scroll-mt-60">
       {isEnabled && <LivePreview />}
       <Content {...page} />
-      {slug[0] === 'about' && <AboutHardcoded />}
       {slug[0] === 'services' && <ServicesHardcoded />}
+      {/* {slug[0] === 'work' && <Archive {...page.sections[0]} />} */}
+      {slug[0] === 'about' && <AboutHardcoded />}
     </main>
   )
 }
@@ -45,8 +45,13 @@ export default async function Page({ params }) {
 function AboutHardcoded() {
   return (
     <>
-      <section className="py-2xl">
-        <h2>Check out Shaelin's YouTube</h2>
+      <section className="full-bleed">
+        <article className="subgrid span-1/2 grid py-2xl">
+          <div className="col-span-6 col-start-4 background-primary p-md drop-shadow-md">
+            <h2>Check out Shaelin's YouTube</h2>
+          </div>
+        </article>
+        <div className="span-1/2 bg-accent-600" />
       </section>
     </>
   )
@@ -133,7 +138,7 @@ function ServicesHardcoded() {
               href="/contact"
               className="group flex items-center justify-center gap-2xs bg-accent-900 px-md py-sm font-display text-primary-50 uppercase transition duration-150 hover:bg-accent-800"
             >
-              Contact Now
+              Inquire Now
               <MdOutlineArrowRightAlt
                 size={28}
                 className="transition duration-150 group-hover:translate-x-2"

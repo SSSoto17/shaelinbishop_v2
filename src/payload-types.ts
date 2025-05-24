@@ -70,15 +70,23 @@ export interface Config {
     users: User;
     images: Image;
     pages: Page;
+    publications: Publication;
+    publicationCategories: PublicationCategory;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  collectionsJoins: {};
+  collectionsJoins: {
+    publicationCategories: {
+      categoryJoin: 'publications';
+    };
+  };
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     images: ImagesSelect<false> | ImagesSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
+    publications: PublicationsSelect<false> | PublicationsSelect<true>;
+    publicationCategories: PublicationCategoriesSelect<false> | PublicationCategoriesSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -244,6 +252,13 @@ export interface Page {
             blockType: 'bio';
           }
         | {
+            filter?: string | null;
+            content: (string | PublicationCategory)[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'archive';
+          }
+        | {
             image?: (string | null) | Image;
             heading?: string | null;
             questions?:
@@ -297,6 +312,122 @@ export interface Page {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "publicationCategories".
+ */
+export interface PublicationCategory {
+  id: string;
+  title: string;
+  categoryJoin?: {
+    docs?: (string | Publication)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "publications".
+ */
+export interface Publication {
+  id: string;
+  title: string;
+  categoryName?: string | null;
+  blurb?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  coverImg?: (string | null) | Image;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  releaseDetails?: {
+    category?: (string | null) | PublicationCategory;
+    isPublished?: ('In Early Development' | 'Draft' | 'Editing Stage' | 'On Submission' | 'TBA' | 'Published') | null;
+    publishedDate?: string | null;
+    publishedIn?:
+      | {
+          publicationType?: ('Collection' | 'Literary magazine') | null;
+          magazine?: {
+            title?: string | null;
+            date?: string | null;
+            url?: string | null;
+          };
+          collectionTitle?: (string | null) | Publication;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  quotes?:
+    | {
+        quote?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+      }[]
+    | null;
+  testimonials?:
+    | {
+        quote?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        quotee?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -313,6 +444,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'pages';
         value: string | Page;
+      } | null)
+    | ({
+        relationTo: 'publications';
+        value: string | Publication;
+      } | null)
+    | ({
+        relationTo: 'publicationCategories';
+        value: string | PublicationCategory;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -500,6 +639,14 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        archive?:
+          | T
+          | {
+              filter?: T;
+              content?: T;
+              id?: T;
+              blockName?: T;
+            };
         accordion?:
           | T
           | {
@@ -539,6 +686,64 @@ export interface PagesSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "publications_select".
+ */
+export interface PublicationsSelect<T extends boolean = true> {
+  title?: T;
+  categoryName?: T;
+  blurb?: T;
+  coverImg?: T;
+  description?: T;
+  releaseDetails?:
+    | T
+    | {
+        category?: T;
+        isPublished?: T;
+        publishedDate?: T;
+        publishedIn?:
+          | T
+          | {
+              publicationType?: T;
+              magazine?:
+                | T
+                | {
+                    title?: T;
+                    date?: T;
+                    url?: T;
+                  };
+              collectionTitle?: T;
+              id?: T;
+            };
+      };
+  quotes?:
+    | T
+    | {
+        quote?: T;
+        id?: T;
+      };
+  testimonials?:
+    | T
+    | {
+        quote?: T;
+        quotee?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "publicationCategories_select".
+ */
+export interface PublicationCategoriesSelect<T extends boolean = true> {
+  title?: T;
+  categoryJoin?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

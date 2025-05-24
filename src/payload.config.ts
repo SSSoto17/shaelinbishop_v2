@@ -1,16 +1,16 @@
 // PLUGINS
-import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 
 // MODULES
 import path from 'path'
 import { buildConfig } from 'payload'
-import { fileURLToPath } from 'url'
 import sharp from 'sharp'
+import { fileURLToPath } from 'url'
 
 // COLLECTIONS
-import { Users, Pages, Images } from './collections/config'
+import { Images, Pages, PublicationCategories, Publications, Users } from './collections/config'
 
 // GLOBALS
 import { Header } from './components/Navigation/Header/config'
@@ -32,7 +32,7 @@ export default buildConfig({
     preserveExtension: 16,
   },
   globals: [Header],
-  collections: [Users, Images, Pages],
+  collections: [Users, Images, Pages, Publications, PublicationCategories],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

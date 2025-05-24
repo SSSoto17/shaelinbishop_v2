@@ -21,14 +21,14 @@ export default function MediaBlock({
         height={height}
         className="span-1/2 self-stretch object-cover"
       />
-      <article className="span-1/2 cursor-default leading-snug text-pretty flow-space md:text-sm [&_p]:md:max-w-110">
+      <article className="span-1/2 cursor-default flow-space md:text-sm [&_p]:md:max-w-110">
         <header>
           <h1 className="text-2xl/18 font-black text-balance">
             <span className="block text-lg/10 font-bold">{tagline}</span>
             {heading}
           </h1>
         </header>
-        <RichText data={description} className="flow-space" />
+        <RichText data={description} className="rich-text" />
       </article>
     </section>
   )

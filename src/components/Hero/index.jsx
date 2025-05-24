@@ -1,14 +1,13 @@
 import Link from 'next/link'
 
 export default function Hero({ type, content }) {
-  // const { type, image } = props
   const heroImg = `url(${content?.image?.url})`
 
   if (type !== 'none')
     return (
       <section
         style={{ backgroundImage: heroImg }}
-        className="full-bleed content-around bg-accent-500 bg-cover bg-fixed py-xl text-primary-50 bg-blend-darken"
+        className="full-bleed content-around bg-accent-500 bg-cover bg-fixed bg-center py-xl text-primary-50 bg-blend-multiply"
       >
         {type === 'highImpact' && <HighImpact {...content} />}
         {type === 'lowImpact' && <LowImpact {...content} />}
@@ -37,7 +36,8 @@ function HighImpact({ heading }) {
         </p>
       </article>
       <Link
-        href="#main"
+        href="#site"
+        replace
         className="grid place-items-center gap-y-xs self-end justify-self-center font-display lowercase"
         aria-label="Jump to Site"
       >
@@ -55,7 +55,7 @@ function LowImpact({ heading }) {
   return (
     <article className="justify-self-end">
       <h1 className="font-display text-2xl font-bold tracking-tighter">{heading}</h1>
-      <p className="max-w-prose tracking-wide">
+      <p className="max-w-prose">
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolores labore molestias provident
         voluptas earum, minus magni quas sapiente recusandae saepe doloribus cumque ratione
         inventore aut placeat expedita dolorum vitae. Optio?
