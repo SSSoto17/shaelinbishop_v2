@@ -90,6 +90,7 @@ function LinkButton({ retailer, url }) {
     <li className="group transition duration-150 ease-in-out hover:scale-105">
       <Link
         href={url}
+        target="_blank"
         className="flex w-4xl place-content-center px-2xs py-3xs text-center font-display text-sm font-bold text-accent-700 uppercase outline-4 outline-accent-600 group-hover:bg-accent-800 group-hover:text-primary-50 group-hover:outline-accent-800"
       >
         {retailer}
