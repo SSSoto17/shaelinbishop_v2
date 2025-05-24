@@ -1,8 +1,7 @@
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { Field } from 'payload'
+import { Slugify } from '../Pages/hooks'
 import { UpdateCategory } from './hooks'
-
-// External links to buy the book at distributors
 
 // GENERAL
 
@@ -10,6 +9,29 @@ export const Title: Field = {
   name: 'title',
   type: 'text',
   required: true,
+  hooks: {
+    afterChange: [
+      Slugify,
+    ],
+  },
+}
+
+export const ReadSlug: Field = {
+  name: 'slug',
+  type: 'text',
+  admin: {
+    hidden: true,
+    condition: ({ categoryName }) => {
+      if (categoryName === 'Short Fiction') {
+        return false
+      }
+      if (categoryName === 'Poetry') {
+        return false
+      }
+
+      return true
+    },
+  },
 }
 
 export const Cover: Field = {
@@ -97,4 +119,27 @@ export const CategoryJoin: Field = {
   collection: 'publications',
   on: 'releaseDetails.category',
   label: 'Current Work in this Category',
+}
+
+// External links to buy the book at distributors
+
+export const RetailerLinks: Field = {
+  name: 'retailerLinks',
+  type: 'array',
+  label: 'Distributors',
+  admin: {
+    position: 'sidebar',
+  },
+  labels: { singular: 'Retailer', plural: 'Retailers' },
+  fields: [
+    {
+      name: 'retailer',
+      type: 'text',
+    },
+    {
+      name: 'url',
+      label: 'Link',
+      type: 'text',
+    },
+  ],
 }

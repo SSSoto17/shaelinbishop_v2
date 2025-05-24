@@ -18,17 +18,15 @@ export const getPage = cache(async (selector: object, filter: Where, isDraft: bo
 })
 
 export const getPages = cache(async (selector: object, filter: Where, isDraft: boolean) => {
-  const pages = await payload
-    .find({
-      collection: 'pages',
-      depth: 10,
-      limit: 1000,
-      pagination: false,
-      draft: isDraft,
-      select: selector,
-      where: filter,
-    })
-    .then((data) => data.docs)
+  const { docs } = await payload.find({
+    collection: 'pages',
+    depth: 10,
+    limit: 1000,
+    pagination: false,
+    draft: isDraft,
+    select: selector,
+    where: filter,
+  })
 
-  return pages
+  return docs
 })

@@ -86,7 +86,6 @@ async function Group({ title, categoryJoin: { docs } }) {
 }
 
 function ListItem({ title, releaseDetails: { isPublished, publishedIn } }) {
-  console.log(publishedIn)
   const {
     magazine: { title: litMag, date, url },
   } = publishedIn[0]
@@ -112,17 +111,23 @@ function ListItem({ title, releaseDetails: { isPublished, publishedIn } }) {
 
 function CardItem({
   title,
+  slug,
   releaseDetails: { isPublished, publishedDate },
   description,
   coverImg,
+  categoryName,
 }) {
+  console.log(slug)
   return (
     <li className="relative grid grid-cols-6 items-center gap-x-lg">
       <article className="peer order-2 col-span-4 flow-space">
         <header>
           {/* <header className="flex items-end gap-sm"> */}
           <h3 className="leading-tight font-bold">
-            <Link href="/" className="after:absolute after:inset-0 hover:text-primary-700">
+            <Link
+              href={`/${categoryName.toLowerCase()}${slug}`}
+              className="after:absolute after:inset-0 hover:text-primary-700"
+            >
               {title}
             </Link>
           </h3>
@@ -130,7 +135,7 @@ function CardItem({
           <RichText data={description} className="py-xs rich-text" />
         </header>
         <Link
-          href="/"
+          href={`/books${slug}`}
           className="group isolate inline-flex items-center font-display text-sm/4 lowercase underline transition duration-150 hover:text-primary-600"
         >
           Read more{' '}
@@ -138,7 +143,7 @@ function CardItem({
         </Link>
       </article>
       <Link
-        href="/"
+        href={`/books${slug}`}
         className="col-span-2 transition duration-300 peer-has-[h3_a:hover]:opacity-75 hover:opacity-75"
       >
         <BookCover {...coverImg} />
@@ -147,10 +152,10 @@ function CardItem({
   )
 }
 
-function BookCover({ alt, sizes }) {
+export function BookCover({ alt, sizes }) {
   if (!sizes)
     return (
-      <div className="grid aspect-[2/3] place-content-center bg-secondary-300 p-md text-center font-display text-2xl/16 font-bold text-accent-800 uppercase">
+      <div className="grid aspect-[2/3] cursor-default place-content-center bg-secondary-300 p-md text-center font-display text-2xl/16 font-bold text-accent-800 uppercase">
         <p>Coming soon</p>
       </div>
     )
@@ -164,7 +169,7 @@ function BookCover({ alt, sizes }) {
       alt={alt}
       width={width}
       height={height}
-      className="aspect-[2/3] object-cover"
+      className="aspect-[2/3] w-full object-cover"
     />
   )
 }

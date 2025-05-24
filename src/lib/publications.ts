@@ -1,4 +1,5 @@
 import { payload } from '@/lib/utils'
+import { Where } from 'payload'
 import { cache } from 'react'
 
 export const getCategory = cache(async (id: string) => {
@@ -22,18 +23,31 @@ export const getCategories = cache(async (selector: object) => {
   return docs
 })
 
-// export const getPages = cache(async (selector: object, filter: Where, isDraft: boolean) => {
-//   const pages = await payload
-//     .find({
-//       collection: 'pages',
-//       depth: 10,
-//       limit: 1000,
-//       pagination: false,
-//       draft: isDraft,
-//       select: selector,
-//       where: filter,
-//     })
-//     .then((data) => data.docs)
+export const getPublication = cache(async (selector: object, filter: Where, isDraft: boolean) => {
+  const publication = await payload
+    .find({
+      collection: 'publications',
+      depth: 2,
+      limit: 1,
+      draft: isDraft,
+      select: selector,
+      where: filter,
+    })
+    .then((data) => data.docs[0])
 
-//   return pages
-// })
+  return publication
+})
+
+export const getPublications = cache(async (selector: object, filter: Where, isDraft: boolean) => {
+  const { docs } = await payload.find({
+    collection: 'publications',
+    depth: 2,
+    limit: 100,
+    pagination: false,
+    draft: isDraft,
+    select: selector,
+    where: filter,
+  })
+
+  return docs
+})

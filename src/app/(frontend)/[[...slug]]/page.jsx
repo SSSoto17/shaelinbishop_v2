@@ -1,6 +1,7 @@
 import { Content } from '@/components'
 import LivePreview from '@/hooks/LivePreview'
 import { getPage, getPages } from '@/lib/pages'
+import { getPublication, getPublications } from '@/lib/publications'
 import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
 
@@ -15,7 +16,23 @@ export async function generateStaticParams() {
     },
   )
 
-  return pages.map(({ slug }) => ({
+  const publications = await getPublications(
+    { slug: true },
+    {
+      slug: {
+        exists: true,
+      },
+    },
+  )
+
+  const pubPaths = publications.map(({ slug, id }) => ({
+    slug: `/books${slug}`,
+    id,
+  }))
+
+  const allPages = [...pages, ...pubPaths]
+
+  return allPages.map(({ slug }) => ({
     slug: [slug],
   }))
 }
@@ -26,9 +43,20 @@ export default async function Page({ params }) {
   const { isEnabled } = await draftMode()
 
   const page = await getPage(null, { slug: { equals: `/${slug}` } }, isEnabled)
+  const publication = await getPublication(null, { slug: { equals: `/${slug[1]}` } }, isEnabled)
 
-  if (!page) {
+  if (!page && !publication) {
     notFound()
+  }
+
+  if (publication) {
+    console.log(publication)
+    return (
+      <main id="main" className="full-bleed scroll-mt-60">
+        {isEnabled && <LivePreview />}
+        <PublicationContent {...publication} />
+      </main>
+    )
   }
 
   return (
@@ -36,7 +64,6 @@ export default async function Page({ params }) {
       {isEnabled && <LivePreview />}
       <Content {...page} />
       {slug[0] === 'services' && <ServicesHardcoded />}
-      {/* {slug[0] === 'work' && <Archive {...page.sections[0]} />} */}
       {slug[0] === 'about' && <AboutHardcoded />}
     </main>
   )
@@ -57,6 +84,7 @@ function AboutHardcoded() {
   )
 }
 
+import { PublicationContent } from '@/collections/Publications'
 import Link from 'next/link'
 import { MdInfo, MdOutlineArrowRightAlt } from 'react-icons/md'
 

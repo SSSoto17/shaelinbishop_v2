@@ -1,15 +1,28 @@
 import { FieldHook } from 'payload'
 
-export const Slugify: FieldHook = ({ value, data }) => {
-  let string
-  console.log(value)
-  if (!value) {
-    string = data?.title || ''
-  } else {
-    string = value
+export const Slugify: FieldHook = async ({ context, originalDoc: { id }, req, value }) => {
+  const { user, payload } = req
+
+  if (context.triggerAfterChange === false) {
+    return
   }
 
-  const slugified = '/' + string?.replaceAll(' ', '-').replaceAll('/', '').toLowerCase()
+  const slugified = '/' + value.replaceAll(' ', '-').replaceAll('/', '').toLowerCase()
 
-  return slugified
+  const result = await payload.update({
+    collection: 'publications',
+    id,
+    user,
+    data: {
+      slug: slugified,
+    },
+    context: {
+      triggerAfterChange: false,
+    },
+    req,
+  })
+
+  console.log(result)
+
+  return value
 }

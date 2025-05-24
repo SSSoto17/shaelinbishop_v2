@@ -92,6 +92,8 @@ import {
   Quotes,
   ReadCategory,
   ReadReleaseDate,
+  ReadSlug,
+  RetailerLinks,
   Testimonials,
   Title,
 } from './Publications/config'
@@ -114,12 +116,14 @@ export const Publications: CollectionConfig = {
   defaultSort: 'releaseDate',
   fields: [
     Title,
+    ReadSlug,
     Blurb,
     Cover,
     Quotes,
     Testimonials,
     Description,
     ReleaseDetails,
+    RetailerLinks,
     ReadCategory,
     ReadReleaseDate,
   ],

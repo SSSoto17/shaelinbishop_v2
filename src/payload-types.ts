@@ -332,6 +332,7 @@ export interface PublicationCategory {
 export interface Publication {
   id: string;
   title: string;
+  slug?: string | null;
   blurb?: {
     root: {
       type: string;
@@ -421,6 +422,13 @@ export interface Publication {
         }[]
       | null;
   };
+  retailerLinks?:
+    | {
+        retailer?: string | null;
+        url?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   categoryName?: string | null;
   releaseDate?: string | null;
   updatedAt: string;
@@ -694,6 +702,7 @@ export interface PagesSelect<T extends boolean = true> {
  */
 export interface PublicationsSelect<T extends boolean = true> {
   title?: T;
+  slug?: T;
   blurb?: T;
   coverImg?: T;
   quotes?:
@@ -730,6 +739,13 @@ export interface PublicationsSelect<T extends boolean = true> {
               collectionTitle?: T;
               id?: T;
             };
+      };
+  retailerLinks?:
+    | T
+    | {
+        retailer?: T;
+        url?: T;
+        id?: T;
       };
   categoryName?: T;
   releaseDate?: T;

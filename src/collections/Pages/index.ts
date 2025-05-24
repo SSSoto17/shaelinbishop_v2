@@ -1,5 +1,4 @@
 import type { Field } from 'payload'
-// import { Slugify } from './hooks'
 
 // PAGE OVERVIEW
 export const PageTitle: Field = {
@@ -14,18 +13,11 @@ export const PageTitle: Field = {
 
 export const PageSlug: Field = {
   name: 'slug',
-  label: 'Path',
   type: 'text',
-  unique: true,
   admin: {
     position: 'sidebar',
   },
-  // hooks: {
-  //   beforeValidate: [Slugify],
-  // },
 }
-
-// ADD MEANS TO NEST PAGES; IS IT BUILT INTO PAYLOAD OR MANUAL CONFIG?
 
 export const PageMeta: Field = {
   name: 'meta',
