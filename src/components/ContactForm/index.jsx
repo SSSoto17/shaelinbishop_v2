@@ -2,7 +2,8 @@ import { Button, Field, Fieldset, Input, Label, Textarea } from '@headlessui/rea
 import Form from 'next/form'
 import { RichText } from '../RichText'
 
-export default function ContactForm({ info, formFields }) {
+export default function ContactForm({ bgImg, info, formFields }) {
+  const img = `url(${bgImg?.sizes?.screen?.url})`
   return (
     <section className="full-bleed" id="Contact">
       <div className="span-1/2 grid grid-cols-subgrid px-lg py-2xl">
@@ -13,7 +14,10 @@ export default function ContactForm({ info, formFields }) {
           />
         </article>
       </div>
-      <article className="span-1/2 grid grid-cols-subgrid bg-accent-700 py-2xl">
+      <article
+        style={{ backgroundImage: img }}
+        className="span-1/2 grid grid-cols-subgrid bg-cover py-2xl"
+      >
         <Form action="/about" className="col-start-2 -col-end-2 bg-primary-50 p-md">
           <Fieldset className="grid gap-y-xs">
             {formFields.map(({ label, fieldType, placeholder, buttonAction }, id) => {
@@ -28,7 +32,7 @@ export default function ContactForm({ info, formFields }) {
                     <Textarea
                       name={label.toLowerCase()}
                       required
-                      className="min-h-40 w-full border border-accent-600 bg-primary-50 px-2xs py-3xs text-primary-800 placeholder:tracking-wide data-focus:outline-2 data-focus:outline-accent-700"
+                      className="min-h-40 w-full border border-accent-600 bg-primary-50 px-2xs py-3xs font-logo text-primary-800 placeholder:tracking-wide data-focus:outline-2 data-focus:outline-accent-700"
                       placeholder={placeholder}
                     />
                   ) : (
@@ -36,7 +40,7 @@ export default function ContactForm({ info, formFields }) {
                       name={label.toLowerCase()}
                       type={fieldType.toLowerCase()}
                       required
-                      className="w-full max-w-80 border border-accent-600 bg-primary-50 px-2xs py-3xs text-primary-800 placeholder:tracking-wide data-focus:outline-2 data-focus:outline-accent-700"
+                      className="w-full max-w-80 border border-accent-600 bg-primary-50 px-2xs py-3xs font-logo text-primary-800 placeholder:tracking-wide data-focus:outline-2 data-focus:outline-accent-700"
                       placeholder={placeholder}
                     />
                   )}

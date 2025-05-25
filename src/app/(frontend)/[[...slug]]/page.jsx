@@ -69,7 +69,7 @@ export default async function Page({ params }) {
 
   if (publication) {
     return (
-      <main id="main" className="full-bleed scroll-mt-60">
+      <main id="main" className="full-bleed">
         {isEnabled && <LivePreview />}
         <PublicationContent {...publication} />
       </main>
@@ -77,7 +77,7 @@ export default async function Page({ params }) {
   }
 
   return (
-    <main id="main" className="full-bleed scroll-mt-60">
+    <main id="main" className="full-bleed scroll-mt-20">
       {isEnabled && <LivePreview />}
       <Content {...page} />
       {slug[0] === 'services' && <ServicesHardcoded />}

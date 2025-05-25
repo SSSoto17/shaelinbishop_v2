@@ -6,6 +6,13 @@ const Description: Field = {
   type: 'richText',
 }
 
+const Image: Field = {
+  name: 'bgImg',
+  label: 'Background Image',
+  type: 'upload',
+  relationTo: 'images',
+}
+
 const Form: Field = {
   name: 'formFields',
   label: 'Form',
@@ -51,6 +58,7 @@ const Form: Field = {
 export const ContactForm: Block = {
   slug: 'form',
   fields: [
+    Image,
     Description,
     Form,
   ],

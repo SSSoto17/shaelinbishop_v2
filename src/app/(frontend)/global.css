@@ -128,6 +128,7 @@
 
   /* ANIMATIONS */
   --animate-fade-in: fade-in 0.5s ease-in 1;
+  --animate-go: go 1s ease-in infinite;
 
   @keyframes fade-in {
     0% {
@@ -135,6 +136,16 @@
     }
     100% {
       opacity: 1;
+    }
+  }
+
+  @keyframes go {
+    0%,
+    100% {
+      translate: 0 0;
+    }
+    50% {
+      translate: var(--spacing-3xs) 0;
     }
   }
 }

@@ -34,6 +34,13 @@ const HeroImage: Field = {
   required: true,
 }
 
+const HeroPromo: Field = {
+  name: 'promoImg',
+  label: 'Promotion',
+  type: 'upload',
+  relationTo: 'images',
+}
+
 const HeroContent: Field = {
   name: 'content',
   label: false,
@@ -44,7 +51,7 @@ const HeroContent: Field = {
       return siblingData.hero.type == 'none' ? false : true
     },
   },
-  fields: [HeroTitle, HeroImage],
+  fields: [HeroTitle, HeroImage, HeroPromo],
 }
 
 export const PageHero: Tab = {

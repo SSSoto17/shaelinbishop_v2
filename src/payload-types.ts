@@ -258,6 +258,7 @@ export interface Page {
     content?: {
       heading?: string | null;
       image: string | Image;
+      promoImg?: (string | null) | Image;
     };
   };
   sections?:
@@ -265,13 +266,21 @@ export interface Page {
         | {
             headshot?: (string | null) | Image;
             headline?: string | null;
-            description?: string | null;
-            images?: {
-              imageGroup?: (string | Image)[] | null;
-              imagesTitle?: string | null;
-            };
-            imgTest?: (string | null) | Image;
-            bgImg?: (string | null) | Image;
+            body?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'bio';
@@ -312,6 +321,7 @@ export interface Page {
             blockType: 'accordion';
           }
         | {
+            bgImg?: (string | null) | Image;
             info?: {
               root: {
                 type: string;
@@ -341,6 +351,33 @@ export interface Page {
             blockType: 'form';
           }
         | {
+            bgImg?: (string | Image)[] | null;
+            header?: {
+              tagline?: string | null;
+              title?: string | null;
+              subtitle?: string | null;
+            };
+            body?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            featuredItems?: (string | Publication)[] | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featuredContent';
+          }
+        | {
             image?: (string | null) | Image;
             tagline?: string | null;
             heading?: string | null;
@@ -364,13 +401,66 @@ export interface Page {
             blockType: 'mediaBlock';
           }
         | {
+            images?: (string | Image)[] | null;
+            tagline?: string | null;
+            title?: string | null;
+            link?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'mediaWTitle';
+          }
+        | {
             img?: (string | null) | Image;
             heading?: string | null;
-            body?: string | null;
+            body?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
             buttonLabel?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'newsletter';
+          }
+        | {
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'promo';
+          }
+        | {
+            textColumns?:
+              | {
+                  textColumn?: {
+                    root: {
+                      type: string;
+                      children: {
+                        type: string;
+                        version: number;
+                        [k: string]: unknown;
+                      }[];
+                      direction: ('ltr' | 'rtl') | null;
+                      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                      indent: number;
+                      version: number;
+                    };
+                    [k: string]: unknown;
+                  } | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'textColumns';
           }
       )[]
     | null;
@@ -716,6 +806,7 @@ export interface PagesSelect<T extends boolean = true> {
           | {
               heading?: T;
               image?: T;
+              promoImg?: T;
             };
       };
   sections?:
@@ -726,15 +817,7 @@ export interface PagesSelect<T extends boolean = true> {
           | {
               headshot?: T;
               headline?: T;
-              description?: T;
-              images?:
-                | T
-                | {
-                    imageGroup?: T;
-                    imagesTitle?: T;
-                  };
-              imgTest?: T;
-              bgImg?: T;
+              body?: T;
               id?: T;
               blockName?: T;
             };
@@ -764,6 +847,7 @@ export interface PagesSelect<T extends boolean = true> {
         form?:
           | T
           | {
+              bgImg?: T;
               info?: T;
               formFields?:
                 | T
@@ -777,6 +861,22 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        featuredContent?:
+          | T
+          | {
+              bgImg?: T;
+              header?:
+                | T
+                | {
+                    tagline?: T;
+                    title?: T;
+                    subtitle?: T;
+                  };
+              body?: T;
+              featuredItems?: T;
+              id?: T;
+              blockName?: T;
+            };
         mediaBlock?:
           | T
           | {
@@ -787,6 +887,16 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        mediaWTitle?:
+          | T
+          | {
+              images?: T;
+              tagline?: T;
+              title?: T;
+              link?: T;
+              id?: T;
+              blockName?: T;
+            };
         newsletter?:
           | T
           | {
@@ -794,6 +904,24 @@ export interface PagesSelect<T extends boolean = true> {
               heading?: T;
               body?: T;
               buttonLabel?: T;
+              id?: T;
+              blockName?: T;
+            };
+        promo?:
+          | T
+          | {
+              id?: T;
+              blockName?: T;
+            };
+        textColumns?:
+          | T
+          | {
+              textColumns?:
+                | T
+                | {
+                    textColumn?: T;
+                    id?: T;
+                  };
               id?: T;
               blockName?: T;
             };

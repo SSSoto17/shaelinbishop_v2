@@ -18,14 +18,8 @@ export const Newsletter: Block = {
       defaultValue: 'Sign up for our newsletter',
     },
     {
-      admin: {
-        placeholder:
-          'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima perferendis debitis veniam necessitatibus harum laudantium minus ea ad eius, eveniet dicta quaerat officiis, ut sunt corrupti nam quae quas possimus?',
-      },
       name: 'body',
-      type: 'textarea',
-      defaultValue:
-        'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima perferendis debitis veniam necessitatibus harum laudantium minus ea ad eius, eveniet dicta quaerat officiis, ut sunt corrupti nam quae quas possimus?',
+      type: 'richText',
     },
     {
       admin: {
@@ -37,3 +31,6 @@ export const Newsletter: Block = {
     },
   ],
 }
+
+// Sign up for the newsletter
+// Sign up to hear about upcoming releases, events, and what’s happening behind the scenes. You’ll also receive occasional resources and writing insights, crafted with fellow writers in mind.

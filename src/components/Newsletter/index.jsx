@@ -2,6 +2,7 @@ import Form from 'next/form'
 
 import { Button, Input } from '@headlessui/react'
 import Image from 'next/image'
+import { RichText } from '../RichText'
 
 export default function RenderNewsletter({ heading, body, buttonLabel, img }) {
   const { alt, sizes } = img
@@ -24,7 +25,7 @@ export default function RenderNewsletter({ heading, body, buttonLabel, img }) {
         {/* <h2 className="col-span-4 font-display text-3xl text-balance">{heading}</h2> */}
         <div className="col-span-4 col-start-3 row-start-2 flow-space">
           <h2 className="font-display text-2xl/16 text-balance">{heading}</h2>
-          <p className="max-w-prose">{body}</p>
+          <RichText data={body} className="max-w-prose" />
         </div>
         {/* <Form action="/" className="col-start-2 row-start-4 flex gap-xs"> */}
         <Form
@@ -35,9 +36,9 @@ export default function RenderNewsletter({ heading, body, buttonLabel, img }) {
             name="email"
             type="email"
             placeholder="Enter email"
-            className="col-span-3 border border-accent-600 bg-primary-50 p-2xs"
+            className="col-span-3 border border-accent-600 bg-primary-50 px-2xs font-logo text-primary-800 placeholder:tracking-wide data-focus:outline-2 data-focus:outline-accent-700"
           />
-          <Button className="font-accent col-span-2 grid cursor-pointer place-content-center bg-accent-900 p-2xs text-primary-50 uppercase transition-colors duration-150 hover:bg-accent-800 active:bg-accent-950">
+          <Button className="col-span-2 grid cursor-pointer place-content-center bg-accent-900 p-2xs font-display text-primary-50 uppercase transition-colors duration-150 hover:bg-accent-800 active:bg-accent-950">
             {buttonLabel}
           </Button>
         </Form>
