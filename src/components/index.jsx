@@ -5,6 +5,7 @@ import ContactForm from './ContactForm'
 import EditorPromo from './EditorPromo'
 import Featured from './Featured'
 import RenderHero from './Hero'
+import ListBlock from './ListBlock'
 import MediaBlock from './MediaBlock'
 import MediaWithTitle from './MediaWithTitle'
 import Newsletter from './Newsletter'
@@ -20,6 +21,7 @@ function RenderContent({ sections: content }) {
     if (section.blockType === 'editorPromo') return <EditorPromo key={id} {...section} />
     if (section.blockType === 'form') return <ContactForm key={id} {...section} />
     if (section.blockType === 'featuredContent') return <Featured key={id} {...section} />
+    if (section.blockType === 'listBlock') return <ListBlock key={id} {...section} />
     if (section.blockType === 'mediaBlock') return <MediaBlock key={id} {...section} />
     if (section.blockType === 'mediaWTitle') return <MediaWithTitle key={id} {...section} />
     if (section.blockType === 'newsletter') return <Newsletter key={id} {...section} />

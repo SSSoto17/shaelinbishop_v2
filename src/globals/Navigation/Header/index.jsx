@@ -26,6 +26,7 @@ function Logo() {
     <Link
       href="/navigate?path=/"
       className="justify-self-start font-logo tracking-wider uppercase hover:opacity-60"
+      scroll
     >
       Shaelin Bishop
     </Link>

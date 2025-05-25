@@ -4,6 +4,7 @@ import { Archive } from './Archive/config'
 import { AuthorBio } from './AuthorBio/config'
 import { ContactForm } from './ContactForm/config'
 import { Featured } from './Featured/config'
+import { ListBlock } from './ListBlock/config'
 import { MediaBlock } from './MediaBlock/config'
 import { MediaWithTitle } from './MediaWithTitle/config'
 import { Newsletter } from './Newsletter/config'
@@ -21,6 +22,7 @@ const Components: Field = {
     Accordion,
     ContactForm,
     Featured,
+    ListBlock,
     MediaBlock,
     MediaWithTitle,
     Newsletter,

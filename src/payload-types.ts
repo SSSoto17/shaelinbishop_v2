@@ -378,6 +378,97 @@ export interface Page {
             blockType: 'featuredContent';
           }
         | {
+            header?: {
+              title?: string | null;
+              subtitle?: string | null;
+            };
+            body?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            list?:
+              | {
+                  itemType?: ('Card' | 'Button') | null;
+                  listCard?: {
+                    title?: string | null;
+                    rate?: string | null;
+                    description?: {
+                      root: {
+                        type: string;
+                        children: {
+                          type: string;
+                          version: number;
+                          [k: string]: unknown;
+                        }[];
+                        direction: ('ltr' | 'rtl') | null;
+                        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                        indent: number;
+                        version: number;
+                      };
+                      [k: string]: unknown;
+                    } | null;
+                    note?: {
+                      root: {
+                        type: string;
+                        children: {
+                          type: string;
+                          version: number;
+                          [k: string]: unknown;
+                        }[];
+                        direction: ('ltr' | 'rtl') | null;
+                        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                        indent: number;
+                        version: number;
+                      };
+                      [k: string]: unknown;
+                    } | null;
+                  };
+                  listButton?: {
+                    body?: {
+                      root: {
+                        type: string;
+                        children: {
+                          type: string;
+                          version: number;
+                          [k: string]: unknown;
+                        }[];
+                        direction: ('ltr' | 'rtl') | null;
+                        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                        indent: number;
+                        version: number;
+                      };
+                      [k: string]: unknown;
+                    } | null;
+                    label?: string | null;
+                    linkType?: ('Internal' | 'External') | null;
+                    internalLink?: {
+                      targetPage?: (string | null) | Page;
+                      targetSection?: string | null;
+                    };
+                    externalLink?: {
+                      url?: string | null;
+                      targetType?: ('_self' | '_blank') | null;
+                    };
+                  };
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'listBlock';
+          }
+        | {
             image?: (string | null) | Image;
             tagline?: string | null;
             heading?: string | null;
@@ -874,6 +965,52 @@ export interface PagesSelect<T extends boolean = true> {
                   };
               body?: T;
               featuredItems?: T;
+              id?: T;
+              blockName?: T;
+            };
+        listBlock?:
+          | T
+          | {
+              header?:
+                | T
+                | {
+                    title?: T;
+                    subtitle?: T;
+                  };
+              body?: T;
+              list?:
+                | T
+                | {
+                    itemType?: T;
+                    listCard?:
+                      | T
+                      | {
+                          title?: T;
+                          rate?: T;
+                          description?: T;
+                          note?: T;
+                        };
+                    listButton?:
+                      | T
+                      | {
+                          body?: T;
+                          label?: T;
+                          linkType?: T;
+                          internalLink?:
+                            | T
+                            | {
+                                targetPage?: T;
+                                targetSection?: T;
+                              };
+                          externalLink?:
+                            | T
+                            | {
+                                url?: T;
+                                targetType?: T;
+                              };
+                        };
+                    id?: T;
+                  };
               id?: T;
               blockName?: T;
             };
