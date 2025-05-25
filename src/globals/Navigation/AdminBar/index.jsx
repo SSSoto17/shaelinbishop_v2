@@ -28,12 +28,13 @@ export default async function AdminBar({ id }) {
 import { MdCompassCalibration, MdRemoveRedEye } from 'react-icons/md'
 
 function DisplayUser({ firstName, lastName, email, role, target }) {
+  const fullName = firstName + ' ' + lastName
   return (
     <div className="flex items-center gap-2xs">
       <Link href="/admin" className="flex items-center gap-xs">
         <MdCompassCalibration size={20} />
         <p>
-          {`${firstName} ${lastName}` || email} <span className="font-logo">|</span> {role}
+          {(firstName && fullName) || lastName || email} <span className="font-logo">|</span> {role}
         </p>
       </Link>
       {target && (

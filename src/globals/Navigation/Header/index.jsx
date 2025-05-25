@@ -6,6 +6,7 @@ import AdminBar from '../../../globals/Navigation/AdminBar'
 
 import { Suspense } from 'react'
 import { FaInstagram, FaYoutube } from 'react-icons/fa6'
+import { ImSpinner2 } from 'react-icons/im'
 
 export default function Header({ id, hero }) {
   return (
@@ -17,7 +18,7 @@ export default function Header({ id, hero }) {
         <AdminBar id={id} />
         <NavBar />
       </section>
-      <Suspense>{hero && <Hero {...hero} />}</Suspense>
+      <Suspense fallback={<Loading />}>{hero && <Hero {...hero} />}</Suspense>
     </header>
   )
 }
@@ -31,6 +32,16 @@ function Logo() {
     >
       Shaelin Bishop
     </Link>
+  )
+}
+
+function Loading() {
+  return (
+    <section className="grid place-content-center py-xl">
+      <h2 className="inline-flex animate-pulse items-center gap-md text-center font-display text-3xl font-bold duration-150">
+        <ImSpinner2 className="animate-spin" />
+      </h2>
+    </section>
   )
 }
 
