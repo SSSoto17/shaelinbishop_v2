@@ -2,7 +2,7 @@ import { payload } from '@/lib/utils'
 import Link from 'next/link'
 
 import { Hero } from '@/components'
-import AdminBar from '../AdminBar'
+import AdminBar from '../../../globals/Navigation/AdminBar'
 
 export default function Header({ id, hero }) {
   return (

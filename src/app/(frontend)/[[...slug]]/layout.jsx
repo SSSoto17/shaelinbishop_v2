@@ -1,4 +1,4 @@
-import { Footer, Header } from '@/components/Navigation'
+import { Footer, Header } from '@/globals/Navigation'
 import { getPage } from '@/lib/pages'
 import { draftMode } from 'next/headers'
 

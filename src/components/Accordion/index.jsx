@@ -72,7 +72,12 @@ function Question({ q, a }) {
 
 export default function Accordion({ heading, questions: qs }) {
   return (
-    <TabGroup as="section" vertical className="full-bleed gap-2xl border-y border-y-primary-700">
+    <TabGroup
+      as="section"
+      id={heading.replaceAll(' ', '')}
+      vertical
+      className="full-bleed gap-2xl border-y border-y-primary-700"
+    >
       <article className="span-1/3 grid grid-cols-subgrid content-start gap-y-lg border-r border-r-primary-700 py-2xl">
         <h2 className="col-span-full col-start-2 cursor-default px-md text-right font-bold">
           {heading}

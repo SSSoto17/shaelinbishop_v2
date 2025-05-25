@@ -42,8 +42,16 @@ export default function AuthorBio({ headshot, headline, description, images, img
           <span className="col-start-2 row-start-3 text-center text-4xl font-black">sepia.</span>
         </h2>
       </section>
-      {/* <ParallaxScroll {...bgImg} /> */}
       <ImginImg {...bgImg} />
+      <section className="full-bleed">
+        <article className="subgrid span-1/2 grid py-2xl">
+          <div className="col-span-6 col-start-4 background-primary p-md drop-shadow-md">
+            <h2>Check out Shaelin's YouTube</h2>
+          </div>
+        </article>
+        <div className="span-1/2 bg-accent-600" />
+      </section>
+      <ParallaxScroll {...bgImg} />
     </>
   )
 }

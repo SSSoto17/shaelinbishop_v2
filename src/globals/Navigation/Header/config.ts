@@ -1,3 +1,4 @@
+import { NavBlock } from '@/components/Navigation/config'
 import { GlobalConfig } from 'payload'
 
 export const Header: GlobalConfig = {
@@ -19,6 +20,7 @@ export const Header: GlobalConfig = {
           relationTo: 'pages',
           required: true,
         },
+        NavBlock,
       ],
     },
   ],

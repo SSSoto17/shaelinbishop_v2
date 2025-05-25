@@ -1,3 +1,4 @@
+import { PublicationContent } from '@/collections/Publications'
 import { Content } from '@/components'
 import LivePreview from '@/hooks/LivePreview'
 import { getPage, getPages } from '@/lib/pages'
@@ -17,7 +18,7 @@ export async function generateStaticParams() {
   )
 
   const publications = await getPublications(
-    { slug: true },
+    { slug: true, releaseDetails: true },
     {
       slug: {
         exists: true,
@@ -25,10 +26,18 @@ export async function generateStaticParams() {
     },
   )
 
-  const pubPaths = publications.map(({ slug, id }) => ({
-    slug: `/books${slug}`,
-    id,
-  }))
+  const pubPaths = publications.map(
+    ({
+      slug,
+      id,
+      releaseDetails: {
+        category: { title },
+      },
+    }) => ({
+      slug: `/${title.toLowerCase() + slug}`,
+      id,
+    }),
+  )
 
   const allPages = [...pages, ...pubPaths]
 
@@ -42,15 +51,23 @@ export default async function Page({ params }) {
   const { slug = 'home' } = await params
   const { isEnabled } = await draftMode()
 
+  // FIND PAGE
   const page = await getPage(null, { slug: { equals: `/${slug}` } }, isEnabled)
-  const publication = await getPublication(null, { slug: { equals: `/${slug[1]}` } }, isEnabled)
+
+  // FIND PUBLICATION
+  const categoryName = slug[0].at(0).toUpperCase() + slug[0].slice(1)
+
+  const publication = await getPublication(
+    null,
+    { 'releaseDetails.category.title': { equals: categoryName }, slug: { equals: `/${slug[1]}` } },
+    isEnabled,
+  )
 
   if (!page && !publication) {
     notFound()
   }
 
   if (publication) {
-    console.log(publication)
     return (
       <main id="main" className="full-bleed scroll-mt-60">
         {isEnabled && <LivePreview />}
@@ -64,31 +81,10 @@ export default async function Page({ params }) {
       {isEnabled && <LivePreview />}
       <Content {...page} />
       {slug[0] === 'services' && <ServicesHardcoded />}
-      {/* {slug[0] === 'about' && <AboutHardcoded />} */}
-      {slug[0] === 'contact' && <ContactHardcoded />}
     </main>
   )
 }
 
-function ContactHardcoded() {
-  return <ContactForm />
-}
-
-function AboutHardcoded() {
-  return (
-    <section className="full-bleed">
-      <article className="subgrid span-1/2 grid py-2xl">
-        <div className="col-span-6 col-start-4 background-primary p-md drop-shadow-md">
-          <h2>Check out Shaelin's YouTube</h2>
-        </div>
-      </article>
-      <div className="span-1/2 bg-accent-600" />
-    </section>
-  )
-}
-
-import { PublicationContent } from '@/collections/Publications'
-import ContactForm from '@/components/ContactForm'
 import Link from 'next/link'
 import { MdInfo, MdOutlineArrowRightAlt } from 'react-icons/md'
 

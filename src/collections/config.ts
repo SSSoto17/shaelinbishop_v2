@@ -62,7 +62,7 @@ export const Pages: CollectionConfig = {
 }
 
 // IMAGES
-import { altText, imgName, upload } from './Images'
+import { altText, imgName, imgUpload } from './Images'
 import { autoImgFileName, updateImgFileName } from './Images/hooks'
 
 export const Images: CollectionConfig = {
@@ -76,11 +76,28 @@ export const Images: CollectionConfig = {
     read: () => true,
   },
   fields: [imgName, altText],
-  upload: { ...upload },
+  upload: { ...imgUpload },
   hooks: {
     beforeOperation: [autoImgFileName],
     beforeValidate: [updateImgFileName],
   },
+}
+
+// ICONS
+import { iconName, iconUpload } from './Icons'
+
+export const Icons: CollectionConfig = {
+  slug: 'icons',
+  admin: {
+    useAsTitle: 'title',
+    group: 'Media',
+    defaultColumns: ['title'],
+  },
+  access: {
+    read: () => true,
+  },
+  fields: [iconName],
+  upload: { ...iconUpload },
 }
 
 // PUBLICATIONS
@@ -145,7 +162,7 @@ export const PublicationCategories: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'title',
-    group: 'Admin',
+    group: 'Content',
   },
   fields: [
     Title,

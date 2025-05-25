@@ -68,10 +68,10 @@ const imgSizes = [
 ]
 
 // CONFIG
-export const upload: UploadConfig = {
+export const imgUpload: UploadConfig = {
   staticDir: '@/assets/img',
   filenameCompoundIndex: ['title'],
-  adminThumbnail: 'thumbnail',
+  // adminThumbnail: 'thumbnail',
   mimeTypes: ['image/*'],
   formatOptions: { format: 'webp' },
   imageSizes: imgSizes,

@@ -10,10 +10,18 @@ import sharp from 'sharp'
 import { fileURLToPath } from 'url'
 
 // COLLECTIONS
-import { Images, Pages, PublicationCategories, Publications, Users } from './collections/config'
+import {
+  Icons,
+  Images,
+  Pages,
+  PublicationCategories,
+  Publications,
+  Users,
+} from './collections/config'
 
 // GLOBALS
-import { Header } from './components/Navigation/Header/config'
+import { Header } from './globals/Navigation/Header/config'
+import { SiteSettings } from './globals/Site/config'
 
 // PAYLOAD CONFIG
 const filename = fileURLToPath(import.meta.url)
@@ -31,8 +39,8 @@ export default buildConfig({
     safeFileNames: true,
     preserveExtension: 16,
   },
-  globals: [Header],
-  collections: [Users, Images, Pages, Publications, PublicationCategories],
+  globals: [SiteSettings, Header],
+  collections: [Users, Images, Icons, Pages, Publications, PublicationCategories],
   editor: lexicalEditor({
     features: ({ defaultFeatures }) => [
       ...defaultFeatures,
@@ -53,7 +61,7 @@ export default buildConfig({
   plugins: [
     vercelBlobStorage({
       enabled: true,
-      collections: { images: true },
+      collections: { images: true, icons: true },
       token: process.env.BLOB_READ_WRITE_TOKEN,
     }),
   ],
