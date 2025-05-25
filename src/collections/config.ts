@@ -28,7 +28,7 @@ export const Pages: CollectionConfig = {
     singular: 'Page',
   },
   access: {
-    read: () => true,
+    read: canRead,
   },
   admin: {
     useAsTitle: 'title',
@@ -101,6 +101,7 @@ export const Icons: CollectionConfig = {
 }
 
 // PUBLICATIONS
+import { canRead } from '@/lib/access'
 import {
   Blurb,
   CategoryJoin,

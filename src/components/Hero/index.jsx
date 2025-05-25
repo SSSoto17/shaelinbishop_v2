@@ -1,7 +1,6 @@
 import { payload } from '@/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Suspense } from 'react'
 import { MdOutlineKeyboardDoubleArrowRight } from 'react-icons/md'
 
 export default function Hero({ type, content }) {
@@ -9,16 +8,14 @@ export default function Hero({ type, content }) {
 
   if (type !== 'none')
     return (
-      <Suspense>
-        <section
-          style={{ backgroundImage: heroImg }}
-          className="full-bleed animate-fade-in content-around bg-accent-700 bg-cover bg-fixed bg-center py-xl text-primary-50 bg-blend-multiply"
-        >
-          {type === 'highImpact' && <HighImpact {...content} />}
-          {type === 'lowImpact' && <LowImpact {...content} />}
-          {type === 'banner' && <Banner {...content} />}
-        </section>
-      </Suspense>
+      <section
+        style={{ backgroundImage: heroImg }}
+        className="full-bleed animate-fade-in content-around bg-accent-700 bg-cover bg-fixed bg-center py-xl text-primary-50 bg-blend-multiply"
+      >
+        {type === 'highImpact' && <HighImpact {...content} />}
+        {type === 'lowImpact' && <LowImpact {...content} />}
+        {type === 'banner' && <Banner {...content} />}
+      </section>
     )
 
   return null

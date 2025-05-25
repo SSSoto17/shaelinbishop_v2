@@ -1,4 +1,3 @@
-import Loading from '@/app/(frontend)/[[...slug]]/loading'
 import { payload } from '@/lib/utils'
 import Link from 'next/link'
 
@@ -18,7 +17,7 @@ export default function Header({ id, hero }) {
         <AdminBar id={id} />
         <NavBar />
       </section>
-      <Suspense fallback={<Loading />}>{hero && <Hero {...hero} />}</Suspense>
+      <Suspense>{hero && <Hero {...hero} />}</Suspense>
     </header>
   )
 }
