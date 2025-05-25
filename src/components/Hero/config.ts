@@ -1,4 +1,4 @@
-import { Field } from 'payload'
+import { Field, Tab } from 'payload'
 
 const HeroOptions = [
   {
@@ -47,7 +47,7 @@ const HeroContent: Field = {
   fields: [HeroTitle, HeroImage],
 }
 
-export const PageHero = {
+export const PageHero: Tab = {
   name: 'hero',
   label: 'Hero',
   fields: [HeroType, HeroContent],

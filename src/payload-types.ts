@@ -99,10 +99,12 @@ export interface Config {
   globals: {
     siteSettings: SiteSetting;
     header: Header;
+    footer: Footer;
   };
   globalsSelect: {
     siteSettings: SiteSettingsSelect<false> | SiteSettingsSelect<true>;
     header: HeaderSelect<false> | HeaderSelect<true>;
+    footer: FooterSelect<false> | FooterSelect<true>;
   };
   locale: null;
   user: User & {
@@ -919,8 +921,105 @@ export interface Header {
   id: string;
   items: {
     page: string | Page;
+    navigation?:
+      | (
+          | {
+              displayLogo?: boolean | null;
+              chooseLogo?: ('Default' | 'Minimal') | null;
+              id?: string | null;
+              blockName?: string | null;
+              blockType: 'logo';
+            }
+          | {
+              id?: string | null;
+              blockName?: string | null;
+              blockType: 'copyright';
+            }
+          | {
+              items?:
+                | {
+                    label?: {
+                      label?: string | null;
+                      displayLabel?: boolean | null;
+                      ariaLabel?: string | null;
+                      linkIcon?: (string | null) | Icon;
+                    };
+                    link: {
+                      linkType?: ('Internal' | 'External') | null;
+                      internalLink?: {
+                        targetType?: ('Page' | 'Page section' | 'Publication') | null;
+                        targetPage?: (string | null) | Page;
+                        targetSection?: string | null;
+                        targetPublication?: (string | null) | Publication;
+                        readPublicationSlug?: string | null;
+                      };
+                      URL: string;
+                      targetType?: ('_self' | '_blank') | null;
+                    };
+                    id?: string | null;
+                  }[]
+                | null;
+              id?: string | null;
+              blockName?: string | null;
+              blockType: 'linkArray';
+            }
+        )[]
+      | null;
     id?: string | null;
   }[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer".
+ */
+export interface Footer {
+  id: string;
+  navigation?:
+    | (
+        | {
+            displayLogo?: boolean | null;
+            chooseLogo?: ('Default' | 'Minimal') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'logo';
+          }
+        | {
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'copyright';
+          }
+        | {
+            items?:
+              | {
+                  label?: {
+                    label?: string | null;
+                    displayLabel?: boolean | null;
+                    ariaLabel?: string | null;
+                    linkIcon?: (string | null) | Icon;
+                  };
+                  link: {
+                    linkType?: ('Internal' | 'External') | null;
+                    internalLink?: {
+                      targetType?: ('Page' | 'Page section' | 'Publication') | null;
+                      targetPage?: (string | null) | Page;
+                      targetSection?: string | null;
+                      targetPublication?: (string | null) | Publication;
+                      readPublicationSlug?: string | null;
+                    };
+                    URL: string;
+                    targetType?: ('_self' | '_blank') | null;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'linkArray';
+          }
+      )[]
+    | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -945,7 +1044,122 @@ export interface HeaderSelect<T extends boolean = true> {
     | T
     | {
         page?: T;
+        navigation?:
+          | T
+          | {
+              logo?:
+                | T
+                | {
+                    displayLogo?: T;
+                    chooseLogo?: T;
+                    id?: T;
+                    blockName?: T;
+                  };
+              copyright?:
+                | T
+                | {
+                    id?: T;
+                    blockName?: T;
+                  };
+              linkArray?:
+                | T
+                | {
+                    items?:
+                      | T
+                      | {
+                          label?:
+                            | T
+                            | {
+                                label?: T;
+                                displayLabel?: T;
+                                ariaLabel?: T;
+                                linkIcon?: T;
+                              };
+                          link?:
+                            | T
+                            | {
+                                linkType?: T;
+                                internalLink?:
+                                  | T
+                                  | {
+                                      targetType?: T;
+                                      targetPage?: T;
+                                      targetSection?: T;
+                                      targetPublication?: T;
+                                      readPublicationSlug?: T;
+                                    };
+                                URL?: T;
+                                targetType?: T;
+                              };
+                          id?: T;
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+            };
         id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer_select".
+ */
+export interface FooterSelect<T extends boolean = true> {
+  navigation?:
+    | T
+    | {
+        logo?:
+          | T
+          | {
+              displayLogo?: T;
+              chooseLogo?: T;
+              id?: T;
+              blockName?: T;
+            };
+        copyright?:
+          | T
+          | {
+              id?: T;
+              blockName?: T;
+            };
+        linkArray?:
+          | T
+          | {
+              items?:
+                | T
+                | {
+                    label?:
+                      | T
+                      | {
+                          label?: T;
+                          displayLabel?: T;
+                          ariaLabel?: T;
+                          linkIcon?: T;
+                        };
+                    link?:
+                      | T
+                      | {
+                          linkType?: T;
+                          internalLink?:
+                            | T
+                            | {
+                                targetType?: T;
+                                targetPage?: T;
+                                targetSection?: T;
+                                targetPublication?: T;
+                                readPublicationSlug?: T;
+                              };
+                          URL?: T;
+                          targetType?: T;
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
       };
   updatedAt?: T;
   createdAt?: T;

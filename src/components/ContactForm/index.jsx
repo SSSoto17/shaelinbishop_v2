@@ -3,7 +3,6 @@ import Form from 'next/form'
 import { RichText } from '../RichText'
 
 export default function ContactForm({ info, formFields }) {
-  console.log('test: ', formFields)
   return (
     <section className="full-bleed" id="Contact">
       <div className="span-1/2 grid grid-cols-subgrid px-lg py-2xl">

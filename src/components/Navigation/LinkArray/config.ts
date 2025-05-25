@@ -1,4 +1,4 @@
-import { Field } from 'payload'
+import { Field, Tab } from 'payload'
 
 // Link label
 // Ability to hide label -> generate aria label
@@ -21,7 +21,6 @@ const LinkLabel: Field = {
   type: 'text',
 }
 
-// HIDDEN LABEL
 const HideLabel: Field = {
   name: 'displayLabel',
   label: 'Hide label?',
@@ -40,11 +39,11 @@ const ReadAriaLabel: Field = {
   // Hidden aria-label for accessibility
   name: 'ariaLabel',
   type: 'text',
-  required: true,
+  // required: true,
   admin: {
-    hidden: true,
-    condition: (data, { siblingData: { displayLabel } }) => {
-      return Boolean(displayLabel)
+    // hidden: true,
+    condition: (data, { displayLabel }) => {
+      return displayLabel
     },
   },
 }
@@ -57,6 +56,16 @@ const LinkIcon: Field = {
   // might add field in layout section to customize appearance of icons
   // might change to a custom component icon picker
   // or add option to upload or pick icon
+}
+
+const LabelTab: Tab = {
+  name: 'label',
+  fields: [
+    LinkLabel,
+    HideLabel,
+    ReadAriaLabel,
+    LinkIcon,
+  ],
 }
 
 // LINK TYPE
@@ -77,7 +86,7 @@ const TargetPage: Field = {
   relationTo: 'pages',
   required: true,
   admin: {
-    condition: (data, { siblingData: { targetType } }) => {
+    condition: (data, { targetType }) => {
       return targetType === 'Page' || targetType === 'Page section'
     },
   },
@@ -89,7 +98,7 @@ const TargetSection: Field = {
   type: 'text',
   required: true,
   admin: {
-    condition: (data, { siblingData: { targetType } }) => {
+    condition: (data, { targetType }) => {
       return targetType === 'Page section'
     },
   },
@@ -108,7 +117,7 @@ const TargetPublication: Field = {
   relationTo: 'publications',
   required: true,
   admin: {
-    condition: (data, { siblingData: { targetType } }) => {
+    condition: (data, { targetType }) => {
       return targetType === 'Publication'
     },
   },
@@ -151,13 +160,14 @@ const InternalTargetType: Field = {
   label: 'Choose target',
   type: 'select',
   options: InternalTargetOptions,
+  defaultValue: 'Page',
 }
 
 const LinkInternal: Field = {
   name: 'internalLink',
   type: 'group',
   admin: {
-    condition: (data, { siblingData: { linkType } }) => {
+    condition: (data, { linkType }) => {
       return linkType === 'Internal'
     },
   },
@@ -173,6 +183,7 @@ const LinkInternal: Field = {
 // LINK TYPE: EXTERNAL
 const ExternalURL: Field = {
   name: 'URL',
+  label: 'Link',
   type: 'text',
   required: true,
 }
@@ -193,12 +204,13 @@ const ExternalTargetType: Field = {
   label: 'Behavior',
   type: 'select',
   options: ExternalTargetTypeOptions,
+  defaultValue: '_self',
 }
 
 const LinkExternal: Field = {
   type: 'row',
   admin: {
-    condition: (data, { siblingData: { linkType } }) => {
+    condition: (data, { linkType }) => {
       return linkType === 'External'
     },
   },
@@ -208,18 +220,27 @@ const LinkExternal: Field = {
   ],
 }
 
-export const LinkItems: Field = {
-  name: 'items',
-  type: 'array',
-  required: true,
-  maxRows: 6,
+const LinkTab: Tab = {
+  name: 'link',
   fields: [
-    LinkLabel,
-    HideLabel,
-    ReadAriaLabel,
-    LinkIcon,
     LinkType,
     LinkInternal,
     LinkExternal,
+  ],
+}
+
+// LINK ITEMS
+
+export const LinkItems: Field = {
+  name: 'items',
+  label: false,
+  labels: { plural: 'Links', singular: 'Link' },
+  type: 'array',
+  maxRows: 6,
+  fields: [
+    {
+      type: 'tabs',
+      tabs: [LabelTab, LinkTab],
+    },
   ],
 }

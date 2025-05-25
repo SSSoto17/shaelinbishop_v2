@@ -3,21 +3,23 @@ import { LinkItems } from './LinkArray/config'
 
 // FIELDS
 
-// Copyright
-const Copyright: Field = {
-  name: 'siteCopyright',
-  type: 'checkbox',
-  defaultValue: false,
-}
-
 // Layout
 const Layout: Field = {
   name: 'navigationLayout',
+  label: 'Appearance',
   type: 'group',
   fields: [],
 }
 
 // BLOCKS
+
+// Copyright
+const Copyright: Block = {
+  slug: 'copyright',
+  fields: [
+    // Options to customize the appearance
+  ],
+}
 
 // Logo
 const Logo: Block = {
@@ -44,8 +46,7 @@ const LinkArray: Block = {
   slug: 'linkArray',
   labels: { singular: 'Menu', plural: 'Menus' },
   fields: [
-    Copyright,
-    Layout,
+    // Layout,
     LinkItems,
   ],
 }
@@ -53,5 +54,5 @@ const LinkArray: Block = {
 export const NavBlock: Field = {
   name: 'navigation',
   type: 'blocks',
-  blocks: [Logo, LinkArray],
+  blocks: [Logo, Copyright, LinkArray],
 }

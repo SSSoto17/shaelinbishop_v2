@@ -20,6 +20,7 @@ import {
 } from './collections/config'
 
 // GLOBALS
+import { Footer } from './globals/Navigation/Footer/config'
 import { Header } from './globals/Navigation/Header/config'
 import { SiteSettings } from './globals/Site/config'
 
@@ -39,7 +40,7 @@ export default buildConfig({
     safeFileNames: true,
     preserveExtension: 16,
   },
-  globals: [SiteSettings, Header],
+  globals: [SiteSettings, Header, Footer],
   collections: [Users, Images, Icons, Pages, Publications, PublicationCategories],
   editor: lexicalEditor({
     features: ({ defaultFeatures }) => [
