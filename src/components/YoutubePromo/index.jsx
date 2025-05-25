@@ -16,6 +16,7 @@ export default function YouTubePromo() {
         <Link
           className="group inline-flex items-center gap-3xs py-3xs font-display font-bold uppercase transition duration-150 ease-in hover:text-primary-700"
           href="https://www.youtube.com/channel/UCb-wzF6DrSslXq3qE61YL7A"
+          target="_blank"
         >
           Subscribe Now
           <MdOutlineKeyboardDoubleArrowRight className="transition duration-150 ease-in group-hover:animate-go" />

@@ -69,7 +69,7 @@ export default async function Page({ params }) {
 
   if (publication) {
     return (
-      <main id="main" className="full-bleed">
+      <main id="main" className="full-bleed animate-fade-in">
         {isEnabled && <LivePreview />}
         <PublicationContent {...publication} />
       </main>
@@ -77,7 +77,7 @@ export default async function Page({ params }) {
   }
 
   return (
-    <main id="main" className="full-bleed scroll-mt-20">
+    <main id="main" className="full-bleed animate-fade-in scroll-mt-20">
       {isEnabled && <LivePreview />}
       <Content {...page} />
     </main>
