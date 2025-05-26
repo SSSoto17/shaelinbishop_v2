@@ -35,9 +35,9 @@ export const Pages: CollectionConfig = {
     singular: 'Page',
   },
   access: {
-    read: canRead,
+    read: () => true,
     create: AdminOrEditor,
-    update: hasAccess,
+    update: AdminOrEditor,
     delete: isAdmin,
   },
   admin: {
@@ -118,7 +118,7 @@ export const Icons: CollectionConfig = {
 }
 
 // PUBLICATIONS
-import { AdminOrEditor, canRead, hasAccess, isAdmin, isAdminOrSelf } from '@/lib/access'
+import { AdminOrEditor, isAdmin, isAdminOrSelf } from '@/lib/access'
 import {
   Blurb,
   CategoryJoin,
@@ -143,9 +143,9 @@ export const Publications: CollectionConfig = {
     defaultColumns: ['title', 'categoryName'],
   },
   access: {
-    read: canRead,
+    read: () => true,
     create: AdminOrEditor,
-    update: hasAccess,
+    update: AdminOrEditor,
     delete: isAdmin,
   },
   defaultSort: 'releaseDate',
