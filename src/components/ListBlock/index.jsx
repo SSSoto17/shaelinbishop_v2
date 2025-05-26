@@ -52,14 +52,6 @@ function ListCard({ title, rate, description, note }) {
         </div>
       </header>
       <RichText data={description} className="row-start-3 max-w-prose rich-text flow-space" />
-      {/* <article className="py-xs flow-space"> */}
-      {/* {note && (
-          <aside className="flex max-w-180 gap-xs bg-accent-200 px-sm py-md font-display text-xs">
-            <MdInfo size={28} className="flex-none text-accent-700" />
-            <RichText data={note} />
-          </aside>
-        )} */}
-      {/* </article> */}
     </li>
   )
 }
@@ -81,7 +73,8 @@ function ListButton({
       <RichText data={body} className="cursor-default font-display" />
       <Link
         href={url || href}
-        target={targetType}
+        target={targetType && targetType}
+        scroll
         className="group flex items-center justify-center gap-2xs bg-accent-900 px-md py-sm font-display text-primary-50 uppercase transition duration-150 hover:bg-accent-800"
       >
         {label}

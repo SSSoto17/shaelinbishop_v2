@@ -5,12 +5,12 @@ import { siteAccess, userName, userRole } from './Users'
 
 export const Users: CollectionConfig = {
   slug: 'users',
-  access: {
-    read: isAdminOrSelf,
-    create: isAdmin,
-    update: isAdminOrSelf,
-    delete: isAdmin,
-  },
+  // access: {
+  //   read: isAdminOrSelf,
+  //   create: isAdmin,
+  //   update: isAdminOrSelf,
+  //   delete: isAdmin,
+  // },
   admin: {
     group: 'Admin',
     useAsTitle: 'email',
@@ -36,9 +36,10 @@ export const Pages: CollectionConfig = {
   },
   access: {
     read: () => true,
-    create: AdminOrEditor,
-    update: AdminOrEditor,
-    delete: isAdmin,
+    // read: canRead,
+    // create: AdminOrEditor,
+    // update: hasAccess,
+    // delete: isAdmin,
   },
   admin: {
     useAsTitle: 'title',
@@ -85,9 +86,9 @@ export const Images: CollectionConfig = {
   },
   access: {
     read: () => true,
-    create: AdminOrEditor,
-    update: AdminOrEditor,
-    delete: AdminOrEditor,
+    // create: AdminOrEditor,
+    // update: AdminOrEditor,
+    // delete: AdminOrEditor,
   },
   fields: [imgName, altText],
   upload: { ...imgUpload },
@@ -109,16 +110,15 @@ export const Icons: CollectionConfig = {
   },
   access: {
     read: () => true,
-    create: AdminOrEditor,
-    update: AdminOrEditor,
-    delete: AdminOrEditor,
+    // create: AdminOrEditor,
+    // update: AdminOrEditor,
+    // delete: AdminOrEditor,
   },
   fields: [iconName],
   upload: { ...iconUpload },
 }
 
 // PUBLICATIONS
-import { AdminOrEditor, isAdmin, isAdminOrSelf } from '@/lib/access'
 import {
   Blurb,
   CategoryJoin,
@@ -144,9 +144,10 @@ export const Publications: CollectionConfig = {
   },
   access: {
     read: () => true,
-    create: AdminOrEditor,
-    update: AdminOrEditor,
-    delete: isAdmin,
+    // read: canRead,
+    // create: AdminOrEditor,
+    // update: hasAccess,
+    // delete: isAdmin,
   },
   defaultSort: 'releaseDate',
   fields: [
@@ -177,9 +178,9 @@ export const PublicationCategories: CollectionConfig = {
   labels: { singular: 'Category', plural: 'Categories' },
   access: {
     read: () => true,
-    create: AdminOrEditor,
-    update: AdminOrEditor,
-    delete: AdminOrEditor,
+    // create: AdminOrEditor,
+    // update: AdminOrEditor,
+    // delete: AdminOrEditor,
   },
   admin: {
     useAsTitle: 'title',

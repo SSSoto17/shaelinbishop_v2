@@ -43,13 +43,10 @@ async function NavSidebar({ navData }) {
       <h2 className="cursor-default font-display text-sm lowercase">Jump to</h2>
       <ul className="font-display font-black lowercase">
         {navData.map(({ title, id }) => {
+          const section = '#' + title.replaceAll(' ', '')
           return (
             <li key={id}>
-              <Link
-                href={`#${title.replaceAll(' ', '')}`}
-                replace
-                className="group gap-x-3sm flex items-center"
-              >
+              <Link href={section} replace className="group gap-x-3sm flex items-center">
                 <MdOutlineArrowRight className="transition duration-150 ease-in-out not-group-hover:opacity-0" />
                 <span className="leading-tight transition duration-200 ease-in-out not-group-hover:-translate-x-6 hover:text-primary-500">
                   {title}
@@ -117,7 +114,6 @@ function CardItem({
   coverImg,
   categoryName,
 }) {
-  console.log(slug)
   return (
     <li className="relative grid grid-cols-6 items-center gap-x-lg">
       <article className="peer order-2 col-span-4 flow-space">

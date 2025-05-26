@@ -40,6 +40,18 @@
   --color-secondary-900: #5e5e5e;
   --color-secondary-950: #404040;
 
+  --color-error-50: oklch(97.14% 0.011 31.07);
+  --color-error-100: oklch(94.59% 0.023 31.1);
+  --color-error-200: oklch(87.35% 0.054 31.02);
+  --color-error-300: oklch(79.5% 0.093 31.57);
+  --color-error-400: oklch(69.98% 0.147 32.64);
+  --color-error-500: oklch(55.82% 0.187 33.16);
+  --color-error-600: oklch(51.52% 0.172 33.2);
+  --color-error-700: oklch(46.66% 0.155 33.06);
+  --color-error-800: oklch(40.94% 0.133 33.12);
+  --color-error-900: oklch(31.82% 0.098 33.2);
+  --color-error-950: oklch(27.59% 0.082 33.66);
+
   /* TEXT */
   --font-*: initial;
   --text-*: initial;
@@ -165,7 +177,7 @@
     font-weight: var(--font-weight-normal);
     font-size: var(--text-base);
     font-family: var(--font-copy);
-    /* background-color: var(--color-primary-50); */
+    background-color: var(--color-primary-50);
 
     > header,
     > main,
@@ -186,10 +198,6 @@
   .img-placeholder {
     @apply max-h-200 min-h-40 max-w-200 min-w-60 bg-accent-800;
   }
-}
-
-@utility background-primary {
-  background-color: var(--color-primary-50);
 }
 
 @utility rich-text {

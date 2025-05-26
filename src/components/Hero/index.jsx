@@ -4,15 +4,6 @@ import Link from 'next/link'
 import { MdOutlineKeyboardDoubleArrowRight } from 'react-icons/md'
 
 export default function Hero({ type, content }) {
-  if (!content)
-    return (
-      <section className="grid place-content-center py-xl">
-        <h2 className="inline-flex animate-pulse items-center gap-md text-center font-display text-3xl font-bold duration-150">
-          <ImSpinner2 className="animate-spin" />
-        </h2>
-      </section>
-    )
-
   const heroImg = `url(${content?.image?.sizes?.screen?.url})`
 
   if (type !== 'none')
@@ -77,18 +68,11 @@ async function HighImpact({
           <RichText data={description} className="font-bold flow-space" />
           <Link
             href={`/${categoryName}${slug}`}
-            // className="my-xs inline-flex font-display text-lg uppercase"
             className="group ml-md inline-flex items-center gap-3xs py-3xs font-display text-lg font-bold uppercase transition duration-150 ease-in hover:translate-x-3xs hover:text-primary-200"
           >
             Buy now
             <MdOutlineKeyboardDoubleArrowRight className="transition duration-150 ease-in group-hover:animate-go" />
           </Link>
-          {/* <Link
-                    href="https://www.youtube.com/channel/UCb-wzF6DrSslXq3qE61YL7A"
-                  >
-                    Subscribe Now
-                    <MdOutlineKeyboardDoubleArrowRight className="transition duration-150 ease-in group-hover:animate-go" />
-                  </Link> */}
         </header>
       </article>
       <Link

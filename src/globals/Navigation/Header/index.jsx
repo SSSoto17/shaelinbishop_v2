@@ -1,5 +1,6 @@
 import { payload } from '@/lib/utils'
 import Link from 'next/link'
+import { Suspense } from 'react'
 
 import { Hero } from '@/components'
 import AdminBar from '../../../globals/Navigation/AdminBar'
@@ -17,7 +18,7 @@ export default function Header({ id, hero }) {
         <AdminBar id={id} />
         <NavBar />
       </section>
-      {hero && <Hero {...hero} />}
+      <Suspense fallback={<Loading />}>{hero && <Hero {...hero} />}</Suspense>
     </header>
   )
 }
@@ -25,9 +26,8 @@ export default function Header({ id, hero }) {
 function Logo() {
   return (
     <Link
-      href="/navigate?path=/"
+      href="/"
       className="justify-self-start font-logo tracking-wider uppercase hover:opacity-60"
-      scroll
     >
       Shaelin Bishop
     </Link>
@@ -57,7 +57,8 @@ async function NavBar() {
         {items.map((item, id) => {
           return (
             <li key={id}>
-              <Link href={'/navigate?path=' + item.page.slug}>{item.page.title}</Link>
+              {/* <Link href={'/navigate?path=' + item.page.slug}>{item.page.title}</Link> */}
+              <Link href={item.page.slug}>{item.page.title}</Link>
             </li>
           )
         })}

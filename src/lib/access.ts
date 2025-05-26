@@ -1,5 +1,8 @@
 import { Access, FieldAccess } from 'payload'
 
+// NOTE TO SELF: get slugify hook to work on pages and publications before doing access utils
+// ran into error with a page that didn't have a slug yet, creating build error when generating static params
+
 // ADMIN
 export const isAdmin: Access = ({ req: { user } }) => {
   return Boolean(user?.role === 'Admin')
