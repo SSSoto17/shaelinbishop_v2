@@ -177,7 +177,7 @@
     font-weight: var(--font-weight-normal);
     font-size: var(--text-base);
     font-family: var(--font-copy);
-    /* background-color: var(--color-primary-50); */
+    background-color: var(--color-primary-50);
 
     > header,
     > main,
@@ -198,10 +198,6 @@
   .img-placeholder {
     @apply max-h-200 min-h-40 max-w-200 min-w-60 bg-accent-800;
   }
-}
-
-@utility background-primary {
-  background-color: var(--color-primary-50);
 }
 
 @utility rich-text {

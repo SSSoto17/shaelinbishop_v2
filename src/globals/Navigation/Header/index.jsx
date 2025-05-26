@@ -1,8 +1,8 @@
 import { payload } from '@/lib/utils'
 import Link from 'next/link'
+import { Suspense } from 'react'
 
 import { Hero } from '@/components'
-import { Suspense } from 'react'
 import AdminBar from '../../../globals/Navigation/AdminBar'
 
 import { FaInstagram, FaYoutube } from 'react-icons/fa6'
