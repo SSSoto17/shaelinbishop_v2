@@ -39,30 +39,34 @@ export const AdminOrEditor: Access = ({ req: { user } }) => {
 
 // READ ACCESS
 export const canRead: Access = ({ req: { user } }) => {
-  if (user) {
-    // IF ADMIN OR EDITOR
-    if (user?.role === 'Admin' || user?.role === 'Editor') {
-      return true
-    }
-
-    // IF USER HAS ACCESS OR STATUS = PUBLISHED
-    const ids = user?.siteAccess?.map(({ value }) => value.id)
-
-    return {
-      or: [
-        {
-          id: {
-            in: ids,
-          },
-        },
-        {
-          _status: {
-            equals: 'published',
-          },
-        },
-      ],
-    }
+  // IF ADMIN OR EDITOR
+  if (user?.role === 'Admin' || user?.role === 'Editor') {
+    return true
   }
+  //   if (user) {
+
+  //     if (user?.siteAccess && user?.siteAccess.length > 0) {
+  //       // IF USER HAS ACCESS OR STATUS = PUBLISHED
+  //       const ids = user?.siteAccess?.map(({ value }) => {
+  //         return value.id
+  //       })
+
+  //       return {
+  //         or: [
+  //           {
+  //             id: {
+  //               in: ids,
+  //             },
+  //           },
+  //           {
+  //             _status: {
+  //               equals: 'published',
+  //             },
+  //           },
+  //         ],
+  //       }
+  //     }
+  //   }
 
   //   LOGGED OUT + IF STATUS = PUBLISHED
   return {
@@ -74,18 +78,8 @@ export const canRead: Access = ({ req: { user } }) => {
 
 // HAS SITE ACCESS
 export const hasAccess: Access = ({ req: { user } }) => {
-  if (user) {
-    if (user.role === 'Admin' || user.role === 'Editor') {
-      return true
-    }
-
-    const ids = user?.siteAccess?.map(({ value }) => value.id)
-
-    return {
-      id: {
-        in: ids,
-      },
-    }
+  if (user?.role === 'Admin' || user?.role === 'Editor') {
+    return true
   }
   return {
     _status: {
