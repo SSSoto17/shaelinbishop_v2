@@ -4,6 +4,15 @@ import Link from 'next/link'
 import { MdOutlineKeyboardDoubleArrowRight } from 'react-icons/md'
 
 export default function Hero({ type, content }) {
+  if (!content)
+    return (
+      <section className="grid place-content-center py-xl">
+        <h2 className="inline-flex animate-pulse items-center gap-md text-center font-display text-3xl font-bold duration-150">
+          <ImSpinner2 className="animate-spin" />
+        </h2>
+      </section>
+    )
+
   const heroImg = `url(${content?.image?.sizes?.screen?.url})`
 
   if (type !== 'none')

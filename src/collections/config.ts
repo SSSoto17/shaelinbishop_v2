@@ -1,10 +1,16 @@
 import type { CollectionConfig } from 'payload'
 
 // USERS
-import { userName, userRole } from './Users'
+import { siteAccess, userName, userRole } from './Users'
 
 export const Users: CollectionConfig = {
   slug: 'users',
+  access: {
+    read: isAdminOrSelf,
+    create: isAdmin,
+    update: isAdminOrSelf,
+    delete: isAdmin,
+  },
   admin: {
     group: 'Admin',
     useAsTitle: 'email',
@@ -15,11 +21,12 @@ export const Users: CollectionConfig = {
     // Email added by default
     userName,
     userRole,
+    siteAccess,
   ],
 }
 
 // Pages
-import { PageContent, PageMeta, PageSlug, PageTitle } from './Pages'
+import { PageContent, PageSlug, PageTitle } from './Pages'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -29,6 +36,9 @@ export const Pages: CollectionConfig = {
   },
   access: {
     read: canRead,
+    create: AdminOrEditor,
+    update: hasAccess,
+    delete: isAdmin,
   },
   admin: {
     useAsTitle: 'title',
@@ -58,7 +68,7 @@ export const Pages: CollectionConfig = {
       },
     },
   },
-  fields: [PageTitle, PageSlug, PageMeta, PageContent],
+  fields: [PageTitle, PageSlug, PageContent],
 }
 
 // IMAGES
@@ -67,13 +77,17 @@ import { autoImgFileName, updateImgFileName } from './Images/hooks'
 
 export const Images: CollectionConfig = {
   slug: 'images',
+
   admin: {
     useAsTitle: 'title',
     group: 'Media',
-    defaultColumns: ['title', 'alt'],
+    defaultColumns: ['adminThumbnail', 'title', 'alt'],
   },
   access: {
     read: () => true,
+    create: AdminOrEditor,
+    update: AdminOrEditor,
+    delete: AdminOrEditor,
   },
   fields: [imgName, altText],
   upload: { ...imgUpload },
@@ -95,13 +109,16 @@ export const Icons: CollectionConfig = {
   },
   access: {
     read: () => true,
+    create: AdminOrEditor,
+    update: AdminOrEditor,
+    delete: AdminOrEditor,
   },
   fields: [iconName],
   upload: { ...iconUpload },
 }
 
 // PUBLICATIONS
-import { canRead } from '@/lib/access'
+import { AdminOrEditor, canRead, hasAccess, isAdmin, isAdminOrSelf } from '@/lib/access'
 import {
   Blurb,
   CategoryJoin,
@@ -126,10 +143,10 @@ export const Publications: CollectionConfig = {
     defaultColumns: ['title', 'categoryName'],
   },
   access: {
-    read: () => true,
-    update: ({ req: { user } }) => {
-      return Boolean(user)
-    },
+    read: canRead,
+    create: AdminOrEditor,
+    update: hasAccess,
+    delete: isAdmin,
   },
   defaultSort: 'releaseDate',
   fields: [
@@ -160,6 +177,9 @@ export const PublicationCategories: CollectionConfig = {
   labels: { singular: 'Category', plural: 'Categories' },
   access: {
     read: () => true,
+    create: AdminOrEditor,
+    update: AdminOrEditor,
+    delete: AdminOrEditor,
   },
   admin: {
     useAsTitle: 'title',

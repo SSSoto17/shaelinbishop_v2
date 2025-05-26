@@ -39,5 +39,5 @@ const PageSEO = {
 
 export const PageContent: Field = {
   type: 'tabs',
-  tabs: [PageHero, PageSections, PageSEO],
+  tabs: [PageHero, PageSections],
 }

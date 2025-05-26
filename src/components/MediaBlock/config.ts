@@ -2,9 +2,6 @@ import { Block } from 'payload'
 
 export const MediaBlock: Block = {
   slug: 'mediaBlock',
-  admin: {
-    group: 'media',
-  },
   fields: [
     {
       type: 'upload',

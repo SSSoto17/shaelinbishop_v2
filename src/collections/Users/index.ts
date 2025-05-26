@@ -1,3 +1,4 @@
+import { isAdminFieldLevel } from '@/lib/access'
 import type { Field } from 'payload'
 
 const firstName: Field = {
@@ -37,4 +38,24 @@ export const userRole: Field = {
   name: 'role',
   options: userRoleOptions,
   defaultValue: 'Editor',
+  access: {
+    create: isAdminFieldLevel,
+    update: isAdminFieldLevel,
+  },
+}
+
+export const siteAccess: Field = {
+  name: 'siteAccess',
+  saveToJWT: true,
+  type: 'relationship',
+  relationTo: ['pages', 'publications'],
+  hasMany: true,
+  access: {
+    create: isAdminFieldLevel,
+    update: isAdminFieldLevel,
+  },
+  admin: {
+    condition: ({ role }) => role !== 'Admin',
+    description: 'Allow editor access.',
+  },
 }
