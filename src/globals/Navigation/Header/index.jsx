@@ -2,9 +2,9 @@ import { payload } from '@/lib/utils'
 import Link from 'next/link'
 
 import { Hero } from '@/components'
+import { Suspense } from 'react'
 import AdminBar from '../../../globals/Navigation/AdminBar'
 
-import { Suspense } from 'react'
 import { FaInstagram, FaYoutube } from 'react-icons/fa6'
 import { ImSpinner2 } from 'react-icons/im'
 
@@ -26,9 +26,8 @@ export default function Header({ id, hero }) {
 function Logo() {
   return (
     <Link
-      href="/navigate?path=/"
+      href="/"
       className="justify-self-start font-logo tracking-wider uppercase hover:opacity-60"
-      scroll
     >
       Shaelin Bishop
     </Link>

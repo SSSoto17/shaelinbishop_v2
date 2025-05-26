@@ -1,11 +1,10 @@
-import Form from 'next/form'
-
-import { Button, Input } from '@headlessui/react'
 import Image from 'next/image'
 import { RichText } from '../RichText'
+import ActionForm from './index.client'
 
 export default function RenderNewsletter({ heading, body, buttonLabel, img }) {
   const { alt, sizes } = img
+
   return (
     <section className="full-bleed border-y border-primary-900">
       <article className="grid grid-cols-8 gap-x-xl gap-y-sm border-x border-y-primary-900 p-xl">
@@ -28,20 +27,25 @@ export default function RenderNewsletter({ heading, body, buttonLabel, img }) {
           <RichText data={body} className="max-w-prose" />
         </div>
         {/* <Form action="/" className="col-start-2 row-start-4 flex gap-xs"> */}
-        <Form
-          action="/"
+        <ActionForm label={buttonLabel} />
+        {/* <Form
+          action={mockValidateForm}
           className="col-start-5 -col-end-1 row-span-2 row-start-3 grid grid-cols-5 gap-xs self-center px-2xs text-sm"
         >
           <Input
             name="email"
             type="email"
             placeholder="Enter email"
-            className="col-span-3 border border-accent-600 bg-primary-50 px-2xs font-logo text-primary-800 placeholder:tracking-wide data-focus:outline-2 data-focus:outline-accent-700"
+            invalid={checkInvalid}
+            className="col-span-3 border border-accent-600 bg-primary-50 px-2xs font-logo text-primary-800 placeholder:tracking-wide data-focus:outline-2 data-focus:outline-accent-700 data-invalid:border-2 data-invalid:border-error-600"
           />
-          <Button className="col-span-2 grid cursor-pointer place-content-center bg-accent-900 p-2xs font-display text-primary-50 uppercase transition-colors duration-150 hover:bg-accent-800 active:bg-accent-950">
+          <Button
+            type="submit"
+            className="col-span-2 grid cursor-pointer place-content-center bg-accent-900 p-2xs font-display text-primary-50 uppercase transition-colors duration-150 hover:bg-accent-800 active:bg-accent-950"
+          >
             {buttonLabel}
           </Button>
-        </Form>
+        </Form> */}
       </article>
     </section>
   )
