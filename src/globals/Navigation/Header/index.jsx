@@ -57,7 +57,8 @@ async function NavBar() {
         {items.map((item, id) => {
           return (
             <li key={id}>
-              <Link href={'/navigate?path=' + item.page.slug}>{item.page.title}</Link>
+              {/* <Link href={'/navigate?path=' + item.page.slug}>{item.page.title}</Link> */}
+              <Link href={item.page.slug}>{item.page.title}</Link>
             </li>
           )
         })}

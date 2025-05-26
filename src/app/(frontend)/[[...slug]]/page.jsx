@@ -11,18 +11,53 @@ export async function generateStaticParams() {
   const pages = await getPages(
     { slug: true },
     {
-      slug: {
-        not_equals: '/home',
-      },
+      and: [
+        {
+          slug: {
+            exists: true,
+          },
+        },
+        {
+          slug: {
+            not_equals: '/home',
+          },
+          _status: {
+            equals: 'published',
+          },
+        },
+      ],
     },
   )
 
   const publications = await getPublications(
     { slug: true, releaseDetails: true },
     {
-      slug: {
-        exists: true,
-      },
+      and: [
+        {
+          slug: {
+            exists: true,
+          },
+        },
+        {
+          _status: {
+            equals: 'published',
+          },
+        },
+        {
+          or: [
+            {
+              'releaseDetails.category.title': {
+                equals: 'Books',
+              },
+            },
+            {
+              'releaseDetails.category.title': {
+                equals: 'Collections',
+              },
+            },
+          ],
+        },
+      ],
     },
   )
 
