@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Hero } from '@/components'
 import AdminBar from '../../../globals/Navigation/AdminBar'
 
+import { Suspense } from 'react'
 import { FaInstagram, FaYoutube } from 'react-icons/fa6'
 import { ImSpinner2 } from 'react-icons/im'
 
@@ -17,7 +18,7 @@ export default function Header({ id, hero }) {
         <AdminBar id={id} />
         <NavBar />
       </section>
-      {hero && <Hero {...hero} />}
+      <Suspense fallback={<Loading />}>{hero && <Hero {...hero} />}</Suspense>
     </header>
   )
 }
