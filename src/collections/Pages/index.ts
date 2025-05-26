@@ -9,6 +9,11 @@ export const PageTitle: Field = {
   admin: {
     position: 'sidebar',
   },
+  hooks: {
+    afterChange: [
+      Slugify,
+    ],
+  },
 }
 
 export const PageSlug: Field = {
@@ -31,6 +36,7 @@ export const PageMeta: Field = {
 // PAGE CONTENT
 import { PageHero } from '@/components/Hero/config'
 import { PageSections } from '@/components/config'
+import { Slugify } from './hooks'
 
 const PageSEO = {
   label: 'SEO',

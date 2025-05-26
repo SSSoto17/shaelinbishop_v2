@@ -1,6 +1,6 @@
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { Field } from 'payload'
-import { Slugify } from '../Pages/hooks'
+import { Slugify } from '../Publications/hooks'
 import { UpdateCategory } from './hooks'
 
 // GENERAL
