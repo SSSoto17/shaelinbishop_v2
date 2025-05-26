@@ -69,7 +69,7 @@ function FeaturedCard({ title, releaseDetails: { publishedIn }, quotes }) {
   } = publishedIn[publishedIn.length - 1]
 
   return (
-    <li className="relative row-span-3 grid grid-rows-subgrid gap-y-2xs background-primary px-sm py-md drop-shadow-md transition duration-150 ease-in hover:scale-102">
+    <li className="relative row-span-3 grid grid-rows-subgrid gap-y-2xs bg-primary-50 px-sm py-md drop-shadow-md transition duration-150 ease-in hover:scale-102">
       <h4 className="self-center text-lg/10 font-bold">
         <Link href={url} target="_blank" className="after:absolute after:inset-0">
           {title}
