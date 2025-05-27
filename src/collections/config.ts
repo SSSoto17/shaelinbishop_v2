@@ -29,12 +29,7 @@ export const Users: CollectionConfig = {
 
 // Pages
 import { PageContent, PageJoin, PageSlug, PageTitle } from './Pages'
-import {
-  canCreate as pageCreate,
-  canDelete as pageDelete,
-  canRead as pageRead,
-  canUpdate as pageUpdate,
-} from './Pages/access'
+import { canRead as pageRead, canUpdate as pageUpdate } from './Pages/access'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -44,9 +39,9 @@ export const Pages: CollectionConfig = {
   },
   access: {
     read: pageRead,
-    create: pageCreate,
+    create: isAdminOrEditor,
     update: pageUpdate,
-    delete: pageDelete,
+    delete: isAdmin,
   },
   admin: {
     useAsTitle: 'title',
@@ -82,11 +77,6 @@ export const Pages: CollectionConfig = {
     PageContent,
     PageJoin,
   ],
-  hooks: {
-    afterOperation: [
-      AssignPage,
-    ],
-  },
 }
 
 // IMAGES
@@ -136,8 +126,7 @@ export const Icons: CollectionConfig = {
 }
 
 // PUBLICATIONS
-import { AssignPage } from './Pages/hooks'
-import { canDelete as pubDelete, canUpdate as pubUpdate } from './Publications/access'
+import { canUpdate as pubUpdate } from './Publications/access'
 import {
   Blurb,
   CategoryJoin,
@@ -152,7 +141,6 @@ import {
   Testimonials,
   Title,
 } from './Publications/config'
-import { AssignPublication } from './Publications/hooks'
 import { ReleaseDetails } from './Publications/release.config'
 
 export const Publications: CollectionConfig = {
@@ -165,9 +153,9 @@ export const Publications: CollectionConfig = {
   },
   access: {
     read: pageRead,
-    create: pageCreate,
+    create: isAdminOrEditor,
     update: pubUpdate,
-    delete: pubDelete,
+    delete: isAdmin,
   },
   defaultSort: 'releaseDate',
   fields: [
@@ -190,11 +178,6 @@ export const Publications: CollectionConfig = {
   },
   versions: {
     drafts: true,
-  },
-  hooks: {
-    afterOperation: [
-      AssignPublication,
-    ],
   },
 }
 

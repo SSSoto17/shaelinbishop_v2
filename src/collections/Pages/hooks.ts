@@ -1,5 +1,4 @@
-import { checkRole, isGuest } from '@/lib/access'
-import { CollectionAfterOperationHook, FieldHook } from 'payload'
+import { FieldHook } from 'payload'
 
 export const Slugify: FieldHook = async ({
   context,
@@ -38,19 +37,28 @@ export const Slugify: FieldHook = async ({
   return value
 }
 
-export const AssignPage: CollectionAfterOperationHook = async ({ operation, req, result }) => {
-  if (operation === 'create') {
-    const { user, payload } = req
+// export const AssignPage: CollectionAfterOperationHook = async ({
+//   args,
+//   operation,
+//   req,
+//   result,
+// }) => {
+//   if (operation === 'create') {
+//     const { user, payload } = req
 
-    if (user?.role && checkRole(user?.role, isGuest)) {
-      await payload.update({
-        collection: 'users',
-        id: user.id,
-        req,
-        data: {
-          siteAccess: user.siteAccess?.concat(result),
-        },
-      })
-    }
-  }
-}
+//     // console.log(args.data)
+
+//     if (user?.role && checkRole(user?.role, isGuest) && result) {
+//       // const newArray = user?.siteAccess?.concat(ConcatArray< result)
+//       await payload.update({
+//         collection: 'users',
+//         id: user.id,
+//         req,
+//         data: {
+//           // siteAccess: user.siteAccess?.concat(result: ConcatArray<string | Page>),
+//           siteAccess: user.siteAccess?.concat(data),
+//         },
+//       })
+//     }
+//   }
+// }
