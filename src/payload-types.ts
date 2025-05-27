@@ -78,6 +78,12 @@ export interface Config {
     'payload-migrations': PayloadMigration;
   };
   collectionsJoins: {
+    pages: {
+      permittedUsers: 'users';
+    };
+    publications: {
+      permittedUsers: 'users';
+    };
     publicationCategories: {
       categoryJoin: 'publications';
     };
@@ -145,18 +151,11 @@ export interface User {
   /**
    * Allow editor access.
    */
-  siteAccess?:
-    | (
-        | {
-            relationTo: 'pages';
-            value: string | Page;
-          }
-        | {
-            relationTo: 'publications';
-            value: string | Publication;
-          }
-      )[]
-    | null;
+  siteAccess?: (string | Page)[] | null;
+  /**
+   * Allow editor access.
+   */
+  pubAccess?: (string | Publication)[] | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -478,6 +477,11 @@ export interface Page {
           }
       )[]
     | null;
+  permittedUsers?: {
+    docs?: (string | User)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -673,6 +677,11 @@ export interface Publication {
     | null;
   categoryName?: string | null;
   releaseDate?: string | null;
+  permittedUsers?: {
+    docs?: (string | User)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -778,6 +787,7 @@ export interface UsersSelect<T extends boolean = true> {
   lastName?: T;
   role?: T;
   siteAccess?: T;
+  pubAccess?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -1071,6 +1081,7 @@ export interface PagesSelect<T extends boolean = true> {
               blockName?: T;
             };
       };
+  permittedUsers?: T;
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
@@ -1128,6 +1139,7 @@ export interface PublicationsSelect<T extends boolean = true> {
       };
   categoryName?: T;
   releaseDate?: T;
+  permittedUsers?: T;
   updatedAt?: T;
   createdAt?: T;
   _status?: T;

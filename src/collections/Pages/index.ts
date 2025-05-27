@@ -1,5 +1,5 @@
 import type { Field } from 'payload'
-
+import { Slugify } from './hooks'
 // PAGE OVERVIEW
 export const PageTitle: Field = {
   name: 'title',
@@ -36,14 +36,21 @@ export const PageMeta: Field = {
 // PAGE CONTENT
 import { PageHero } from '@/components/Hero/config'
 import { PageSections } from '@/components/config'
-import { Slugify } from './hooks'
 
-const PageSEO = {
-  label: 'SEO',
-  fields: [],
-}
+// const PageSEO = {
+//   label: 'SEO',
+//   fields: [],
+// }
 
 export const PageContent: Field = {
   type: 'tabs',
   tabs: [PageHero, PageSections],
+}
+
+export const PageJoin: Field = {
+  name: 'permittedUsers',
+  admin: { hidden: true },
+  type: 'join',
+  collection: 'users',
+  on: 'siteAccess',
 }

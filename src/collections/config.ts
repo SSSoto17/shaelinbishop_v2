@@ -1,16 +1,17 @@
 import type { CollectionConfig } from 'payload'
 
 // USERS
-import { siteAccess, userName, userRole } from './Users'
+import { pubAccess, siteAccess, userName, userRole } from './Users'
+import { isAdmin, isAdminOrEditor, isAdminOrSelf, isUser } from './Users/access'
 
 export const Users: CollectionConfig = {
   slug: 'users',
-  // access: {
-  //   read: isAdminOrSelf,
-  //   create: isAdmin,
-  //   update: isAdminOrSelf,
-  //   delete: isAdmin,
-  // },
+  access: {
+    read: isAdminOrSelf,
+    create: isAdmin,
+    update: isAdminOrSelf,
+    delete: isAdmin,
+  },
   admin: {
     group: 'Admin',
     useAsTitle: 'email',
@@ -22,11 +23,18 @@ export const Users: CollectionConfig = {
     userName,
     userRole,
     siteAccess,
+    pubAccess,
   ],
 }
 
 // Pages
-import { PageContent, PageSlug, PageTitle } from './Pages'
+import { PageContent, PageJoin, PageSlug, PageTitle } from './Pages'
+import {
+  canCreate as pageCreate,
+  canDelete as pageDelete,
+  canRead as pageRead,
+  canUpdate as pageUpdate,
+} from './Pages/access'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -35,11 +43,10 @@ export const Pages: CollectionConfig = {
     singular: 'Page',
   },
   access: {
-    read: () => true,
-    // read: canRead,
-    // create: AdminOrEditor,
-    // update: hasAccess,
-    // delete: isAdmin,
+    read: pageRead,
+    create: pageCreate,
+    update: pageUpdate,
+    delete: pageDelete,
   },
   admin: {
     useAsTitle: 'title',
@@ -69,7 +76,17 @@ export const Pages: CollectionConfig = {
       },
     },
   },
-  fields: [PageTitle, PageSlug, PageContent],
+  fields: [
+    PageTitle,
+    PageSlug,
+    PageContent,
+    PageJoin,
+  ],
+  hooks: {
+    afterOperation: [
+      AssignPage,
+    ],
+  },
 }
 
 // IMAGES
@@ -85,10 +102,10 @@ export const Images: CollectionConfig = {
     defaultColumns: ['adminThumbnail', 'title', 'alt'],
   },
   access: {
-    read: () => true,
-    // create: AdminOrEditor,
-    // update: AdminOrEditor,
-    // delete: AdminOrEditor,
+    read: isUser,
+    create: isAdminOrEditor,
+    update: isAdminOrEditor,
+    delete: isAdmin,
   },
   fields: [imgName, altText],
   upload: { ...imgUpload },
@@ -109,21 +126,24 @@ export const Icons: CollectionConfig = {
     defaultColumns: ['title'],
   },
   access: {
-    read: () => true,
-    // create: AdminOrEditor,
-    // update: AdminOrEditor,
-    // delete: AdminOrEditor,
+    read: isUser,
+    create: isAdminOrEditor,
+    update: isAdminOrEditor,
+    delete: isAdmin,
   },
   fields: [iconName],
   upload: { ...iconUpload },
 }
 
 // PUBLICATIONS
+import { AssignPage } from './Pages/hooks'
+import { canDelete as pubDelete, canUpdate as pubUpdate } from './Publications/access'
 import {
   Blurb,
   CategoryJoin,
   Cover,
   Description,
+  PubJoin,
   Quotes,
   ReadCategory,
   ReadReleaseDate,
@@ -132,6 +152,7 @@ import {
   Testimonials,
   Title,
 } from './Publications/config'
+import { AssignPublication } from './Publications/hooks'
 import { ReleaseDetails } from './Publications/release.config'
 
 export const Publications: CollectionConfig = {
@@ -143,11 +164,10 @@ export const Publications: CollectionConfig = {
     defaultColumns: ['title', 'categoryName'],
   },
   access: {
-    read: () => true,
-    // read: canRead,
-    // create: AdminOrEditor,
-    // update: hasAccess,
-    // delete: isAdmin,
+    read: pageRead,
+    create: pageCreate,
+    update: pubUpdate,
+    delete: pubDelete,
   },
   defaultSort: 'releaseDate',
   fields: [
@@ -162,6 +182,7 @@ export const Publications: CollectionConfig = {
     RetailerLinks,
     ReadCategory,
     ReadReleaseDate,
+    PubJoin,
   ],
   defaultPopulate: {
     slug: true,
@@ -170,6 +191,11 @@ export const Publications: CollectionConfig = {
   versions: {
     drafts: true,
   },
+  hooks: {
+    afterOperation: [
+      AssignPublication,
+    ],
+  },
 }
 
 // PUBLICATION CATEGORIES
@@ -177,10 +203,10 @@ export const PublicationCategories: CollectionConfig = {
   slug: 'publicationCategories',
   labels: { singular: 'Category', plural: 'Categories' },
   access: {
-    read: () => true,
-    // create: AdminOrEditor,
-    // update: AdminOrEditor,
-    // delete: AdminOrEditor,
+    read: isUser,
+    create: isAdminOrEditor,
+    update: isAdminOrEditor,
+    delete: isAdmin,
   },
   admin: {
     useAsTitle: 'title',

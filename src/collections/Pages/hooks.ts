@@ -1,6 +1,17 @@
-import { FieldHook } from 'payload'
+import { checkRole, isGuest } from '@/lib/access'
+import { CollectionAfterOperationHook, FieldHook } from 'payload'
 
-export const Slugify: FieldHook = async ({ context, originalDoc: { id, slug }, req, value }) => {
+export const Slugify: FieldHook = async ({
+  context,
+  originalDoc: { id, slug },
+  req,
+  operation,
+  value,
+}) => {
+  if (operation === 'create') {
+    return
+  }
+
   const { user, payload } = req
 
   if (context.triggerAfterChange === false) {
@@ -15,9 +26,7 @@ export const Slugify: FieldHook = async ({ context, originalDoc: { id, slug }, r
     slugified = '/' + value.replaceAll('/', '').replaceAll(' ', '-').toLowerCase()
   }
 
-  console.log(slugified)
-
-  const result = await payload.update({
+  await payload.update({
     collection: 'pages',
     id,
     user,
@@ -26,7 +35,22 @@ export const Slugify: FieldHook = async ({ context, originalDoc: { id, slug }, r
     req,
   })
 
-  console.log(result)
-
   return value
+}
+
+export const AssignPage: CollectionAfterOperationHook = async ({ operation, req, result }) => {
+  if (operation === 'create') {
+    const { user, payload } = req
+
+    if (user?.role && checkRole(user?.role, isGuest)) {
+      await payload.update({
+        collection: 'users',
+        id: user.id,
+        req,
+        data: {
+          siteAccess: user.siteAccess?.concat(result),
+        },
+      })
+    }
+  }
 }

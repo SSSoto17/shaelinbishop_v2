@@ -1,7 +1,6 @@
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { Field } from 'payload'
-import { Slugify } from '../Publications/hooks'
-import { UpdateCategory } from './hooks'
+import { Slugify, UpdateCategory } from './hooks'
 
 // GENERAL
 
@@ -142,4 +141,12 @@ export const RetailerLinks: Field = {
       type: 'text',
     },
   ],
+}
+
+export const PubJoin: Field = {
+  name: 'permittedUsers',
+  admin: { hidden: true },
+  type: 'join',
+  collection: 'users',
+  on: 'pubAccess',
 }

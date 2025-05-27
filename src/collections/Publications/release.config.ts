@@ -47,6 +47,18 @@ const Category: Field = {
     read: () => true,
   },
   relationTo: 'publicationCategories',
+  defaultValue: async ({ req: { payload } }) => {
+    const { docs } = await payload.find({
+      collection: 'publicationCategories',
+      where: {
+        title: {
+          equals: 'Books',
+        },
+      },
+      limit: 1,
+    })
+    return docs[0].id
+  },
 }
 
 const PublicationType: Field = {
