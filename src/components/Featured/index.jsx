@@ -43,11 +43,13 @@ export default async function Featured({
         />
         <article className="col-span-6 col-start-7 row-start-2 content-end">
           <header className="cursor-default">
-            <h2 className="text-2xl/18 font-black">
-              <span className="block font-display text-base/12 font-bold">{tagline}</span>
-              {title}
-            </h2>
-            <h3>{subtitle}</h3>
+            {title && (
+              <h2 className="text-2xl/18 font-black">
+                <span className="block font-display text-base/12 font-bold">{tagline}</span>
+                {title}
+              </h2>
+            )}
+            {subtitle && <h3>{subtitle}</h3>}
           </header>
           {body && <RichText data={body} />}
         </article>
