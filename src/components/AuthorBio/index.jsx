@@ -26,10 +26,10 @@ export default function AuthorBio({
       />
       <article className="col-span-7 cursor-default flow-space">
         <header>
-          <h1 className="text-3xl/22 font-black text-balance">
+          <h2 className="text-3xl/22 font-black text-balance">
             <span className="block text-lg/10 font-bold">{tagline}</span>
             {headline}
-          </h1>
+          </h2>
         </header>
         <RichText data={body} className="max-w-prose text-pretty flow-space" />
         <Link
