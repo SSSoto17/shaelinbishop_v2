@@ -1,5 +1,4 @@
-import { checkRole, isGuest } from '@/lib/access'
-import { CollectionAfterOperationHook, FieldHook } from 'payload'
+import { FieldHook } from 'payload'
 
 export const UpdateCategory: FieldHook = async ({ data, req: { payload } }) => {
   const { title } = await payload.findByID({
@@ -93,26 +92,26 @@ export const Slugify: FieldHook = async ({
   return value
 }
 
-export const AssignPublication: CollectionAfterOperationHook = async ({
-  operation,
-  req,
-  result,
-}) => {
-  if (operation === 'create') {
-    const { user, payload } = req
+// export const AssignPublication: CollectionAfterOperationHook = async ({
+//   operation,
+//   req,
+//   result,
+// }) => {
+//   if (operation === 'create') {
+//     const { user, payload } = req
 
-    if (user?.role && checkRole(user?.role, isGuest)) {
-      await payload.update({
-        collection: 'users',
-        id: user.id,
-        req,
-        data: {
-          pubAccess: user.pubAccess?.concat(result),
-        },
-      })
-    }
-  }
-}
+//     if (user?.role && checkRole(user?.role, isGuest)) {
+//       await payload.update({
+//         collection: 'users',
+//         id: user.id,
+//         req,
+//         data: {
+//           pubAccess: user.pubAccess?.concat(result),
+//         },
+//       })
+//     }
+//   }
+// }
 
 // export const UnassignPage: CollectionBeforeDeleteHook = async ({
 //   collection,
