@@ -3,7 +3,6 @@ import { CloseButton, Disclosure, DisclosureButton, DisclosurePanel } from '@hea
 import Link from 'next/link'
 
 import { Hero } from '@/components'
-import { Suspense } from 'react'
 import { FaInstagram, FaYoutube } from 'react-icons/fa6'
 import { ImSpinner2 } from 'react-icons/im'
 import { MdOutlineMenu, MdOutlineMenuOpen } from 'react-icons/md'
@@ -19,7 +18,7 @@ export default function Header({ id, hero }) {
         <AdminBar id={id} />
         <NavBar />
       </section>
-      <Suspense fallback={<Loading />}>{hero && <Hero {...hero} />}</Suspense>
+      {hero && <Hero {...hero} />}
     </header>
   )
 }
