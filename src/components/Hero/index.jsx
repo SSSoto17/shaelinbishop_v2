@@ -29,7 +29,7 @@ async function HighImpact({
   promoImg: {
     alt,
     sizes: {
-      medium: { url, width, height },
+      small: { url, width, height },
     },
   },
 }) {
@@ -65,7 +65,7 @@ async function HighImpact({
             {title}
           </h2>
           <RichText data={quotes[1].quote} className="font-bold italic flow-space" />
-          <RichText data={description} className="font-bold flow-space" />
+          {/* <RichText data={description} className="font-bold flow-space" /> */}
           <Link
             href={`/${categoryName}${slug}`}
             className="group ml-md inline-flex items-center gap-3xs py-3xs font-display text-lg font-bold uppercase transition duration-150 ease-in hover:translate-x-3xs hover:text-primary-200"

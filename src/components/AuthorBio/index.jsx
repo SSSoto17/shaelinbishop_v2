@@ -8,7 +8,7 @@ export default function AuthorBio({
   headshot: {
     alt,
     sizes: {
-      card: { url, width, height },
+      medium: { url, width, height },
     },
   },
   tagline,
