@@ -92,7 +92,7 @@ export const Images: CollectionConfig = {
     defaultColumns: ['adminThumbnail', 'title', 'alt'],
   },
   access: {
-    read: isUser,
+    read: () => true,
     create: isAdminOrEditor,
     update: isAdminOrEditor,
     delete: isAdmin,
