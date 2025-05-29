@@ -10,7 +10,7 @@ export default function Hero({ type, content }) {
     return (
       <section
         style={{ backgroundImage: heroImg }}
-        className="full-bleed animate-fade-in content-around bg-accent-700 bg-cover bg-fixed bg-center py-xl text-primary-50 bg-blend-multiply"
+        className="full-bleed animate-fade-in place-content-end bg-cover bg-fixed bg-center py-sm text-primary-50"
       >
         {type === 'highImpact' && <HighImpact {...content} />}
         {type === 'lowImpact' && <LowImpact {...content} />}
@@ -47,38 +47,15 @@ async function HighImpact({
 
   return (
     <>
-      <article className="max-w-220 place-content-center py-xs flow-space">
+      <article className="max-w-220 cursor-default place-content-center justify-self-end flow-space *:col-span-full">
         <h1 className="text-5xl/26 font-black text-balance">{heading}</h1>
         <h2 className="text-right font-display text-lg lowercase">Writer. Editor. Educator.</h2>
       </article>
-      <article className="grid grid-cols-5 items-center gap-x-md bg-accent-800/30 backdrop-brightness-50">
-        <Image
-          src={url}
-          alt={alt}
-          width={width}
-          height={height}
-          className="col-span-2 col-start-4 row-start-1 object-contain"
-        />
-        <header className="col-span-3 px-md py-sm flow-space">
-          <h2 className="text-xl font-black">
-            <span className="block font-display text-lg">Latest release:</span>
-            {title}
-          </h2>
-          <RichText data={quotes[1].quote} className="font-bold italic flow-space" />
-          {/* <RichText data={description} className="font-bold flow-space" /> */}
-          <Link
-            href={`/${categoryName}${slug}`}
-            className="group ml-md inline-flex items-center gap-3xs py-3xs font-display text-lg font-bold uppercase transition duration-150 ease-in hover:translate-x-3xs hover:text-primary-200"
-          >
-            Buy now
-            <MdOutlineKeyboardDoubleArrowRight className="transition duration-150 ease-in group-hover:animate-go" />
-          </Link>
-        </header>
-      </article>
+
       <Link
         href="#site"
         replace
-        className="grid place-items-center gap-y-xs self-end justify-self-center font-display lowercase"
+        className="grid place-items-center gap-y-xs self-end justify-self-center font-display lowercase *:col-span-full"
         aria-label="Jump to Site"
       >
         <MdOutlineArrowDropDownCircle className="peer order-2 text-xl transition duration-150 hover:translate-y-2xs" />
@@ -86,6 +63,38 @@ async function HighImpact({
           Enter Site
         </p>
       </Link>
+    </>
+  )
+}
+
+function Promo() {
+  return (
+    <>
+      <article className="col-span-10 col-start-4 grid grid-cols-5 items-center gap-x-md">
+        {/* <article className="grid grid-cols-5 items-center gap-x-md bg-accent-800/30 backdrop-brightness-50"> */}
+        <Image
+          src={url}
+          alt={alt}
+          width={width}
+          height={height}
+          className="col-span-2 col-start-4 row-start-1 object-cover"
+        />
+        <header className="col-span-3 flow-space">
+          <h2 className="text-xl/14 font-black">
+            <span className="block font-display text-base/6">Latest release:</span>
+            {title}
+          </h2>
+          <RichText data={quotes[1].quote} className="font-bold italic flow-space" />
+          {/* <RichText data={description} className="text-sm font-bold flow-space" /> */}
+          <Link
+            href={`/${categoryName}${slug}`}
+            className="group ml-sm inline-flex items-center gap-3xs font-display text-lg font-bold uppercase transition duration-150 ease-in hover:translate-x-3xs hover:text-primary-200"
+          >
+            Buy now
+            <MdOutlineKeyboardDoubleArrowRight className="transition duration-150 ease-in group-hover:animate-go" />
+          </Link>
+        </header>
+      </article>
     </>
   )
 }

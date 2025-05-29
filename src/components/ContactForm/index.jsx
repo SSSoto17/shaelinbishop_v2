@@ -5,19 +5,17 @@ export default function Contact({ bgImg, info, formFields }) {
   const img = `url(${bgImg?.sizes?.screen?.url})`
   return (
     <section className="full-bleed" id="Contact">
-      <div className="span-1/2 grid grid-cols-subgrid px-lg py-2xl">
-        <article className="col-span-full col-start-2">
-          <RichText
-            data={info}
-            className="flow-space [&_a]:underline [&_a]:transition [&_a]:duration-150 [&_a]:ease-in [&_a]:hover:text-primary-600 [&_h2]:text-lg"
-          />
-        </article>
-      </div>
+      <article className="@container place-content-center place-items-center py-md md:col-span-6 lg:col-span-7 lg:py-2xl">
+        <RichText
+          data={info}
+          className="col-span-full flow-space *:max-w-108 md:col-start-2 md:-col-end-2 [&_a]:underline [&_a]:transition [&_a]:duration-150 [&_a]:ease-in [&_a]:hover:text-primary-600 [&_h2]:text-lg"
+        />
+      </article>
       <article
         style={{ backgroundImage: img }}
-        className="span-1/2 grid grid-cols-subgrid bg-cover py-2xl"
+        className="col-span-full grid grid-cols-subgrid bg-cover py-2xl md:col-span-8 lg:col-span-7"
       >
-        <ContactForm data={formFields} />
+        <ContactForm bgImg={img} data={formFields} />
       </article>
     </section>
   )

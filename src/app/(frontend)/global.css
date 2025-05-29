@@ -70,29 +70,6 @@
   --font-weight-black: 800;
 
   /* TEXT | TYPESCALE */
-
-  /* @link https://utopia.fyi/type/calculator?c=320,14,1.333,1120,16,1.414,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
-  /* --text-xs: clamp(0.6564rem, 0.6361rem + 0.1016vw, 0.7072rem);
-  --text-sm: clamp(0.875rem, 0.825rem + 0.25vw, 1rem);
-  --text-base: clamp(1.1664rem, 1.0673rem + 0.4953vw, 1.414rem);
-  --text-lg: clamp(1.5548rem, 1.3769rem + 0.8892vw, 1.9994rem);
-  --text-xl: clamp(2.0725rem, 1.7707rem + 1.5093vw, 2.8271rem);
-  --text-2xl: clamp(2.7627rem, 2.2687rem + 2.4698vw, 3.9976rem);
-  --text-3xl: clamp(3.6826rem, 2.8947rem + 3.9399vw, 5.6526rem);
-  --text-4xl: clamp(4.909rem, 3.6754rem + 6.1676vw, 7.9928rem); */
-
-  /* @link https://utopia.fyi/type/calculator?c=320,18.66,1.333,1120,22.62,1.414,6,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
-
-  /* --text-xs: clamp(0.6563rem, 0.636rem + 0.1015vw, 0.7071rem);
-  --text-sm: clamp(0.8749rem, 0.8249rem + 0.2498vw, 0.9998rem);
-  --text-base: clamp(1.1663rem, 1.0673rem + 0.495vw, 1.4138rem);
-  --text-lg: clamp(1.5546rem, 1.3768rem + 0.8889vw, 1.999rem);
-  --text-xl: clamp(2.0723rem, 1.7706rem + 1.5087vw, 2.8266rem);
-  --text-2xl: clamp(2.7624rem, 2.2686rem + 2.469vw, 3.9969rem);
-  --text-3xl: clamp(3.6822rem, 2.8945rem + 3.9387vw, 5.6516rem);
-  --text-4xl: clamp(4.9084rem, 3.6753rem + 6.1658vw, 7.9913rem);
-  --text-5xl: clamp(6.5429rem, 4.6402rem + 9.5136vw, 11.2998rem); */
-
   /* @link https://utopia.fyi/type/calculator?c=320,20,1.25,1120,23.99,1.333,6,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
 
   --text-xs: clamp(0.8rem, 0.7825rem + 0.0876vw, 0.8438rem);
@@ -168,8 +145,9 @@
     grid-template-rows: auto 1fr auto;
     grid-template-columns:
       [full-bleed-start] minmax(var(--spacing-md), 1fr)
-      [main-content]
+      [content-start]
       repeat(12, minmax(0, calc(var(--container-content) / 12)))
+      [content-end]
       minmax(var(--spacing-md), 1fr) [full-bleed-end];
     align-content: start;
     min-height: 100svh;
@@ -183,12 +161,27 @@
     > main,
     > footer {
       display: grid;
-      grid-column: main-content;
+      grid-column: full-bleed;
       grid-template-columns: subgrid;
       scroll-behavior: smooth;
 
-      > * {
-        grid-column: span 12;
+      > section,
+      > nav {
+        display: grid;
+        grid-column: content;
+        grid-template-columns: subgrid;
+      }
+
+      .full-bleed {
+        display: grid;
+        grid-column: full-bleed;
+        grid-template-columns: subgrid;
+
+        > *:not(.full-bleed) {
+          display: grid;
+          grid-column: content;
+          grid-template-columns: subgrid;
+        }
       }
     }
   }
@@ -217,7 +210,7 @@
   }
 }
 
-@utility full-bleed {
+/* @utility full-bleed {
   display: grid;
   grid-column: full-bleed;
   grid-template-columns: subgrid;
@@ -226,7 +219,7 @@
   > *:not(.full-bleed) {
     grid-column: 2 / span 12;
   }
-}
+} */
 
 @utility span-1/2 {
   @apply col-span-6 [.full-bleed>&]:col-span-7;
@@ -252,4 +245,8 @@
   > * + * {
     margin-block-start: var(--flow-space, 1em);
   }
+}
+
+@utility hide {
+  display: none;
 }

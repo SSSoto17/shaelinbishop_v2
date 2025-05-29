@@ -22,7 +22,7 @@ export function Accordionv1({
   questions,
 }) {
   return (
-    <section className="full-bleed gap-2xl border-y border-y-primary-700">
+    <section className="hiddenfull-bleed gap-2xl border-y border-y-primary-700">
       <article className="span-1/3 grid grid-cols-subgrid content-start gap-y-lg py-2xl">
         <Image
           src={url}
@@ -52,10 +52,7 @@ function Question({ q, a }) {
       as="li"
       className="col-span-full grid cursor-default grid-cols-subgrid overflow-clip bg-secondary-200 px-md py-sm duration-200 hover:bg-secondary-300 has-data-open:bg-accent-700 has-data-open:text-accent-50 has-data-open:hover:bg-accent-500"
     >
-      <DisclosureButton
-        transition
-        className="col-span-full cursor-pointer text-left font-display text-sm lowercase"
-      >
+      <DisclosureButton className="col-span-full cursor-pointer text-left font-display text-sm lowercase">
         {q}
       </DisclosureButton>
       <div className="col-span-full -col-end-2 overflow-clip has-data-open:py-sm">
@@ -78,11 +75,16 @@ export default function Accordion({ heading, questions: qs }) {
       vertical
       className="full-bleed gap-2xl border-y border-y-primary-700"
     >
-      <article className="span-1/3 grid grid-cols-subgrid content-start gap-y-lg border-r border-r-primary-700 py-2xl">
-        <h2 className="col-span-full col-start-2 cursor-default px-md text-right font-bold">
+      <article className="col-span-full grid grid-cols-subgrid gap-x-0 gap-y-md border-r-primary-700 py-md md:span-1/3 md:content-start md:border-r md:py-2xl">
+        <h2 className="col-start-2 -col-end-2 cursor-default text-lg font-bold md:text-right md:text-base">
           {heading}
         </h2>
-        <TabList as="ul" className="span-1/3 col-span-full grid grid-cols-subgrid gap-xs">
+        <ul className="col-span-full grid grid-cols-subgrid gap-2xs md:hidden">
+          {qs.map((q, id) => {
+            return <Question key={id} {...q} />
+          })}
+        </ul>
+        <TabList as="ul" className="span-1/3 col-span-full hidden grid-cols-subgrid gap-xs md:grid">
           {qs.map(({ q }, id) => {
             return (
               <Tab
@@ -96,7 +98,7 @@ export default function Accordion({ heading, questions: qs }) {
           })}
         </TabList>
       </article>
-      <TabPanels className="span-2/3 grid grid-cols-subgrid content-center">
+      <TabPanels className="span-2/3 hidden grid-cols-subgrid content-center md:grid">
         {qs.map(({ q, a }, id) => {
           return (
             <TabPanel key={id} className="col-span-full -col-end-2 animate-fade-in flow-space">

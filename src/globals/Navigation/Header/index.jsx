@@ -11,10 +11,10 @@ import AdminBar from '../AdminBar'
 export default function Header({ id, hero }) {
   return (
     <header
-      className={`full-bleed grid ${hero?.type === 'highImpact' && 'h-screen'} grid-cols-subgrid grid-rows-[auto_1fr]`}
+      className={`full-bleed ${hero?.type === 'highImpact' && 'h-screen'} grid-cols-subgrid grid-rows-[auto_1fr]`}
     >
       {/* <section className="full-bleed bg-primary-50 drop-shadow-md"> */}
-      <section className="sticky top-0 z-20 full-bleed bg-primary-50 drop-shadow-md">
+      <section className="full-bleed sticky top-0 z-20 bg-primary-50 drop-shadow-md">
         <AdminBar id={id} />
         <NavBar />
       </section>

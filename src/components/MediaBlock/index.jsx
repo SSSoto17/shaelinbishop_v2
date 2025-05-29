@@ -5,7 +5,7 @@ export default function MediaBlock({
   image: {
     alt,
     sizes: {
-      large: { url, width, height },
+      medium: { url, width, height },
     },
   },
   tagline,
@@ -13,22 +13,22 @@ export default function MediaBlock({
   description,
 }) {
   return (
-    <section className="grid grid-cols-subgrid items-center gap-2xl py-3xl">
+    <section className="items-center gap-x-2xl gap-y-md py-lg md:py-2xl">
       <Image
         src={url}
         alt={alt}
         width={width}
         height={height}
-        className="span-1/2 self-stretch object-cover"
+        className="col-span-full max-h-160 self-stretch justify-self-center object-cover md:col-span-5 lg:col-span-6"
       />
-      <article className="span-1/2 cursor-default flow-space md:text-sm [&_p]:md:max-w-110">
+      <article className="col-span-full cursor-default flow-space md:col-span-7 md:text-sm lg:col-span-6 [&_p]:md:max-w-110">
         <header>
           <h1 className="text-2xl/18 font-black text-balance">
-            <span className="block text-lg/10 font-bold">{tagline}</span>
+            <span className="block text-lg leading-4 font-bold sm:leading-10">{tagline}</span>
             {heading}
           </h1>
         </header>
-        <RichText data={description} className="rich-text" />
+        <RichText data={description} className="max-w-prose flow-space" />
       </article>
     </section>
   )

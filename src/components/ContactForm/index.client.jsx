@@ -12,9 +12,10 @@ export default function ContactForm({ data }) {
   return (
     <Form
       action={action}
-      className="col-start-2 -col-end-2 grid place-content-center bg-primary-50 px-md py-lg"
+      // className="col-start-2 grid place-items-center bg-primary-50 px-md py-lg *:col-span-full sm:col-start-4 sm:-col-end-4"
+      className="col-start-2 -col-end-2 bg-primary-50 sm:col-start-3 sm:-col-end-3 md:col-start-2 md:-col-end-2"
     >
-      <Fieldset className="relative grid max-w-90 gap-y-xs">
+      <Fieldset className="relative grid gap-y-xs p-lg">
         {data.map(({ label, fieldType, placeholder, buttonAction }, id) => {
           const fieldName = label.toLowerCase()
           return (

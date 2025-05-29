@@ -9,7 +9,7 @@ export default async function Footer() {
   })
 
   return (
-    <footer className="full-bleed bg-primary-900 py-sm font-display text-sm text-primary-50">
+    <footer className="bg-primary-900 py-sm font-display text-sm text-primary-50">
       <nav className="flex items-center justify-center sm:justify-between">
         {navigation.map(({ blockType, items }, id) => {
           if (blockType === 'copyright') return <Copyright key={id} />
