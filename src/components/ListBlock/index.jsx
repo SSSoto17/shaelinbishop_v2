@@ -5,14 +5,14 @@ import { RichText } from '../RichText'
 
 export default function ListBlock({ header: { title, subtitle }, body, list }) {
   return (
-    <section className="py-xl">
-      <header style={{ '--flow-space': '.25em' }} className="pb-2xl flow-space">
+    <section className="py-xl *:col-span-full">
+      <header style={{ '--flow-space': '.25em' }} className="flow-space pb-md md:pb-2xl">
         <h1 className="max-w-180 text-2xl font-bold text-balance">{title}</h1>
         <h2 className="font-display text-lg lowercase">{subtitle}</h2>
       </header>
       <article className="flow-space">
-        <RichText data={body} className="max-w-prose flow-space" />
-        <ul className="grid grid-cols-2 gap-x-xl gap-y-2xl py-md">
+        <RichText data={body} className="flow-space max-w-prose" />
+        <ul className="grid gap-lg gap-x-xl py-md md:grid-cols-2 md:gap-y-2xl">
           {list.map(({ itemType, listCard, listButton }, id) => {
             if (itemType === 'Card') return <ListCard key={id} {...listCard} />
             if (itemType === 'Button') return <ListButton key={id} {...listButton} />
@@ -25,15 +25,15 @@ export default function ListBlock({ header: { title, subtitle }, body, list }) {
 
 function ListCard({ title, rate, description, note }) {
   return (
-    <li className="row-span-2 grid grid-rows-subgrid gap-y-0 border-l-4 border-accent-700 px-lg">
-      <header className="flex max-w-180 items-end justify-between gap-x-lg py-md">
-        <h2 className="leading-tight font-bold">{title}</h2>
-        <div className="flex flex-none items-center gap-2xs">
+    <li className="@container row-span-2 grid grid-rows-subgrid gap-y-sm border-l-4 border-accent-700 px-lg py-md">
+      <header className="max-w-180 content-end items-end gap-x-lg gap-y-3xs @sm:flex @sm:justify-between @sm:py-md">
+        <h2 className="leading-6 font-bold">{title}</h2>
+        <div className="flex flex-none items-center gap-x-2xs">
           <p className="font-display text-sm">{rate}</p>
           {note && (
             <Popover className="grid items-center self-end justify-self-end">
               <PopoverButton className="cursor-pointer text-accent-700 transition duration-150 ease-in hover:text-accent-600 data-open:text-accent-700">
-                <MdInfo size={28} />
+                <MdInfo className="text-lg" />
               </PopoverButton>
               <PopoverPanel
                 anchor={{
@@ -51,7 +51,7 @@ function ListCard({ title, rate, description, note }) {
           )}
         </div>
       </header>
-      <RichText data={description} className="row-start-3 max-w-prose rich-text flow-space" />
+      <RichText data={description} className="flow-space row-start-3 max-w-prose rich-text" />
     </li>
   )
 }
@@ -69,7 +69,7 @@ function ListButton({
 
   console.log(href)
   return (
-    <li className="row-span-3 grid content-center gap-y-md px-lg">
+    <li className="row-span-3 grid content-center gap-y-xs md:gap-y-md md:px-lg">
       <RichText data={body} className="cursor-default font-display" />
       <Link
         href={url || href}
