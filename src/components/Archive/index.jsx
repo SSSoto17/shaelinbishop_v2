@@ -1,8 +1,13 @@
 import { checkAuth } from '@/lib/auth'
 import { payload } from '@/lib/utils'
+import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { MdOutlineArrowRight, MdOutlineArrowRightAlt } from 'react-icons/md'
+import {
+  MdOutlineArrowRight,
+  MdOutlineArrowRightAlt,
+  MdOutlineKeyboardArrowDown,
+} from 'react-icons/md'
 import { RichText } from '../RichText'
 
 const getContent = async (id) => {
@@ -24,10 +29,10 @@ const getContent = async (id) => {
 
 export default async function Archive({ content }) {
   return (
-    <section className="grid grid-cols-subgrid gap-x-xl">
+    <section className="relative grid grid-cols-subgrid gap-x-xl">
       <NavSidebar navData={content} />
       {content.map((cat) => {
-        return <Group key={cat.id} {...cat} />
+        return <Group key={cat.id} {...cat} navData={content} />
       })}
     </section>
   )
@@ -38,7 +43,7 @@ async function NavSidebar({ navData }) {
 
   return (
     <aside
-      className={`sticky ${user ? 'top-27' : 'top-lg'} col-span-3 -col-end-1 row-span-full grid content-start gap-y-2xs py-xl`}
+      className={`sticky ${user ? 'top-27' : 'top-0'} row-span-full hidden content-start gap-y-2xs py-xl lg:col-span-3 lg:-col-end-1 lg:grid`}
     >
       <h2 className="cursor-default font-display text-sm lowercase">Jump to</h2>
       <ul className="font-display font-black lowercase">
@@ -59,17 +64,49 @@ async function NavSidebar({ navData }) {
     </aside>
   )
 }
-
-async function Group({ title, categoryJoin: { docs } }) {
+async function Group({ title, navData, categoryJoin: { docs } }) {
   const data = await getContent(docs)
   const user = await checkAuth()
 
   return (
-    <article id={title.replaceAll(' ', '')} className="col-span-9 grid scroll-mt-md gap-y-xs py-md">
+    <article
+      id={title.replaceAll(' ', '')}
+      className="relative col-span-full col-start-1 grid scroll-mt-md gap-y-xs py-md lg:col-span-9 lg:*:col-span-9"
+    >
       <header
-        className={`sticky col-span-9 cursor-default ${user ? 'top-27' : 'top-lg'} z-10 bg-primary-50/75 backdrop-blur-xs`}
+        className={`sticky col-span-full cursor-default ${user ? 'top-27' : 'top-16 md:top-11'} z-10 bg-primary-50/75 backdrop-blur-xs`}
       >
-        <h3 className="font-display text-xl/16 font-bold tracking-tight lowercase">{title}</h3>
+        <h3 className="hidden font-display text-xl/16 font-bold tracking-tight lowercase lg:block">
+          {title}
+        </h3>
+        <Menu>
+          <MenuButton className="group flex w-full items-center justify-between gap-xs font-display text-xl/16 font-bold tracking-tight lowercase lg:hidden">
+            {title}
+            <span className="inline-flex cursor-default items-center gap-3xs font-display text-sm lowercase">
+              Jump to
+              <MdOutlineKeyboardArrowDown className="transition duration-300 group-data-open:rotate-180" />
+            </span>
+          </MenuButton>
+          <MenuItems
+            anchor="bottom end"
+            className="bg-primary-50 p-sm font-display font-black lowercase drop-shadow-md sm:w-auto"
+          >
+            {navData.map(({ title: catTitle, id }) => {
+              const section = '#' + catTitle.replaceAll(' ', '')
+
+              if (title === catTitle) return
+              return (
+                <MenuItem key={id}>
+                  <Link href={section} replace className="group gap-x-3sm flex items-center">
+                    <span className="leading-tight transition duration-200 ease-in-out hover:text-primary-500">
+                      {catTitle}
+                    </span>
+                  </Link>
+                </MenuItem>
+              )
+            })}
+          </MenuItems>
+        </Menu>
       </header>
       <ul className={`grid ${title === 'Short Fiction' ? 'gap-y-xs' : 'gap-y-lg'}`}>
         {data.map((item, id) => {
@@ -90,8 +127,9 @@ function ListItem({ title, releaseDetails: { isPublished, publishedIn } }) {
     <li className="relative flex justify-between gap-sm border-l-4 border-l-accent-600 p-3xs transition duration-150 ease-in has-hover:text-primary-700">
       <header className="flex flex-wrap items-center gap-x-sm">
         <h3 className="font-bold">{title}</h3>
-        <p className="font-display text-sm text-primary-800">
+        <p className="flex items-center gap-2xs font-display text-sm text-primary-800">
           {isPublished == 'Published' ? `${litMag}, ${date}` : isPublished}
+          <MdOutlineArrowRightAlt className="transition duration-150 group-hover:translate-x-3xs sm:hidden" />
         </p>
       </header>
       <Link
@@ -115,8 +153,8 @@ function CardItem({
   categoryName,
 }) {
   return (
-    <li className="relative grid grid-cols-6 items-center gap-x-lg">
-      <article className="peer order-2 col-span-4 flow-space">
+    <li className="@container relative grid grid-cols-6 items-center gap-x-sm gap-y-md @md:gap-x-lg">
+      <article className="peer order-2 col-span-full flow-space @sm:col-span-4">
         <header>
           {/* <header className="flex items-end gap-sm"> */}
           <h3 className="leading-tight font-bold">
@@ -140,7 +178,7 @@ function CardItem({
       </article>
       <Link
         href={`/books${slug}`}
-        className="col-span-2 transition duration-300 peer-has-[h3_a:hover]:opacity-75 hover:opacity-75"
+        className="col-span-full grid transition duration-300 peer-has-[h3_a:hover]:opacity-75 hover:opacity-75 @sm:col-span-2"
       >
         <BookCover {...coverImg} />
       </Link>
@@ -151,8 +189,8 @@ function CardItem({
 export function BookCover({ alt, sizes }) {
   if (!sizes)
     return (
-      <div className="grid aspect-[2/3] cursor-default place-content-center bg-secondary-300 p-md text-center font-display text-2xl/16 font-bold text-accent-800 uppercase">
-        <p>Coming soon</p>
+      <div className="@container grid aspect-[2/3] max-w-96 cursor-default place-content-center bg-secondary-300 p-md text-center font-display text-2xl/16 font-bold text-accent-800 uppercase">
+        <p className="text-xl @sm:text-2xl/16 @md:text-3xl/20">Coming soon</p>
       </div>
     )
 

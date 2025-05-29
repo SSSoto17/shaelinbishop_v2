@@ -116,8 +116,8 @@ function LowImpact({ heading }) {
 // BANNER
 function Banner({ heading }) {
   return (
-    <article>
-      <h1 className="text-2xl font-black">{heading}</h1>
+    <article className="py-md *:col-span-full">
+      <h1 className="text-2xl/10 font-black text-primary-900 md:text-2xl/14">{heading}</h1>
     </article>
   )
 }
