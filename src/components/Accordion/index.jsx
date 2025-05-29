@@ -23,7 +23,7 @@ export function Accordionv1({
 }) {
   return (
     <section className="hiddenfull-bleed gap-2xl border-y border-y-primary-700">
-      <article className="span-1/3 grid grid-cols-subgrid content-start gap-y-lg py-2xl">
+      <article className="grid grid-cols-subgrid content-start gap-y-lg py-2xl">
         <Image
           src={url}
           width={width}
@@ -32,7 +32,7 @@ export function Accordionv1({
           className="col-span-full col-start-2 min-h-140 object-cover"
         />
       </article>
-      <article className="span-2/3 grid grid-cols-subgrid content-end border-l border-primary-700 py-2xl">
+      <article className="grid grid-cols-subgrid content-end border-l border-primary-700 py-2xl">
         <header className="col-span-full border-b border-primary-700 font-bold">
           <h2 className="px-md py-2xs">{heading}</h2>
         </header>
@@ -75,7 +75,7 @@ export default function Accordion({ heading, questions: qs }) {
       vertical
       className="full-bleed gap-2xl border-y border-y-primary-700"
     >
-      <article className="col-span-full grid grid-cols-subgrid gap-x-0 gap-y-md border-r-primary-700 py-md md:span-1/3 md:content-start md:border-r md:py-2xl">
+      <article className="col-span-full grid grid-cols-subgrid gap-x-0 gap-y-md border-r-primary-700 py-md md:col-span-5 md:content-start md:border-r md:py-2xl">
         <h2 className="col-start-2 -col-end-2 cursor-default text-lg font-bold md:text-right md:text-base">
           {heading}
         </h2>
@@ -84,7 +84,7 @@ export default function Accordion({ heading, questions: qs }) {
             return <Question key={id} {...q} />
           })}
         </ul>
-        <TabList as="ul" className="span-1/3 col-span-full hidden grid-cols-subgrid gap-xs md:grid">
+        <TabList as="ul" className="col-span-full hidden grid-cols-subgrid gap-xs md:grid">
           {qs.map(({ q }, id) => {
             return (
               <Tab
@@ -98,10 +98,10 @@ export default function Accordion({ heading, questions: qs }) {
           })}
         </TabList>
       </article>
-      <TabPanels className="span-2/3 hidden grid-cols-subgrid content-center md:grid">
+      <TabPanels className="col-span-8 hidden grid-cols-subgrid content-center md:grid">
         {qs.map(({ q, a }, id) => {
           return (
-            <TabPanel key={id} className="col-span-full -col-end-2 animate-fade-in flow-space">
+            <TabPanel key={id} className="flow-space col-span-full -col-end-2 animate-fade-in">
               <h3 className="font-black">{q}</h3>
               <RichText
                 data={a}
