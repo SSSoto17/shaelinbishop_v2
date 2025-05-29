@@ -165,7 +165,7 @@ export function BookCover({ alt, sizes }) {
       alt={alt}
       width={width}
       height={height}
-      className="aspect-[2/3] w-full object-cover"
+      className="aspect-[2/3] w-full max-w-96 object-cover"
     />
   )
 }

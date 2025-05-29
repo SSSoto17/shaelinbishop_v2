@@ -239,14 +239,10 @@
 
 @utility span-3/4 {
   @apply col-span-9 [.full-bleed>&]:col-span-10;
-}
+} */
 
 @utility flow-space {
   > * + * {
     margin-block-start: var(--flow-space, 1em);
   }
-} */
-
-@utility hide {
-  display: none;
 }

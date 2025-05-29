@@ -21,28 +21,24 @@ function RenderContent({
   ]
 
   return (
-    <section className="grid grid-cols-subgrid gap-x-xl py-xl">
+    <section className="grid auto-rows-min grid-cols-subgrid items-start gap-x-xl gap-y-md-lg py-md md:gap-y-0 md:py-xl">
       <Breadcrumbs data={breadcrumbs} />
-      <figure className="col-span-5 grid gap-y-sm">
+      <figure className="col-span-full grid place-items-center gap-y-sm md:col-span-5">
         {/* <Image src={url} alt={alt} width={width} height={height} className="w-full object-cover" /> */}
         <BookCover {...coverImg} />
         {/* links to book retailers */}
         {Boolean(retailerLinks.length) && <RetailerLinks data={retailerLinks} />}
       </figure>
-      {/* <ul>
-        <li>Amazon</li>
-        <li>Barnes and Nobles</li>
-      </ul> */}
-      <article className="col-span-7 flow-space">
+      <article className="col-span-full flow-space md:col-span-7">
         <header className="cursor-default">
-          <h1 className="text-xl font-black">{title}</h1>
+          <h1 className="text-2xl font-black md:text-xl">{title}</h1>
           {quotes && (
-            <blockquote className="max-w-prose italic">
+            <blockquote className="max-w-prose py-xs italic">
               <RichText data={quotes[0]?.quote} disableContainer />
             </blockquote>
           )}
         </header>
-        <RichText data={blurb} className="max-w-prose rich-text" />
+        <RichText data={blurb} className="max-w-prose flow-space md:text-sm" />
       </article>
     </section>
   )
@@ -74,9 +70,9 @@ function Breadcrumbs({ data }) {
 
 function RetailerLinks({ data }) {
   return (
-    <section className="flow-space">
+    <section className="max-w-120 flow-space">
       <h2 className="text-center font-display leading-tight font-bold uppercase">Buy now:</h2>
-      <ul className="flex flex-wrap items-center justify-evenly gap-x-2xs gap-y-xs">
+      <ul className="flex flex-wrap justify-evenly gap-xs text-center font-display text-sm/5 font-bold text-accent-700 uppercase">
         {data.map((retailer, id) => {
           return <LinkButton key={id} {...retailer} />
         })}
@@ -87,11 +83,11 @@ function RetailerLinks({ data }) {
 
 function LinkButton({ retailer, url }) {
   return (
-    <li className="group transition duration-150 ease-in-out hover:scale-105">
+    <li className="group min-h-12 flex-1/4 transition duration-150 ease-in-out hover:scale-105">
       <Link
         href={url}
         target="_blank"
-        className="flex w-4xl place-content-center px-2xs py-3xs text-center font-display text-sm font-bold text-accent-700 uppercase outline-4 outline-accent-600 group-hover:bg-accent-800 group-hover:text-primary-50 group-hover:outline-accent-800"
+        className="flex h-full min-w-24 place-content-center items-center px-2xs py-3xs outline-4 outline-accent-600 group-hover:bg-accent-800 group-hover:text-primary-50 group-hover:outline-accent-800"
       >
         {retailer}
       </Link>
