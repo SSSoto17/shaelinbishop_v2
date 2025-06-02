@@ -6,7 +6,7 @@ export default function RenderNewsletter({ heading, body, buttonLabel, img }) {
   const { alt, sizes } = img
 
   return (
-    <section className="full-bleed border-y border-primary-900">
+    <section className="lg:full-bleed hidden border-y border-primary-900">
       <article className="grid grid-cols-8 gap-x-xl gap-y-sm border-x border-y-primary-900 p-xl">
         <p className="col-span-4 text-right text-lg text-primary-800">
           Want to stay updated on new releases?

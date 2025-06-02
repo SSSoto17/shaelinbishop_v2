@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export default function MediaWithTitle({ images, tagline, title, link }) {
   return (
-    <section className="grid grid-cols-3 gap-x-md-lg gap-y-sm py-lg">
+    <section className="gap-x-xs gap-y-sm lg:gap-x-md-lg">
       {images.map(({ sizes, alt }, id) => {
         return (
           <Image
@@ -12,16 +12,18 @@ export default function MediaWithTitle({ images, tagline, title, link }) {
             alt={alt}
             width={sizes.card.width}
             height={sizes.card.height}
-            className="self-stretch object-cover first-of-type:row-span-2 last-of-type:aspect-square"
+            className="col-span-6 self-stretch object-cover first-of-type:row-span-2 last-of-type:aspect-square sm:col-span-4 sm:first-of-type:row-span-3"
           />
         )
       })}
-      <h2 className="col-span-2 self-center text-3xl/20 font-bold text-balance">
+      <h2 className="col-span-6 cursor-default self-end font-display text-lg/8 uppercase lg:leading-12">
+        {tagline}
+      </h2>
+      <h3 className="col-span-full self-center text-right text-3xl/12 font-bold text-balance sm:col-start-5 sm:text-left sm:leading-18">
         <Link href={link} className="transition duration-150 ease-in hover:text-primary-700">
-          <span className="block font-display text-lg/12 font-normal uppercase">{tagline}</span>
           {title}
         </Link>
-      </h2>
+      </h3>
     </section>
   )
 }

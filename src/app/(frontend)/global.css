@@ -246,3 +246,14 @@
     margin-block-start: var(--flow-space, 1em);
   }
 }
+
+@utility scrollbar-hidden {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  & {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}

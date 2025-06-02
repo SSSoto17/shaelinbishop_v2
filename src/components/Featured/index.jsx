@@ -2,6 +2,7 @@ import { payload } from '@/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
 import { RichText } from '../RichText'
+import Slider from './index.client'
 
 export default async function Featured({
   bgImg,
@@ -31,21 +32,25 @@ export default async function Featured({
   return (
     <section
       style={{ backgroundImage: img }}
-      className="relative full-bleed my-xl bg-cover bg-fixed py-xl"
+      className="full-bleed my-xl bg-cover bg-fixed py-xl"
+      // className="relative"
     >
-      <div className="grid grid-cols-subgrid grid-rows-5">
+      <div className="full-bleed gap-y-sm">
+        {/* <div className="grid grid-cols-subgrid grid-rows-5"> */}
         <Image
           src={bgImg[1].sizes?.medium?.url}
           alt=""
           width={bgImg[1].sizes?.medium?.width}
           height={bgImg[1].sizes?.medium?.height}
-          className="col-span-4 col-start-1 row-span-5 row-start-1 self-stretch border border-primary-50 object-cover"
+          className="col-span-4 col-start-2 row-span-5 row-start-1 hidden self-stretch border border-primary-50 object-cover xl:block"
         />
-        <article className="col-span-6 col-start-7 row-start-2 content-end">
-          <header className="cursor-default">
+        <article className="content-end xl:col-span-6 xl:col-start-7 xl:row-start-2">
+          <header className="col-span-full cursor-default">
             {title && (
-              <h2 className="text-2xl/18 font-black">
-                <span className="block font-display text-base/12 font-bold">{tagline}</span>
+              <h2 className="text-2xl/12 font-black">
+                <span className="block font-display text-base/6 font-bold lg:leading-12">
+                  {tagline}
+                </span>
                 {title}
               </h2>
             )}
@@ -53,11 +58,13 @@ export default async function Featured({
           </header>
           {body && <RichText data={body} />}
         </article>
-        <ul className="col-span-full col-start-2 row-span-3 row-start-3 grid grid-cols-3 gap-x-md py-md">
+        <Slider data={docs} />
+        {/* <ul className="col-span-full flex snap-x snap-mandatory gap-sm overflow-x-scroll px-[max(1rem,_50svw-1120px/2)] *:flex-[1_0_100%] *:scroll-mx-4">
+          <ul className="col-span-full col-start-2 row-span-3 row-start-3 grid grid-cols-3 gap-x-md py-md">
           {docs.map((item, id) => {
             return <FeaturedCard key={id} {...item} />
           })}
-        </ul>
+        </ul> */}
       </div>
     </section>
   )
@@ -71,7 +78,7 @@ function FeaturedCard({ title, releaseDetails: { publishedIn }, quotes }) {
   } = publishedIn[publishedIn.length - 1]
 
   return (
-    <li className="relative row-span-3 grid grid-rows-subgrid gap-y-2xs bg-primary-50 px-sm py-md drop-shadow-md transition duration-150 ease-in hover:scale-102">
+    <li className="relative row-span-3 grid snap-center grid-rows-subgrid gap-y-2xs bg-primary-50 px-sm py-md drop-shadow-md transition duration-150 ease-in hover:scale-102">
       <h4 className="self-center text-lg/10 font-bold">
         <Link href={url} target="_blank" className="after:absolute after:inset-0">
           {title}

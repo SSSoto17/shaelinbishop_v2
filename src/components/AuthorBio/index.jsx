@@ -8,7 +8,7 @@ export default function AuthorBio({
   headshot: {
     alt,
     sizes: {
-      medium: { url, width, height },
+      small: { url, width, height },
     },
   },
   tagline,
@@ -16,17 +16,17 @@ export default function AuthorBio({
   body,
 }) {
   return (
-    <section className="grid-cols-subgrid items-center gap-x-xl-2xl py-xl-2xl sm:grid">
+    <section className="place-items-center gap-x-xl-2xl gap-y-lg py-xl-2xl">
       <Image
         src={url}
         alt={alt}
         width={width}
         height={height}
-        className="self-stretch object-cover sm:col-span-full lg:order-2 lg:col-span-5"
+        className="col-span-full self-stretch object-cover sm:order-2 sm:col-span-6 md:col-span-5"
       />
-      <article className="col-span-7 cursor-default flow-space">
+      <article className="col-span-full cursor-default flow-space sm:col-span-6 md:col-span-7">
         <header>
-          <h2 className="text-3xl/22 font-black text-balance">
+          <h2 className="text-3xl/14 font-black text-balance lg:leading-22">
             <span className="block text-lg/10 font-bold">{tagline}</span>
             {headline}
           </h2>
