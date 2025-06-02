@@ -1,6 +1,5 @@
 import { payload } from '@/lib/utils'
 import Image from 'next/image'
-import Link from 'next/link'
 import { RichText } from '../RichText'
 import Slider from './index.client'
 
@@ -30,13 +29,8 @@ export default async function Featured({
   })
 
   return (
-    <section
-      style={{ backgroundImage: img }}
-      className="full-bleed bg-cover bg-fixed py-xl"
-      // className="relative"
-    >
+    <section style={{ backgroundImage: img }} className="full-bleed my-md bg-cover bg-fixed py-xl">
       <div className="full-bleed gap-y-sm">
-        {/* <div className="grid grid-cols-subgrid grid-rows-5"> */}
         <Image
           src={bgImg[1].sizes?.medium?.url}
           alt=""
@@ -59,50 +53,8 @@ export default async function Featured({
           {body && <RichText data={body} />}
         </article>
         <Slider data={docs} />
-        {/* <ul className="col-span-full flex snap-x snap-mandatory gap-sm overflow-x-scroll px-[max(1rem,_50svw-1120px/2)] *:flex-[1_0_100%] *:scroll-mx-4">
-          <ul className="col-span-full col-start-2 row-span-3 row-start-3 grid grid-cols-3 gap-x-md py-md">
-          {docs.map((item, id) => {
-            return <FeaturedCard key={id} {...item} />
-          })}
-        </ul> */}
       </div>
     </section>
-  )
-}
-
-import { MdArrowRightAlt } from 'react-icons/md'
-
-function FeaturedCard({ title, releaseDetails: { publishedIn }, quotes }) {
-  const {
-    magazine: { title: magTitle, url },
-  } = publishedIn[publishedIn.length - 1]
-
-  return (
-    <li className="relative row-span-3 grid snap-center grid-rows-subgrid gap-y-2xs bg-primary-50 px-sm py-md drop-shadow-md transition duration-150 ease-in hover:scale-102">
-      <h4 className="self-center text-lg/10 font-bold">
-        <Link href={url} target="_blank" className="after:absolute after:inset-0">
-          {title}
-        </Link>
-      </h4>
-      {quotes.map(({ quote }, id) => {
-        return (
-          <blockquote key={id} className="ml-2xs py-sm">
-            <RichText data={quote} className="rich-text" />
-          </blockquote>
-        )
-      })}
-      <p className="row-start-3 text-sm/10">
-        Read now in{' '}
-        <Link
-          href={url}
-          target="_blank"
-          className="group isolate flex items-center gap-3xs text-base/6 font-bold transition duration-150 ease-in hover:text-primary-700"
-        >
-          {magTitle}
-          <MdArrowRightAlt className="transition duration-150 ease-in not-group-hover:-translate-x-3xs" />
-        </Link>
-      </p>
-    </li>
   )
 }
 
