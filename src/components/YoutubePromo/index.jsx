@@ -1,3 +1,4 @@
+import { YouTubeEmbed } from '@next/third-parties/google'
 import Link from 'next/link'
 import { MdOutlineKeyboardDoubleArrowRight } from 'react-icons/md'
 
@@ -9,14 +10,7 @@ export default function YouTubePromo() {
         Shaelin Writes
       </h2>
       <figure className="content-center lg:row-span-2">
-        <iframe
-          src="https://www.youtube.com/embed/51G4Nd4s6vQ?si=k75nxq9k4ma3qRj9&amp;controls=0"
-          title="YouTube"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerPolicy="strict-origin-when-cross-origin"
-          allowFullScreen
-          className="aspect-video w-full"
-        />
+        <YouTubeEmbed videoid="51G4Nd4s6vQ" params="controls=0" style="aspect-video w-full" />
       </figure>
       <article className="flow-space lg:pr-md">
         <p className="font-bold">
