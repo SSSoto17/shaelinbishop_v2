@@ -10,6 +10,7 @@ import MediaBlock from './MediaBlock'
 import MediaWithTitle from './MediaWithTitle'
 import Newsletter from './Newsletter'
 import TextColumns from './TextColumns'
+import YouTubePromo from './YoutubePromo'
 
 function RenderContent({ sections: content }) {
   return content.map((section, id) => {
@@ -24,7 +25,7 @@ function RenderContent({ sections: content }) {
     if (section.blockType === 'mediaBlock') return <MediaBlock key={id} {...section} />
     if (section.blockType === 'mediaWTitle') return <MediaWithTitle key={id} {...section} />
     if (section.blockType === 'newsletter') return <Newsletter key={id} {...section} />
-    // if (section.blockType === 'promo') return <YouTubePromo key={id} {...section} />
+    if (section.blockType === 'promo') return <YouTubePromo key={id} {...section} />
     if (section.blockType === 'textColumns') return <TextColumns key={id} {...section} />
   })
 }

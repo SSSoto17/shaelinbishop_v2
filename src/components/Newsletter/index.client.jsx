@@ -13,21 +13,18 @@ export default function ActionForm({ label }) {
   return (
     <Form
       action={action}
-      className="col-start-2 -col-end-1 row-span-2 row-start-3 grid grid-cols-6 gap-x-sm self-center px-2xs text-sm"
+      className="-col-end-1 grid grid-cols-6 gap-x-2xs gap-y-xs self-center text-sm md:col-start-2 md:row-span-2 md:row-start-3 md:px-2xs lg:gap-x-sm"
     >
-      <p className="col-span-2 self-center justify-self-end font-display font-bold text-accent-900">
-        {state?.success}
-      </p>
-      <Field className="relative col-span-2 grid">
+      <Field className="relative col-span-4 grid lg:col-span-2">
         <Input
           name="email"
           placeholder="Enter email"
           invalid={Boolean(state?.error)}
           defaultValue={state?.email}
-          className="border border-accent-600 bg-primary-50 px-2xs font-logo text-primary-800 placeholder:tracking-wide data-focus:outline-2 data-focus:outline-accent-700 data-invalid:border-2 not-data-focus:data-invalid:border-error-600"
+          className="w-full border border-accent-600 bg-primary-50 px-2xs font-logo text-primary-800 placeholder:tracking-wide data-focus:outline-2 data-focus:outline-accent-700 data-invalid:border-2 not-data-focus:data-invalid:border-error-600"
         />
         {state?.error && (
-          <p className="absolute top-14 flex items-center gap-3xs font-display tracking-tighter text-error-600">
+          <p className="absolute top-12 -left-6 flex cursor-default items-center gap-3xs font-display tracking-tighter text-nowrap text-error-600 sm:top-14">
             <MdError /> {state?.error}
           </p>
         )}
@@ -35,16 +32,20 @@ export default function ActionForm({ label }) {
       <Button
         type="submit"
         disabled={isPending}
-        className="col-span-2 grid cursor-pointer place-content-center bg-accent-900 p-2xs font-display text-primary-50 uppercase transition-colors duration-150 hover:bg-accent-800 active:bg-accent-950 data-disabled:bg-accent-500"
+        className="col-span-2 grid h-full cursor-pointer place-content-center bg-accent-900 p-2xs font-display text-xs text-primary-50 uppercase transition-colors duration-150 hover:bg-accent-800 active:bg-accent-950 data-disabled:bg-accent-500 sm:text-sm"
       >
         {isPending ? (
           <span className="inline-flex animate-pulse items-center gap-3xs">
-            <ImSpinner2 className="animate-spin" /> Submitting
+            <ImSpinner2 className="animate-spin text-sm" />{' '}
+            <span className="hidden md:inline">Submitting</span>
           </span>
         ) : (
           label
         )}
       </Button>
+      <p className="col-span-full self-center font-display font-bold text-accent-900 lg:-order-1 lg:col-span-2 lg:justify-self-end">
+        {state?.success}
+      </p>
     </Form>
   )
 }

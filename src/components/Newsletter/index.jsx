@@ -2,20 +2,59 @@ import Image from 'next/image'
 import { RichText } from '../RichText'
 import ActionForm from './index.client'
 
-export default function RenderNewsletter({ heading, body, buttonLabel, img }) {
-  const { alt, sizes } = img
+export default function RenderNewsletter({
+  heading,
+  body,
+  buttonLabel,
+  img: {
+    alt,
+    sizes: {
+      card: { url, width, height },
+    },
+  },
+}) {
+  return (
+    <section className="full-bleed border-y border-primary-900">
+      <article className="gap-x-xl gap-y-sm border-primary-900 py-xl *:col-span-full sm:grid-cols-8 sm:border-x sm:p-xl">
+        <p className="hidden text-primary-800 sm:block md:text-lg lg:col-span-4 lg:text-right">
+          Want to stay updated on new releases?
+        </p>
+        <Image
+          src={url}
+          alt={alt}
+          width={width}
+          height={height}
+          className="hidden self-stretch object-cover lg:col-span-3 lg:-col-end-1 lg:row-span-3 lg:row-start-1 lg:block"
+        />
+        <div className="flow-space lg:col-span-4 lg:col-start-3 lg:row-start-2">
+          <h2 className="font-display text-2xl/12 text-balance lg:leading-16">{heading}</h2>
+          <RichText data={body} className="max-w-prose" />
+        </div>
+        <ActionForm label={buttonLabel} />
+      </article>
+    </section>
+  )
+}
+
+function OldNewsletterExperimentation({ heading, body, buttonLabel, img }) {
+  const {
+    alt,
+    sizes: {
+      card: { url, width, height },
+    },
+  } = img
 
   return (
-    <section className="lg:full-bleed hidden border-y border-primary-900">
-      <article className="grid grid-cols-8 gap-x-xl gap-y-sm border-x border-y-primary-900 p-xl">
+    <section className="full-bleed border-y border-primary-900">
+      <article className="grid-cols-8 gap-x-xl gap-y-sm border-x border-y-primary-900 p-xl">
         <p className="col-span-4 text-right text-lg text-primary-800">
           Want to stay updated on new releases?
         </p>
         <Image
-          src={sizes?.card.url}
+          src={url}
           alt={alt}
-          width={sizes?.card.width}
-          height={sizes?.card.height}
+          width={width}
+          height={height}
           className="col-span-3 col-start-6 row-span-3 row-start-1 self-stretch object-cover"
         />
         {/* <p className="col-span-4 col-start-1 row-start-4 text-right text-lg text-primary-800">

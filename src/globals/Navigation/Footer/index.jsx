@@ -10,7 +10,7 @@ export default async function Footer() {
 
   return (
     <footer className="bg-primary-900 py-sm font-display text-sm text-primary-50">
-      <nav className="flex items-center justify-center sm:justify-between">
+      <nav className="flex items-center justify-center md:justify-between">
         {navigation.map(({ blockType, items }, id) => {
           if (blockType === 'copyright') return <Copyright key={id} />
           if (blockType === 'linkArray') return <NavBar key={id} data={items} />
@@ -22,7 +22,7 @@ export default async function Footer() {
 
 function NavBar({ data }) {
   return (
-    <ul className="hidden items-center gap-xs sm:flex">
+    <ul className="hidden items-center gap-xs md:flex">
       {data.map(({ label, link }, id) => {
         return <NavLink key={id} {...label} {...link} />
       })}

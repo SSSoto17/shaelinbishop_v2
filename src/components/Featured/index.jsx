@@ -32,7 +32,7 @@ export default async function Featured({
   return (
     <section
       style={{ backgroundImage: img }}
-      className="full-bleed my-xl bg-cover bg-fixed py-xl"
+      className="full-bleed bg-cover bg-fixed py-xl"
       // className="relative"
     >
       <div className="full-bleed gap-y-sm">
