@@ -1,4 +1,5 @@
 import { checkAuth } from '@/lib/auth'
+import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
 import { draftMode } from 'next/headers'
 import Link from 'next/link'
 import actions from './data'
@@ -11,11 +12,23 @@ export default async function AdminBar({ id }) {
 
   return (
     <section className="full-bleed bg-primary-900 py-2xs font-display text-sm text-primary-50">
-      <nav
-        className={`grid grid-cols-[auto_1fr] items-center justify-items-end gap-lg justify-self-stretch`}
-      >
+      <nav className="grid-cols-[auto_1fr] items-center justify-items-end gap-x-lg">
+        {/* <nav className="justify-self-stretch"> */}
         <DisplayUser {...user} target={isEnabled && `${actions[0].action}/${id}`} />
-        <ul className="flex gap-md">
+        <Disclosure>
+          <DisclosureButton className="py-3xs lg:hidden">
+            <MdSettings className="cursor-pointer text-lg text-accent-400" />
+          </DisclosureButton>
+          <DisclosurePanel
+            as="ul"
+            className="col-span-full w-full justify-end border-primary-700 py-xs *:justify-end *:border-t *:border-primary-700 sm:flex sm:items-center sm:gap-x-sm-md sm:border-t sm:*:border-none lg:hidden"
+          >
+            {actions.map((action, index) => {
+              return <AdminAction key={index} {...action} {...(action.target && { target: id })} />
+            })}
+          </DisclosurePanel>
+        </Disclosure>
+        <ul className="hidden gap-md lg:flex">
           {actions.map((action, index) => {
             return <AdminAction key={index} {...action} {...(action.target && { target: id })} />
           })}
@@ -25,7 +38,7 @@ export default async function AdminBar({ id }) {
   )
 }
 
-import { MdCompassCalibration, MdRemoveRedEye } from 'react-icons/md'
+import { MdCompassCalibration, MdRemoveRedEye, MdSettings } from 'react-icons/md'
 
 function DisplayUser({ firstName, lastName, email, role, target }) {
   const fullName = firstName + ' ' + lastName
