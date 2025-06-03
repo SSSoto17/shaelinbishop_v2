@@ -1,3 +1,4 @@
+import ParallaxBG from '@/components/ParallaxBG'
 import { payload } from '@/lib/utils'
 import Image from 'next/image'
 import { RichText } from '../../components/RichText'
@@ -9,16 +10,13 @@ export default async function Featured({
   body,
   featuredItems,
 }) {
-  const query = featuredItems.map((item) => item.id)
-  const img = `url(${bgImg[0].url})`
-
   const { docs } = await payload.find({
     collection: 'publications',
     depth: 2,
     sort: '-releaseDate',
     where: {
       id: {
-        in: query,
+        in: featuredItems.map((item) => item.id),
       },
     },
     select: {
@@ -29,7 +27,7 @@ export default async function Featured({
   })
 
   return (
-    <section style={{ backgroundImage: img }} className="full-bleed my-md bg-cover bg-fixed py-xl">
+    <ParallaxBG {...bgImg[0]} className="full-bleed my-md py-xl">
       <div className="full-bleed gap-y-sm">
         <Image
           src={bgImg[1].sizes?.medium?.url}
@@ -54,7 +52,7 @@ export default async function Featured({
         </article>
         <Slider data={docs} />
       </div>
-    </section>
+    </ParallaxBG>
   )
 }
 
