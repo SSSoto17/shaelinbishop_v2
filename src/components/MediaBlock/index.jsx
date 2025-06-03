@@ -15,7 +15,7 @@ export default function MediaBlock({
   return (
     <section className="items-center gap-x-2xl gap-y-md py-lg md:py-2xl">
       <Image
-        src={`${url}`}
+        src={url}
         alt={alt}
         width={width}
         height={height}
