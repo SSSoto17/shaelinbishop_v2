@@ -14,7 +14,8 @@ export default function Hero({ type, content }) {
         className={`full-bleed relative animate-fade-in place-content-end py-sm text-primary-50 clip-path ${type === 'highImpact' && 'h-full'}`}
         // className="full-bleed animate-fade-in relative place-content-end bg-cover bg-fixed bg-center py-sm text-primary-50"
       >
-        <div className="fixed top-0 right-0 bottom-0 left-0 -z-10 col-span-full">
+        <ParallaxBG {...content?.image} isPriority />
+        {/* <div className="fixed top-0 right-0 bottom-0 left-0 -z-10 col-span-full">
           <Image
             src={url}
             alt={alt}
@@ -26,7 +27,7 @@ export default function Hero({ type, content }) {
             }}
             loading="eager"
           />
-        </div>
+        </div> */}
         {type === 'highImpact' && <HighImpact {...content} />}
         {type === 'lowImpact' && <LowImpact {...content} />}
         {type === 'banner' && <Banner {...content} />}
@@ -34,6 +35,23 @@ export default function Hero({ type, content }) {
     )
 
   return null
+}
+
+function ParallaxBG({ url, alt, isPriority }) {
+  return (
+    <div className="fixed top-0 right-0 bottom-0 left-0 -z-10 col-span-full">
+      <Image
+        src={url}
+        alt={alt}
+        priority={isPriority}
+        fill
+        sizes="100svw"
+        style={{
+          objectFit: 'cover',
+        }}
+      />
+    </div>
+  )
 }
 
 import { MdOutlineArrowDropDownCircle } from 'react-icons/md'
