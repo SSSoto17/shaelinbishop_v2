@@ -1,5 +1,5 @@
+import { Content } from '@/blocks'
 import { PublicationContent } from '@/collections/Publications'
-import { Content } from '@/components'
 import LivePreview from '@/hooks/LivePreview'
 import { getPage, getPages } from '@/lib/pages'
 import { getPublication, getPublications } from '@/lib/publications'
