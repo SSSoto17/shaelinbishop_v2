@@ -23,6 +23,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'author-shaelin-bishop.vercel.app',
       },
+      {
+        protocol: 'https',
+        hostname: 'shaelinbishop.vercel.app',
+      },
     ],
   },
 }
