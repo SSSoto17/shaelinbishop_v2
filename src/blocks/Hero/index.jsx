@@ -5,15 +5,15 @@ import Link from 'next/link'
 import { MdOutlineKeyboardDoubleArrowRight } from 'react-icons/md'
 
 export default function Hero({ type, content }) {
-  const heroImg = `url(${content?.image?.url})`
-  const { url, alt } = content?.image
+  // const heroImg = `url(${content?.image?.url})`
+  // const { url, alt } = content?.image
 
   if (type !== 'none')
     return (
       <ParallaxBG
         {...content?.image}
         isPriority
-        className="full-bleed relative animate-fade-in place-content-end py-sm text-primary-50"
+        className="full-bleed animate-fade-in place-content-end py-sm text-primary-50"
         // className="full-bleed animate-fade-in relative place-content-end bg-cover bg-fixed bg-center py-sm text-primary-50"
       >
         {type === 'highImpact' && <HighImpact {...content} />}

@@ -178,6 +178,7 @@ function CardItem({
       </article>
       <Link
         href={`/books${slug}`}
+        aria-label={`Link to read more about ${title}`}
         className="col-span-full grid transition duration-300 peer-has-[h3_a:hover]:opacity-75 hover:opacity-75 @sm:col-span-2"
       >
         <BookCover {...coverImg} />
@@ -186,7 +187,7 @@ function CardItem({
   )
 }
 
-export function BookCover({ alt, sizes }) {
+export function BookCover({ alt, sizes, isPriority }) {
   if (!sizes)
     return (
       <div className="@container grid aspect-[2/3] max-w-96 cursor-default place-content-center bg-secondary-300 p-md text-center font-display text-2xl/16 font-bold text-accent-800 uppercase">
@@ -203,6 +204,7 @@ export function BookCover({ alt, sizes }) {
       alt={alt}
       width={width}
       height={height}
+      priority={isPriority}
       className="aspect-[2/3] w-full max-w-96 object-cover"
     />
   )

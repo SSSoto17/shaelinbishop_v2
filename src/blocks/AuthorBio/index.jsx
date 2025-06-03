@@ -34,6 +34,7 @@ export default function AuthorBio({
         <RichText data={body} className="max-w-prose text-pretty flow-space" />
         <Link
           href="/about"
+          aria-label="Click to read Shaelin Bishop's author bio"
           className="group inline-flex items-center gap-3xs self-end underline transition duration-150 ease-in hover:text-primary-700"
         >
           Learn more

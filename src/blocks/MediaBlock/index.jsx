@@ -19,6 +19,7 @@ export default function MediaBlock({
         alt={alt}
         width={width}
         height={height}
+        priority
         className="col-span-full max-h-160 self-stretch justify-self-center object-cover md:col-span-5 lg:col-span-6"
       />
       <article className="col-span-full cursor-default flow-space md:col-span-7 md:text-sm lg:col-span-6 [&_p]:md:max-w-110">

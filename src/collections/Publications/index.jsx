@@ -25,7 +25,7 @@ function RenderContent({
       <Breadcrumbs data={breadcrumbs} />
       <figure className="col-span-full grid place-items-center gap-y-sm md:col-span-5">
         {/* <Image src={url} alt={alt} width={width} height={height} className="w-full object-cover" /> */}
-        <BookCover {...coverImg} />
+        <BookCover isPriority {...coverImg} />
         {/* links to book retailers */}
         {Boolean(retailerLinks.length) && <RetailerLinks data={retailerLinks} />}
       </figure>
@@ -72,7 +72,7 @@ function RetailerLinks({ data }) {
   return (
     <section className="max-w-120 flow-space">
       <h2 className="text-center font-display leading-tight font-bold uppercase">Buy now:</h2>
-      <ul className="flex flex-wrap justify-evenly gap-xs text-center font-display text-sm/5 font-bold text-accent-700 uppercase">
+      <ul className="flex flex-wrap justify-evenly gap-xs text-center font-display text-sm/5 font-bold uppercase">
         {data.map((retailer, id) => {
           return <LinkButton key={id} {...retailer} />
         })}
@@ -87,7 +87,7 @@ function LinkButton({ retailer, url }) {
       <Link
         href={url}
         target="_blank"
-        className="flex h-full min-w-24 place-content-center items-center px-2xs py-3xs outline-4 outline-accent-600 group-hover:bg-accent-800 group-hover:text-primary-50 group-hover:outline-accent-800"
+        className="flex h-full min-w-24 place-content-center items-center px-2xs py-3xs text-accent-800 outline-4 outline-accent-800 group-hover:bg-accent-800 group-hover:text-primary-50"
       >
         {retailer}
       </Link>

@@ -33,7 +33,7 @@ function ListCard({ title, rate, description, note }) {
           {note && (
             <Popover className="grid items-center self-end justify-self-end">
               <PopoverButton className="cursor-pointer text-accent-700 transition duration-150 ease-in hover:text-accent-600 data-open:text-accent-700">
-                <MdInfo className="text-lg" />
+                <MdInfo aria-label="Additional pricing information" className="text-lg" />
               </PopoverButton>
               <PopoverPanel
                 anchor={{

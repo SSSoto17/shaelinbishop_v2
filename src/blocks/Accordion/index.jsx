@@ -50,7 +50,7 @@ function Question({ q, a }) {
   return (
     <Disclosure
       as="li"
-      className="col-span-full grid cursor-default grid-cols-subgrid overflow-clip bg-secondary-200 px-md py-sm duration-200 hover:bg-secondary-300 has-data-open:bg-accent-700 has-data-open:text-accent-50 has-data-open:hover:bg-accent-500"
+      className="col-span-full grid cursor-default grid-cols-subgrid overflow-clip bg-secondary-200 px-md py-sm duration-200 hover:bg-secondary-300 has-data-open:bg-accent-800 has-data-open:text-accent-50 has-data-open:hover:bg-accent-500"
     >
       <DisclosureButton className="col-span-full cursor-pointer text-left font-display text-sm lowercase">
         {q}
@@ -73,9 +73,9 @@ export default function Accordion({ heading, questions: qs }) {
       as="section"
       id={heading.replaceAll(' ', '')}
       vertical
-      className="full-bleed gap-2xl border-y border-y-primary-700"
+      className="full-bleed gap-2xl border-y border-primary-700"
     >
-      <article className="col-span-full grid grid-cols-subgrid gap-x-0 gap-y-md border-r-primary-700 py-md md:col-span-5 md:content-start md:border-r md:py-2xl">
+      <article className="col-span-full grid grid-cols-subgrid gap-x-0 gap-y-md border-primary-700 py-md md:col-span-5 md:content-start md:border-r md:py-2xl">
         <h2 className="col-start-2 -col-end-2 cursor-default text-lg font-bold md:text-right md:text-base">
           {heading}
         </h2>
@@ -90,7 +90,7 @@ export default function Accordion({ heading, questions: qs }) {
               <Tab
                 as="li"
                 key={id}
-                className="col-span-full grid cursor-pointer grid-cols-subgrid border-r border-r-primary-700 bg-accent-200 px-md py-2xs text-right font-display text-sm lowercase transition duration-150 data-active:bg-accent-700 data-active:text-accent-50 data-hover:bg-accent-300 data-selected:bg-accent-700 data-selected:text-accent-50 data-selected:hover:bg-accent-500"
+                className="col-span-full grid cursor-pointer grid-cols-subgrid bg-accent-200 px-md py-2xs text-right font-display text-sm lowercase transition duration-150 data-active:bg-accent-800 data-active:text-accent-50 data-hover:bg-accent-300 data-selected:bg-accent-800 data-selected:text-accent-50 data-selected:hover:bg-accent-500"
               >
                 <p className="col-span-full col-start-2">{q}</p>
               </Tab>
