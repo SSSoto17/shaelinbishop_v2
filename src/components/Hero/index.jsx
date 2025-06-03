@@ -4,14 +4,29 @@ import Link from 'next/link'
 import { MdOutlineKeyboardDoubleArrowRight } from 'react-icons/md'
 
 export default function Hero({ type, content }) {
-  const heroImg = `url(${content?.image?.sizes?.screen?.url})`
+  const heroImg = `url(${content?.image?.url})`
+  const { url, alt } = content?.image
 
   if (type !== 'none')
     return (
       <section
-        style={{ backgroundImage: heroImg }}
-        className="full-bleed animate-fade-in place-content-end bg-cover bg-fixed bg-center py-sm text-primary-50"
+        // style={{ backgroundImage: heroImg }}
+        className={`full-bleed relative animate-fade-in place-content-end py-sm text-primary-50 clip-path ${type === 'highImpact' && 'h-full'}`}
+        // className="full-bleed animate-fade-in relative place-content-end bg-cover bg-fixed bg-center py-sm text-primary-50"
       >
+        <div className="fixed top-0 right-0 bottom-0 left-0 -z-10 col-span-full">
+          <Image
+            src={url}
+            alt={alt}
+            priority
+            fill
+            sizes="100svw"
+            style={{
+              objectFit: 'cover',
+            }}
+            loading="eager"
+          />
+        </div>
         {type === 'highImpact' && <HighImpact {...content} />}
         {type === 'lowImpact' && <LowImpact {...content} />}
         {type === 'banner' && <Banner {...content} />}

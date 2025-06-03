@@ -257,3 +257,7 @@
     scrollbar-width: none;
   }
 }
+
+@utility clip-path {
+  clip-path: inset(0 0 0 0);
+}
