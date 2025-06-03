@@ -1,4 +1,4 @@
-import { BookCover } from '@/components/Archive'
+import { BookCover } from '@/blocks/Archive'
 import { RichText } from '@/components/RichText'
 import Link from 'next/link'
 import { Fragment } from 'react'

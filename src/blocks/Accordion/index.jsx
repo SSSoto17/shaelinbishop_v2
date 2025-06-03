@@ -9,7 +9,7 @@ import {
   TabPanels,
 } from '@headlessui/react'
 import Image from 'next/image'
-import { RichText } from '../RichText'
+import { RichText } from '../../components/RichText'
 
 export function Accordionv1({
   image: {
@@ -101,7 +101,7 @@ export default function Accordion({ heading, questions: qs }) {
       <TabPanels className="col-span-8 hidden grid-cols-subgrid content-center md:grid">
         {qs.map(({ q, a }, id) => {
           return (
-            <TabPanel key={id} className="flow-space col-span-full -col-end-2 animate-fade-in">
+            <TabPanel key={id} className="col-span-full -col-end-2 animate-fade-in flow-space">
               <h3 className="font-black">{q}</h3>
               <RichText
                 data={a}

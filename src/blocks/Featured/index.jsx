@@ -1,6 +1,6 @@
 import { payload } from '@/lib/utils'
 import Image from 'next/image'
-import { RichText } from '../RichText'
+import { RichText } from '../../components/RichText'
 import Slider from './index.client'
 
 export default async function Featured({

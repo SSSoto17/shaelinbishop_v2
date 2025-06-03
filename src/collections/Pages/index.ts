@@ -34,8 +34,8 @@ export const PageMeta: Field = {
 }
 
 // PAGE CONTENT
-import { PageHero } from '@/components/Hero/config'
-import { PageSections } from '@/components/config'
+import { PageHero } from '@/blocks/Hero/config'
+import { PageSections } from '@/blocks/config'
 
 // const PageSEO = {
 //   label: 'SEO',

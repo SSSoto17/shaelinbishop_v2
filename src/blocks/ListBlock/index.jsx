@@ -1,17 +1,17 @@
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react'
 import Link from 'next/link'
 import { MdInfo, MdOutlineArrowRightAlt } from 'react-icons/md'
-import { RichText } from '../RichText'
+import { RichText } from '../../components/RichText'
 
 export default function ListBlock({ header: { title, subtitle }, body, list }) {
   return (
     <section className="py-xl *:col-span-full">
-      <header style={{ '--flow-space': '.25em' }} className="flow-space pb-md md:pb-2xl">
+      <header style={{ '--flow-space': '.25em' }} className="pb-md flow-space md:pb-2xl">
         <h1 className="max-w-180 text-2xl font-bold text-balance">{title}</h1>
         <h2 className="font-display text-lg lowercase">{subtitle}</h2>
       </header>
       <article className="flow-space">
-        <RichText data={body} className="flow-space max-w-prose" />
+        <RichText data={body} className="max-w-prose flow-space" />
         <ul className="grid gap-lg gap-x-xl py-md md:grid-cols-2 md:gap-y-2xl">
           {list.map(({ itemType, listCard, listButton }, id) => {
             if (itemType === 'Card') return <ListCard key={id} {...listCard} />
@@ -51,7 +51,7 @@ function ListCard({ title, rate, description, note }) {
           )}
         </div>
       </header>
-      <RichText data={description} className="flow-space row-start-3 max-w-prose rich-text" />
+      <RichText data={description} className="row-start-3 max-w-prose rich-text flow-space" />
     </li>
   )
 }

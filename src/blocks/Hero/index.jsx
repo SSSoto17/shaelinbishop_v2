@@ -1,3 +1,4 @@
+import ParallaxBG from '@/components/ParallaxBG'
 import { payload } from '@/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -9,53 +10,23 @@ export default function Hero({ type, content }) {
 
   if (type !== 'none')
     return (
-      <section
-        // style={{ backgroundImage: heroImg }}
-        className={`full-bleed relative animate-fade-in place-content-end py-sm text-primary-50 clip-path ${type === 'highImpact' && 'h-full'}`}
+      <ParallaxBG
+        {...content?.image}
+        isPriority
+        className="full-bleed relative animate-fade-in place-content-end py-sm text-primary-50"
         // className="full-bleed animate-fade-in relative place-content-end bg-cover bg-fixed bg-center py-sm text-primary-50"
       >
-        <ParallaxBG {...content?.image} isPriority />
-        {/* <div className="fixed top-0 right-0 bottom-0 left-0 -z-10 col-span-full">
-          <Image
-            src={url}
-            alt={alt}
-            priority
-            fill
-            sizes="100svw"
-            style={{
-              objectFit: 'cover',
-            }}
-            loading="eager"
-          />
-        </div> */}
         {type === 'highImpact' && <HighImpact {...content} />}
         {type === 'lowImpact' && <LowImpact {...content} />}
         {type === 'banner' && <Banner {...content} />}
-      </section>
+      </ParallaxBG>
     )
 
   return null
 }
 
-function ParallaxBG({ url, alt, isPriority }) {
-  return (
-    <div className="fixed top-0 right-0 bottom-0 left-0 -z-10 col-span-full">
-      <Image
-        src={url}
-        alt={alt}
-        priority={isPriority}
-        fill
-        sizes="100svw"
-        style={{
-          objectFit: 'cover',
-        }}
-      />
-    </div>
-  )
-}
-
 import { MdOutlineArrowDropDownCircle } from 'react-icons/md'
-import { RichText } from '../RichText'
+import { RichText } from '../../components/RichText'
 // LARGE HERO
 async function HighImpact({
   heading,

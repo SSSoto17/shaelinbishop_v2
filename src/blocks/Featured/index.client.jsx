@@ -3,7 +3,7 @@ import { useIntersectionObserver } from '@uidotdev/usehooks'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { MdArrowRightAlt } from 'react-icons/md'
-import { RichText } from '../RichText'
+import { RichText } from '../../components/RichText'
 
 export default function Slider({ data }) {
   const [active, setActive] = useState(data[0].title)

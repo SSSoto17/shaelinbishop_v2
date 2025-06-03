@@ -8,7 +8,7 @@ import {
   MdOutlineArrowRightAlt,
   MdOutlineKeyboardArrowDown,
 } from 'react-icons/md'
-import { RichText } from '../RichText'
+import { RichText } from '../../components/RichText'
 
 const getContent = async (id) => {
   const { docs } = await payload.find({

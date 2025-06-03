@@ -1,4 +1,4 @@
-import { NavBlock } from '@/components/Navigation/config'
+import { NavBlock } from '@/blocks/Navigation/config'
 import { GlobalConfig } from 'payload'
 export const Footer: GlobalConfig = {
   slug: 'footer',

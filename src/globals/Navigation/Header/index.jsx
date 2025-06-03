@@ -2,7 +2,7 @@ import { payload } from '@/lib/utils'
 import { CloseButton, Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
 import Link from 'next/link'
 
-import { Hero } from '@/components'
+import { Hero } from '@/blocks'
 import { FaInstagram, FaYoutube } from 'react-icons/fa6'
 import { ImSpinner2 } from 'react-icons/im'
 import { MdOutlineMenu, MdOutlineMenuOpen } from 'react-icons/md'

@@ -1,4 +1,4 @@
-import { RichText } from '../RichText'
+import { RichText } from '../../components/RichText'
 import ContactForm from './index.client'
 
 export default function Contact({ bgImg, info, formFields }) {

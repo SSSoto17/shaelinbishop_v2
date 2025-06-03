@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { RichText } from '../RichText'
+import { RichText } from '../../components/RichText'
 
 import { MdArrowRightAlt } from 'react-icons/md'
 

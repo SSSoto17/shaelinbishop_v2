@@ -1,4 +1,4 @@
-import { RichText } from '../RichText'
+import { RichText } from '../../components/RichText'
 
 export default function TextColumns({ textColumns }) {
   // Need to add means of making the number of text columns dynamic
