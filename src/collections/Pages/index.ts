@@ -36,6 +36,7 @@ export const PageMeta: Field = {
 // PAGE CONTENT
 import { PageHero } from '@/blocks/Hero/config'
 import { PageSections } from '@/blocks/config'
+import { TestingLayout } from '@/layout/config'
 
 // const PageSEO = {
 //   label: 'SEO',
@@ -44,7 +45,7 @@ import { PageSections } from '@/blocks/config'
 
 export const PageContent: Field = {
   type: 'tabs',
-  tabs: [PageHero, PageSections],
+  tabs: [PageHero, PageSections, TestingLayout],
 }
 
 export const PageJoin: Field = {

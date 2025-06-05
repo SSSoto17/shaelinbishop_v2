@@ -477,6 +477,125 @@ export interface Page {
           }
       )[]
     | null;
+  layoutSections?:
+    | (
+        | {
+            background?: {
+              sectionWidth?: ('Full' | 'Content') | null;
+              type?: ('none' | 'clr' | 'img') | null;
+              clr?: string | null;
+              img?: {};
+            };
+            padding?: {
+              type?: ('none' | 'py' | 'px' | 'p') | null;
+              size?: ('xs' | 'sm' | 'md' | 'lg' | 'xl') | null;
+            };
+            sections?: ('colFull' | 'col2' | 'col3' | 'col4' | 'col6') | null;
+            gap?: {
+              gapSize?: ('none' | 'gap-xs' | 'gap-sm' | 'gap-md' | 'gap-lg' | 'gap-xl') | null;
+              inlineGapSize?: ('none' | 'gap-x-xs' | 'gap-x-sm' | 'gap-x-md' | 'gap-x-lg' | 'gap-x-xl') | null;
+              blockGapSize?: ('none' | 'gap-y-xs' | 'gap-y-sm' | 'gap-y-md' | 'gap-y-lg' | 'gap-y-xl') | null;
+              separateGap?: boolean | null;
+            };
+            components?:
+              | (
+                  | TextBlock
+                  | {
+                      position?: string | null;
+                      position_halves?: ('colSpanFull' | 'colSpan6') | null;
+                      position_thirds?: ('colSpanFull' | 'colSpan4' | 'colSpan8') | null;
+                      position_quarters?: ('colSpanFull' | 'colSpan6' | 'colSpan3' | 'colSpan9') | null;
+                      position_sixths?:
+                        | ('colSpanFull' | 'colSpan6' | 'colSpan4' | 'colSpan8' | 'colSpan2' | 'colSpan10')
+                        | null;
+                      rows?: ('row-span-1' | 'row-span-2' | 'row-span-3') | null;
+                      padding?: {
+                        type?: ('none' | 'py' | 'px' | 'p') | null;
+                        size?: ('xs' | 'sm' | 'md' | 'lg' | 'xl') | null;
+                      };
+                      image?: (string | null) | Image;
+                      aspectRatio?:
+                        | ('aspect-auto' | 'aspect-square' | 'aspect-video' | 'aspect-[2/3]' | 'aspect-[3/4]')
+                        | null;
+                      imagePosition?:
+                        | (
+                            | 'object-top'
+                            | 'object-top-left'
+                            | 'object-top-right'
+                            | 'object-left'
+                            | 'object-center'
+                            | 'object-right'
+                            | 'object-bottom'
+                            | 'object-bottom-left'
+                            | 'object-bottom-right'
+                          )
+                        | null;
+                      id?: string | null;
+                      blockName?: string | null;
+                      blockType: 'image';
+                    }
+                )[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'grid';
+          }
+        | {
+            background?: {
+              sectionWidth?: ('Full' | 'Content') | null;
+              type?: ('none' | 'clr' | 'img') | null;
+              clr?: string | null;
+              img?: {};
+            };
+            padding?: {
+              type?: ('none' | 'py' | 'px' | 'p') | null;
+              size?: ('xs' | 'sm' | 'md' | 'lg' | 'xl') | null;
+            };
+            components?:
+              | (
+                  | TextBlock
+                  | {
+                      position?: string | null;
+                      position_halves?: ('colSpanFull' | 'colSpan6') | null;
+                      position_thirds?: ('colSpanFull' | 'colSpan4' | 'colSpan8') | null;
+                      position_quarters?: ('colSpanFull' | 'colSpan6' | 'colSpan3' | 'colSpan9') | null;
+                      position_sixths?:
+                        | ('colSpanFull' | 'colSpan6' | 'colSpan4' | 'colSpan8' | 'colSpan2' | 'colSpan10')
+                        | null;
+                      rows?: ('row-span-1' | 'row-span-2' | 'row-span-3') | null;
+                      padding?: {
+                        type?: ('none' | 'py' | 'px' | 'p') | null;
+                        size?: ('xs' | 'sm' | 'md' | 'lg' | 'xl') | null;
+                      };
+                      image?: (string | null) | Image;
+                      aspectRatio?:
+                        | ('aspect-auto' | 'aspect-square' | 'aspect-video' | 'aspect-[2/3]' | 'aspect-[3/4]')
+                        | null;
+                      imagePosition?:
+                        | (
+                            | 'object-top'
+                            | 'object-top-left'
+                            | 'object-top-right'
+                            | 'object-left'
+                            | 'object-center'
+                            | 'object-right'
+                            | 'object-bottom'
+                            | 'object-bottom-left'
+                            | 'object-bottom-right'
+                          )
+                        | null;
+                      id?: string | null;
+                      blockName?: string | null;
+                      blockType: 'image';
+                    }
+                )[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'flex';
+          }
+      )[]
+    | null;
   permittedUsers?: {
     docs?: (string | User)[];
     hasNextPage?: boolean;
@@ -685,6 +804,39 @@ export interface Publication {
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Text Block".
+ */
+export interface TextBlock {
+  position?: string | null;
+  position_halves?: ('colSpanFull' | 'colSpan6') | null;
+  position_thirds?: ('colSpanFull' | 'colSpan4' | 'colSpan8') | null;
+  position_quarters?: ('colSpanFull' | 'colSpan6' | 'colSpan3' | 'colSpan9') | null;
+  position_sixths?: ('colSpanFull' | 'colSpan6' | 'colSpan4' | 'colSpan8' | 'colSpan2' | 'colSpan10') | null;
+  padding?: {
+    type?: ('none' | 'py' | 'px' | 'p') | null;
+    size?: ('xs' | 'sm' | 'md' | 'lg' | 'xl') | null;
+  };
+  body?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'richText';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1081,10 +1233,135 @@ export interface PagesSelect<T extends boolean = true> {
               blockName?: T;
             };
       };
+  layoutSections?:
+    | T
+    | {
+        grid?:
+          | T
+          | {
+              background?:
+                | T
+                | {
+                    sectionWidth?: T;
+                    type?: T;
+                    clr?: T;
+                    img?: T | {};
+                  };
+              padding?:
+                | T
+                | {
+                    type?: T;
+                    size?: T;
+                  };
+              sections?: T;
+              gap?:
+                | T
+                | {
+                    gapSize?: T;
+                    inlineGapSize?: T;
+                    blockGapSize?: T;
+                    separateGap?: T;
+                  };
+              components?:
+                | T
+                | {
+                    richText?: T | TextBlockSelect<T>;
+                    image?:
+                      | T
+                      | {
+                          position?: T;
+                          position_halves?: T;
+                          position_thirds?: T;
+                          position_quarters?: T;
+                          position_sixths?: T;
+                          rows?: T;
+                          padding?:
+                            | T
+                            | {
+                                type?: T;
+                                size?: T;
+                              };
+                          image?: T;
+                          aspectRatio?: T;
+                          imagePosition?: T;
+                          id?: T;
+                          blockName?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        flex?:
+          | T
+          | {
+              background?:
+                | T
+                | {
+                    sectionWidth?: T;
+                    type?: T;
+                    clr?: T;
+                    img?: T | {};
+                  };
+              padding?:
+                | T
+                | {
+                    type?: T;
+                    size?: T;
+                  };
+              components?:
+                | T
+                | {
+                    richText?: T | TextBlockSelect<T>;
+                    image?:
+                      | T
+                      | {
+                          position?: T;
+                          position_halves?: T;
+                          position_thirds?: T;
+                          position_quarters?: T;
+                          position_sixths?: T;
+                          rows?: T;
+                          padding?:
+                            | T
+                            | {
+                                type?: T;
+                                size?: T;
+                              };
+                          image?: T;
+                          aspectRatio?: T;
+                          imagePosition?: T;
+                          id?: T;
+                          blockName?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+      };
   permittedUsers?: T;
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Text Block_select".
+ */
+export interface TextBlockSelect {
+  position?: boolean;
+  position_halves?: boolean;
+  position_thirds?: boolean;
+  position_quarters?: boolean;
+  position_sixths?: boolean;
+  padding?:
+    | boolean
+    | {
+        type?: boolean;
+        size?: boolean;
+      };
+  body?: boolean;
+  id?: boolean;
+  blockName?: boolean;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

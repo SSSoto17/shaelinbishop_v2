@@ -184,6 +184,12 @@
         }
       }
     }
+
+    section[data-fullbleed='true'] {
+      display: grid;
+      grid-column: full-bleed;
+      grid-template-columns: subgrid;
+    }
   }
 }
 

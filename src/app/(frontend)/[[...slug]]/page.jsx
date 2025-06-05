@@ -1,6 +1,7 @@
 import { Content } from '@/blocks'
 import { PublicationContent } from '@/collections/Publications'
 import LivePreview from '@/hooks/LivePreview'
+import { TestContent } from '@/layout'
 import { getPage, getPages } from '@/lib/pages'
 import { getPublication, getPublications } from '@/lib/publications'
 import { draftMode } from 'next/headers'
@@ -112,9 +113,10 @@ export default async function Page({ params }) {
   }
 
   return (
-    <main id="main" className="animate-fade-in scroll-mt-20">
+    <main id="main" className="animate-fade-in scroll-mt-20 auto-rows-min">
       {isEnabled && <LivePreview />}
       <Content {...page} />
+      <TestContent {...page} />
     </main>
   )
 }
