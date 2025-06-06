@@ -87,7 +87,7 @@ function LayoutBlock({
               key={id}
               {...item}
               data={body}
-              className={`${type !== 'none' && `${type}-${size}`}`}
+              // className={`${type !== 'none' && `${type}-${size}`}`}
               className={`${type !== 'none' && `${type}-${size}`} ${sectioning[position]}`}
             />
           )
