@@ -13,7 +13,7 @@ export default function Hero({ type, content }) {
       <ParallaxBG
         {...content?.image}
         isPriority
-        className="full-bleed animate-fade-in place-content-end py-sm text-primary-50"
+        className="animate-fade-in place-content-end py-sm text-primary-50"
         // className="full-bleed animate-fade-in relative place-content-end bg-cover bg-fixed bg-center py-sm text-primary-50"
       >
         {type === 'highImpact' && <HighImpact {...content} />}

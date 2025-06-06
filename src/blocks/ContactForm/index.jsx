@@ -5,7 +5,7 @@ import ContactForm from './index.client'
 export default function Contact({ bgImg, info, formFields }) {
   // const img = `url(${bgImg?.sizes?.screen?.url})`
   return (
-    <section className="full-bleed" id="Contact">
+    <section data-fullbleed="true" id="Contact">
       <article className="@container place-content-center place-items-center py-md md:col-span-6 lg:col-span-7 lg:py-2xl">
         <RichText
           data={info}

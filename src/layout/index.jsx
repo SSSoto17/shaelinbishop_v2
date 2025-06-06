@@ -1,5 +1,5 @@
+import ComponentImage from '@/components/Image'
 import { RichText } from '@/components/RichText'
-import Image from 'next/image'
 import { getBleed } from './utils'
 
 function generateStyles(fullBleed, flex, bg, padding) {
@@ -8,6 +8,7 @@ function generateStyles(fullBleed, flex, bg, padding) {
 
 function LayoutBlock({
   blockType,
+  sections,
   gap: { separateGap, gapSize, inlineGapSize, blockGapSize },
   background: { type, sectionWidth },
   padding: { type: paddingType, size },
@@ -17,17 +18,23 @@ function LayoutBlock({
   const padding = `${paddingType}-${size}`
   // Option for "flex-flow" or "grid-flow"
   const flex = blockType === 'flex' ? blockType : ''
+  const layout = {
+    grid: {
+      colFull: 'grid col-[content] data-[fullbleed]:col-[full-bleed]',
+      col2: 'grid grid-cols-2 data-[fullbleed]:col-[full-bleed] *:col-',
+      col3: '',
+      col4: '',
+      col6: '',
+    },
+    flex: 'flex',
+  }
+
+  console.log(layout[blockType][sections])
   // Option for full-bleed
   const fullBleed = getBleed(sectionWidth === 'Full')
   // Option for background image or color
   const bg = type === 'clr' ? 'bg-accent-400' : ''
   // Options for col-span on children at different screen sizes
-  // const sectionGap = {
-  //   gap: gapSize !== 'none' && 'gap-' + gapSize,
-  //   blockGap: '',
-  //   inlineGap: '',
-  // }
-  // console.log(gapSize)
   const gap = separateGap
     ? `${inlineGapSize !== 'none' ? inlineGapSize : ''} ${blockGapSize !== 'none' ? blockGapSize : ''}`
     : gapSize
@@ -50,43 +57,24 @@ function LayoutBlock({
       'group-data-[fullbleed="true"]:nth-[6n+1]:col-start-[content] group-data-[fullbleed="true"]:nth-[6n+6]:col-end-[content] sm:col-span-2',
   }
 
+  // const style = `${paddingType !== 'none' && padding} ${layout[blockType][sections]} ${bg} ${gap}`
   const style = `${paddingType !== 'none' && padding} ${flex} ${bg} ${gap}`
 
   return (
-    <section data-fullbleed={sectionWidth === 'Full'} className={`group ${style}`}>
+    <section
+      {...(sectionWidth === 'Full' && { 'data-fullbleed': sectionWidth === 'Full' })}
+      className={`group ${style}`}
+    >
       {components.map((item, id) => {
         if (item.blockType === 'image') {
-          if (!item.image)
-            return (
-              <ImagePlaceholder
-                key={id}
-                position={sectioning[item.position]}
-                rows={item.rows}
-                padding={
-                  item.padding.type !== 'none' && `${item.padding.type}-${item.padding.size}`
-                }
-              />
-            )
-
-          const {
-            image: { url, width, height, alt },
-            padding: { type, size },
-            position,
-            rows,
-            aspectRatio,
-            imagePosition,
-          } = item
-
-          return (
-            <Image
-              key={id}
-              src={url}
-              width={width}
-              height={height}
-              alt={alt}
-              className={`${sectioning[position]} ${aspectRatio} ${imagePosition} self-stretch object-cover ${rows} ${type !== 'none' && `${type}-${size}`}`}
-            />
-          )
+          const style = {
+            position: sectioning[item.position],
+            rows: item.rows,
+            padding: item.padding.type !== 'none' && `${item.padding.type}-${item.padding.size}`,
+            aspectRatio: item.aspectRatio,
+            imagePosition: item.imagePosition,
+          }
+          return <ComponentImage key={id} {...item} {...style} />
         }
         if (item.blockType === 'richText') {
           const {
@@ -97,23 +85,15 @@ function LayoutBlock({
           return (
             <RichText
               key={id}
+              {...item}
               data={body}
+              className={`${type !== 'none' && `${type}-${size}`}`}
               className={`${type !== 'none' && `${type}-${size}`} ${sectioning[position]}`}
             />
           )
         }
       })}
     </section>
-  )
-}
-
-function ImagePlaceholder({ position, padding }) {
-  console.log(padding)
-  const style = `grid place-items-center self-stretch bg-secondary-200 font-display text-sm font-bold uppercase ${position} ${padding && padding}`
-  return (
-    <div className={style}>
-      <p className="cursor-default p-sm">Choose image</p>
-    </div>
   )
 }
 

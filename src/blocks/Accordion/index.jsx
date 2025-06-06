@@ -22,7 +22,7 @@ export function Accordionv1({
   questions,
 }) {
   return (
-    <section className="hiddenfull-bleed gap-2xl border-y border-y-primary-700">
+    <section className="full-bleed hidden gap-2xl border-y border-y-primary-700">
       <article className="grid grid-cols-subgrid content-start gap-y-lg py-2xl">
         <Image
           src={url}
@@ -73,7 +73,8 @@ export default function Accordion({ heading, questions: qs }) {
       as="section"
       id={heading.replaceAll(' ', '')}
       vertical
-      className="full-bleed gap-2xl border-y border-primary-700"
+      data-fullbleed="true"
+      className="gap-2xl border-y border-primary-700"
     >
       <article className="col-span-full grid grid-cols-subgrid gap-x-0 gap-y-md border-primary-700 py-md md:col-span-5 md:content-start md:border-r md:py-2xl">
         <h2 className="col-start-2 -col-end-2 cursor-default text-lg font-bold md:text-right md:text-base">

@@ -14,7 +14,7 @@ export default function RenderNewsletter({
   },
 }) {
   return (
-    <section className="full-bleed border-y border-primary-900">
+    <section data-fullbleed="true" className="border-y border-primary-900">
       <article className="gap-x-xl gap-y-sm border-primary-900 py-xl *:col-span-full sm:grid-cols-8 sm:border-x sm:p-xl">
         <p className="hidden text-primary-800 sm:block md:text-lg lg:col-span-4 lg:text-right">
           Want to stay updated on new releases?

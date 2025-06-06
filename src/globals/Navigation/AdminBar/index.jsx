@@ -11,7 +11,10 @@ export default async function AdminBar({ id }) {
   if (!user) return null
 
   return (
-    <section className="full-bleed bg-primary-900 py-2xs font-display text-sm text-primary-50">
+    <section
+      data-fullbleed="true"
+      className="bg-primary-900 py-2xs font-display text-sm text-primary-50"
+    >
       <nav className="grid-cols-[auto_1fr] items-center justify-items-end gap-x-lg">
         {/* <nav className="justify-self-stretch"> */}
         <DisplayUser {...user} target={isEnabled && `${actions[0].action}/${id}`} />

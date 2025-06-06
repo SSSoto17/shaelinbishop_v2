@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 export default function ParallaxBG({ url, alt, isPriority, className, children }) {
   return (
-    <section className={`${className} clip-path`}>
+    <section data-fullbleed="true" className={`${className} clip-path`}>
       <div className="fixed inset-0 -z-10 col-span-full">
         <Image
           src={url}

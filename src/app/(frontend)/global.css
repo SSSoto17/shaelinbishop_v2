@@ -165,30 +165,23 @@
       grid-template-columns: subgrid;
       scroll-behavior: smooth;
 
-      > section,
-      > nav {
+      > *:not([data-fullbleed]) {
         display: grid;
         grid-column: content;
         grid-template-columns: subgrid;
       }
-
-      .full-bleed {
-        display: grid;
-        grid-column: full-bleed;
-        grid-template-columns: subgrid;
-
-        > *:not(.full-bleed) {
-          display: grid;
-          grid-column: content;
-          grid-template-columns: subgrid;
-        }
-      }
     }
 
-    section[data-fullbleed='true'] {
+    [data-fullbleed] {
       display: grid;
       grid-column: full-bleed;
       grid-template-columns: subgrid;
+
+      > *:not([data-fullbleed]) {
+        display: grid;
+        grid-column: content;
+        grid-template-columns: subgrid;
+      }
     }
   }
 }
@@ -215,37 +208,6 @@
     font-family: var(--font-copy);
   }
 }
-
-/* @utility full-bleed {
-  display: grid;
-  grid-column: full-bleed;
-  grid-template-columns: subgrid;
-  align-content: start;
-
-  > *:not(.full-bleed) {
-    grid-column: 2 / span 12;
-  }
-} */
-
-/* @utility span-1/2 {
-  @apply col-span-6 [.full-bleed>&]:col-span-7;
-}
-
-@utility span-1/3 {
-  @apply col-span-4 [.full-bleed>&]:col-span-5;
-}
-
-@utility span-2/3 {
-  @apply col-span-8 [.full-bleed>&]:col-span-9;
-}
-
-@utility span-1/4 {
-  @apply col-span-3 [.full-bleed>&]:col-span-4;
-}
-
-@utility span-3/4 {
-  @apply col-span-9 [.full-bleed>&]:col-span-10;
-} */
 
 @utility flow-space {
   > * + * {
