@@ -6,6 +6,7 @@ const FullBleed: SelectField = {
   type: 'select',
   options: ['Full', 'Content'],
   defaultValue: 'Content',
+  admin: { isClearable: false },
 }
 
 const BackgroundType: SelectField = {
@@ -27,6 +28,7 @@ const BackgroundType: SelectField = {
     },
   ],
   defaultValue: 'none',
+  admin: { isClearable: false },
 }
 
 const BackgroundClr: Field = {

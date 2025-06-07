@@ -1,7 +1,28 @@
-import { Block } from 'payload'
+import { Block, RichTextField } from 'payload'
 
 import { Padding } from '@/layout/padding'
 import { Position } from '@/layout/position'
+
+// const Theme: EditorThemeClasses = {
+//   characterLimit: '10',
+// }
+
+// const TextConfig: EditorConfig = {
+//   namespace: 'RichText',
+//   theme: Theme,
+// }
+
+const TextField: RichTextField = {
+  name: 'body',
+  type: 'richText',
+  // editor: lexicalEditor({
+  //   lexical: TextConfig,
+  //   features: ({ defaultFeatures, rootFeatures }) => [
+  //     ...defaultFeatures,
+  //     ...rootFeatures,
+  //   ],
+  // }),
+}
 
 export const RichText: Block = {
   slug: 'richText',
@@ -9,9 +30,6 @@ export const RichText: Block = {
   fields: [
     Position,
     Padding,
-    {
-      name: 'body',
-      type: 'richText',
-    },
+    TextField,
   ],
 }

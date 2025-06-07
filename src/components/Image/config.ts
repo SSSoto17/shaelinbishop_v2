@@ -1,3 +1,4 @@
+import { aspectRatio } from '@/layout/aspectRatio'
 import { Padding } from '@/layout/padding'
 import { Position } from '@/layout/position'
 import { Block } from 'payload'
@@ -32,19 +33,7 @@ export const Image: Block = {
       type: 'upload',
       relationTo: 'images',
     },
-    {
-      name: 'aspectRatio',
-      type: 'select',
-      options: [
-        { label: 'Auto', value: 'aspect-auto' },
-        { label: 'Square', value: 'aspect-square' },
-        { label: 'Landscape', value: 'aspect-video' },
-        { label: 'Portrait', value: 'aspect-[2/3]' },
-        { label: '3/4', value: 'aspect-[3/4]' },
-      ],
-      defaultValue: 'aspect-auto',
-      admin: { isClearable: false },
-    },
+    aspectRatio,
     {
       name: 'imagePosition',
       type: 'select',

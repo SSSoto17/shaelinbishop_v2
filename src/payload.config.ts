@@ -1,6 +1,6 @@
 // PLUGINS
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
-import { lexicalEditor, LinkFeature } from '@payloadcms/richtext-lexical'
+import { FixedToolbarFeature, lexicalEditor, LinkFeature } from '@payloadcms/richtext-lexical'
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 
 // MODULES
@@ -20,6 +20,7 @@ import {
 } from './collections/config'
 
 // GLOBALS
+import { Container } from './components/Container/config'
 import { Footer } from './globals/Navigation/Footer/config'
 import { Header } from './globals/Navigation/Header/config'
 import { SiteSettings } from './globals/Site/config'
@@ -42,9 +43,11 @@ export default buildConfig({
   },
   globals: [SiteSettings, Header, Footer],
   collections: [Users, Images, Icons, Pages, Publications, PublicationCategories],
+  blocks: [Container],
   editor: lexicalEditor({
     features: ({ defaultFeatures }) => [
       ...defaultFeatures,
+      FixedToolbarFeature(),
       LinkFeature(),
     ],
   }),

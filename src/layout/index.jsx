@@ -2,34 +2,80 @@ import ComponentImage from '@/components/Image'
 import { RichText } from '@/components/RichText'
 import { getBleed } from './utils'
 
-function generateStyles(fullBleed, flex, bg, padding) {
-  return `${padding} ${fullBleed} ${flex} ${bg}`
+// function generateStyles(fullBleed, flex, bg, padding) {
+//   return `${padding} ${fullBleed} ${flex} ${bg}`
+// }
+
+function getStyles(mobile, tablet, desktop) {
+  const style = (device) => {
+    const {
+      layout: { flexDirection, isReversed, isWrapped },
+      padding,
+    } = device
+    return {
+      layout: {
+        flexDirection: ``,
+        isReversed,
+        isWrapped,
+      },
+      padding: {
+        type: device.padding.type,
+        size: device.padding.size,
+      },
+    }
+  }
+
+  // const mobile = {
+  //   layout: '',
+  //   background: '',
+  //   margin: '',
+  //   padding: {
+  //     type: mobile,
+  //     size,
+  //   },
+  // }
 }
 
 function LayoutBlock({
   blockType,
+  mobile,
+  tablet,
+  desktop: {
+    layout: {
+      flexDirection,
+      isReversed,
+      isWrapped,
+      gap: { separateGap, gapSize, inlineGapSize, blockGapSize },
+    },
+  },
   sections,
-  gap: { separateGap, gapSize, inlineGapSize, blockGapSize },
   background: { type, sectionWidth },
   padding: { type: paddingType, size },
   components,
 }) {
+  // RESPONSIVITY
+
+  const data = getStyles(mobile, tablet, desktop)
+
   // Option for padding amount
   const padding = `${paddingType}-${size}`
   // Option for "flex-flow" or "grid-flow"
   const flex = blockType === 'flex' ? blockType : ''
   const layout = {
     grid: {
-      colFull: 'grid col-[content] data-[fullbleed]:col-[full-bleed]',
-      col2: 'grid grid-cols-2 data-[fullbleed]:col-[full-bleed] *:col-',
+      colFull: 'grid grid-cols-1 col-[content] data-[fullbleed]:col-[full-bleed]',
+      col2: 'grid grid-cols-2 data-[fullbleed]:col-[full-bleed]',
       col3: '',
       col4: '',
       col6: '',
     },
-    flex: 'flex',
+    flex: {
+      flexRow: `flex ${isReversed ? 'flex-row-reverse' : 'flex-row'} ${isWrapped ? 'flex-wrap' : 'flex-nowrap'}`,
+      flexCol: `flex ${isReversed ? 'flex-col-reverse' : 'flex-col'} ${isWrapped ? 'flex-wrap' : 'flex-nowrap'}`,
+    },
   }
 
-  console.log(layout[blockType][sections])
+  console.log(layout[blockType][flexDirection])
   // Option for full-bleed
   const fullBleed = getBleed(sectionWidth === 'Full')
   // Option for background image or color
@@ -57,8 +103,8 @@ function LayoutBlock({
       'group-data-[fullbleed="true"]:nth-[6n+1]:col-start-[content] group-data-[fullbleed="true"]:nth-[6n+6]:col-end-[content] sm:col-span-2',
   }
 
-  // const style = `${paddingType !== 'none' && padding} ${layout[blockType][sections]} ${bg} ${gap}`
-  const style = `${paddingType !== 'none' && padding} ${flex} ${bg} ${gap}`
+  const style = `${paddingType !== 'none' && padding} ${layout[blockType][flexDirection]} ${bg} ${gap}`
+  // const style = `${paddingType !== 'none' && padding} ${flex} ${bg} ${gap}`
 
   return (
     <section
@@ -87,8 +133,8 @@ function LayoutBlock({
               key={id}
               {...item}
               data={body}
-              // className={`${type !== 'none' && `${type}-${size}`}`}
-              className={`${type !== 'none' && `${type}-${size}`} ${sectioning[position]}`}
+              className={`${type !== 'none' && `${type}-${size}`}`}
+              // className={`${type !== 'none' && `${type}-${size}`} ${sectioning[position]}`}
             />
           )
         }

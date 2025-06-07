@@ -7,12 +7,11 @@ export default function ParallaxBG({ url, alt, isPriority, className, children }
         <Image
           src={url}
           alt={alt}
-          priority={isPriority}
+          priority={!!isPriority}
           fill
-          sizes="100svw"
-          style={{
-            objectFit: 'cover',
-          }}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          // sizes="100svw"
+          className="object-cover"
         />
       </div>
       {children}

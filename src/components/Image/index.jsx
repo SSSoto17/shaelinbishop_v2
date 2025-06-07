@@ -17,7 +17,7 @@ export default function ComponentImage({
       width={width}
       height={height}
       alt={alt}
-      className={`${position} ${rows} ${aspectRatio} ${imagePosition} ${padding} self-stretch object-cover`}
+      className={`col-auto ${position} ${rows} ${aspectRatio} ${imagePosition} ${padding} self-stretch object-cover`}
     />
   )
 }
@@ -25,7 +25,7 @@ export default function ComponentImage({
 function ImagePlaceholder({ classes }) {
   return (
     <div
-      className={`grid place-items-center self-stretch bg-secondary-200 font-display text-sm font-bold uppercase ${classes}`}
+      className={`col-auto grid place-items-center self-stretch bg-secondary-200 font-display text-sm font-bold uppercase ${classes}`}
     >
       <p className="cursor-default p-sm">Choose image</p>
     </div>
