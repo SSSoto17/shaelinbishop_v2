@@ -60,7 +60,7 @@ async function HighImpact({
       <Link
         href="#site"
         replace
-        className="grid place-items-center gap-y-xs self-end justify-self-center font-display lowercase *:col-span-full"
+        className="hidden place-items-center gap-y-xs self-end justify-self-center font-display lowercase *:col-span-full md:grid"
         aria-label="Jump to Site"
       >
         <MdOutlineArrowDropDownCircle className="peer order-2 text-xl transition duration-150 hover:translate-y-2xs" />

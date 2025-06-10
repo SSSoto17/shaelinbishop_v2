@@ -27,7 +27,7 @@ export default async function Featured({
   })
 
   return (
-    <ParallaxBG {...bgImg[0]} className="my-md py-xl">
+    <ParallaxBG fullBleed={true} {...bgImg[0]} className="my-md py-xl">
       <div data-fullbleed="true" className="gap-y-sm">
         <Image
           src={bgImg[1].sizes?.medium?.url}
