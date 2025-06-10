@@ -146,41 +146,203 @@ export interface UserAuthOperations {
  * via the `definition` "container".
  */
 export interface Container {
-  mobile?: {
-    layout?: {
-      layoutType?: ('block' | 'grid' | 'flex') | null;
-      layoutOptions?: ('flexRow' | 'flexCol' | 'gridSingle') | null;
-    };
-  };
-  tablet?: {
-    layout?: {
-      flexDirection?: ('flexRow' | 'flexCol') | null;
-      isReversed?: boolean | null;
-      isWrapped?: boolean | null;
-      gap?: {
-        gapSize?: ('none' | 'gap-xs' | 'gap-sm' | 'gap-md' | 'gap-lg' | 'gap-xl') | null;
-        inlineGapSize?: ('none' | 'gap-x-xs' | 'gap-x-sm' | 'gap-x-md' | 'gap-x-lg' | 'gap-x-xl') | null;
-        blockGapSize?: ('none' | 'gap-y-xs' | 'gap-y-sm' | 'gap-y-md' | 'gap-y-lg' | 'gap-y-xl') | null;
-        separateGap?: boolean | null;
+  general?: {
+    /**
+     * Choose which HTML-element to render the container as. If a top-level container, it's advisable to go with <section>. Nested containers work well as <article>. <div> elements are universal and work in most contexts, but provide poor readability for screen readers. For more info on HTML semantics and sectioning, go to https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Content_categories#sectioning_content
+     */
+    as?: ('div' | 'section' | 'article') | null;
+    sectionWidth?: ('Full' | 'Content' | 'Max width') | null;
+    maxWidth?: string | null;
+    spacing?: {
+      margin?: {
+        type?: ('my' | 'mx' | 'm') | null;
+        size?: ('xs' | 'sm' | 'md' | 'lg' | 'xl') | null;
+        value?: string | null;
+      };
+      padding?: {
+        type?: ('py' | 'px' | 'p') | null;
+        size?: ('xs' | 'sm' | 'md' | 'lg' | 'xl') | null;
+        value?: string | null;
       };
     };
   };
-  desktop?: {
-    layout?: {
-      flexDirection?: ('flexRow' | 'flexCol') | null;
-      isReversed?: boolean | null;
-      isWrapped?: boolean | null;
-      gap?: {
-        gapSize?: ('none' | 'gap-xs' | 'gap-sm' | 'gap-md' | 'gap-lg' | 'gap-xl') | null;
-        inlineGapSize?: ('none' | 'gap-x-xs' | 'gap-x-sm' | 'gap-x-md' | 'gap-x-lg' | 'gap-x-xl') | null;
-        blockGapSize?: ('none' | 'gap-y-xs' | 'gap-y-sm' | 'gap-y-md' | 'gap-y-lg' | 'gap-y-xl') | null;
-        separateGap?: boolean | null;
-      };
+  background?: {
+    background?: ('bgClr' | 'bgImg') | null;
+    bgClr?: string | null;
+    bgImg?: (string | null) | Image;
+    border?: {
+      sides?: ('border-t' | 'border-b' | 'border-l' | 'border-r')[] | null;
+      color?: string | null;
     };
   };
+  layout?: {
+    type?: ('grid' | 'flex') | null;
+    flexDirection?: ('flex-row' | 'flex-col') | null;
+    isReversed?: boolean | null;
+    isWrapped?: boolean | null;
+    gridColumns?:
+      | (
+          | 'grid-cols-[repeat(auto-fill,_minmax(374px,_1fr))]'
+          | 'grid-cols-[repeat(auto-fill,_minmax(324px,_1fr))]'
+          | 'grid-cols-[repeat(auto-fill,_minmax(226px,_1fr))]'
+          | 'grid-cols-[repeat(auto-fill,_minmax(164px,_1fr))]'
+        )
+      | null;
+    gridRows?: ('grid-rows-2' | 'grid-rows-3' | 'grid-rows-4' | 'grid-rows-5' | 'grid-rows-6') | null;
+    gap?: ('gap-xs' | 'gap-sm' | 'gap-md' | 'gap-lg' | 'gap-xl') | null;
+    inlineGap?: ('gap-x-xs' | 'gap-x-sm' | 'gap-x-md' | 'gap-x-lg' | 'gap-x-xl') | null;
+    blockGap?: ('gap-y-xs' | 'gap-y-sm' | 'gap-y-md' | 'gap-y-lg' | 'gap-y-xl') | null;
+    separateGap?: boolean | null;
+  };
+  components?:
+    | (
+        | {
+            image?: (string | null) | Image;
+            aspectRatio?: ('aspect-auto' | 'aspect-square' | 'aspect-video' | 'aspect-[2/3]' | 'aspect-[3/4]') | null;
+            imagePosition?:
+              | (
+                  | 'object-top'
+                  | 'object-top-left'
+                  | 'object-top-right'
+                  | 'object-left'
+                  | 'object-center'
+                  | 'object-right'
+                  | 'object-bottom'
+                  | 'object-bottom-left'
+                  | 'object-bottom-right'
+                )
+              | null;
+            gridPosition?: {
+              columns?: ('col-span-2' | 'col-span-3' | 'col-span-4' | 'col-span-5' | 'col-span-6') | null;
+              rows?: ('row-span-2' | 'row-span-3' | 'row-span-4' | 'row-span-5' | 'row-span-6') | null;
+            };
+            spacing?: {
+              margin?: {
+                type?: ('my' | 'mx' | 'm') | null;
+                size?: ('xs' | 'sm' | 'md' | 'lg' | 'xl') | null;
+                value?: string | null;
+              };
+              padding?: {
+                type?: ('py' | 'px' | 'p') | null;
+                size?: ('xs' | 'sm' | 'md' | 'lg' | 'xl') | null;
+                value?: string | null;
+              };
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'image';
+          }
+        | {
+            body?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            gridPosition?: {
+              columns?: ('col-span-2' | 'col-span-3' | 'col-span-4' | 'col-span-5' | 'col-span-6') | null;
+              rows?: ('row-span-2' | 'row-span-3' | 'row-span-4' | 'row-span-5' | 'row-span-6') | null;
+            };
+            spacing?: {
+              margin?: {
+                type?: ('my' | 'mx' | 'm') | null;
+                size?: ('xs' | 'sm' | 'md' | 'lg' | 'xl') | null;
+                value?: string | null;
+              };
+              padding?: {
+                type?: ('py' | 'px' | 'p') | null;
+                size?: ('xs' | 'sm' | 'md' | 'lg' | 'xl') | null;
+                value?: string | null;
+              };
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'richText';
+          }
+      )[]
+    | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'container';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "images".
+ */
+export interface Image {
+  id: string;
+  title: string;
+  alt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+  sizes?: {
+    thumbnail?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    small?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    card?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    medium?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    large?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    screen?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -522,38 +684,132 @@ export interface Page {
     | null;
   layoutSections?:
     | {
-        mobile?: {
-          layout?: {
-            layoutType?: ('block' | 'grid' | 'flex') | null;
-            layoutOptions?: ('flexRow' | 'flexCol' | 'gridSingle') | null;
-          };
-        };
-        tablet?: {
-          layout?: {
-            flexDirection?: ('flexRow' | 'flexCol') | null;
-            isReversed?: boolean | null;
-            isWrapped?: boolean | null;
-            gap?: {
-              gapSize?: ('none' | 'gap-xs' | 'gap-sm' | 'gap-md' | 'gap-lg' | 'gap-xl') | null;
-              inlineGapSize?: ('none' | 'gap-x-xs' | 'gap-x-sm' | 'gap-x-md' | 'gap-x-lg' | 'gap-x-xl') | null;
-              blockGapSize?: ('none' | 'gap-y-xs' | 'gap-y-sm' | 'gap-y-md' | 'gap-y-lg' | 'gap-y-xl') | null;
-              separateGap?: boolean | null;
+        general?: {
+          /**
+           * Choose which HTML-element to render the container as. If a top-level container, it's advisable to go with <section>. Nested containers work well as <article>. <div> elements are universal and work in most contexts, but provide poor readability for screen readers. For more info on HTML semantics and sectioning, go to https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Content_categories#sectioning_content
+           */
+          as?: ('div' | 'section' | 'article') | null;
+          sectionWidth?: ('Full' | 'Content' | 'Max width') | null;
+          maxWidth?: string | null;
+          spacing?: {
+            margin?: {
+              type?: ('my' | 'mx' | 'm') | null;
+              size?: ('xs' | 'sm' | 'md' | 'lg' | 'xl') | null;
+              value?: string | null;
+            };
+            padding?: {
+              type?: ('py' | 'px' | 'p') | null;
+              size?: ('xs' | 'sm' | 'md' | 'lg' | 'xl') | null;
+              value?: string | null;
             };
           };
         };
-        desktop?: {
-          layout?: {
-            flexDirection?: ('flexRow' | 'flexCol') | null;
-            isReversed?: boolean | null;
-            isWrapped?: boolean | null;
-            gap?: {
-              gapSize?: ('none' | 'gap-xs' | 'gap-sm' | 'gap-md' | 'gap-lg' | 'gap-xl') | null;
-              inlineGapSize?: ('none' | 'gap-x-xs' | 'gap-x-sm' | 'gap-x-md' | 'gap-x-lg' | 'gap-x-xl') | null;
-              blockGapSize?: ('none' | 'gap-y-xs' | 'gap-y-sm' | 'gap-y-md' | 'gap-y-lg' | 'gap-y-xl') | null;
-              separateGap?: boolean | null;
-            };
+        background?: {
+          background?: ('bgClr' | 'bgImg') | null;
+          bgClr?: string | null;
+          bgImg?: (string | null) | Image;
+          border?: {
+            sides?: ('border-t' | 'border-b' | 'border-l' | 'border-r')[] | null;
+            color?: string | null;
           };
         };
+        layout?: {
+          type?: ('grid' | 'flex') | null;
+          flexDirection?: ('flex-row' | 'flex-col') | null;
+          isReversed?: boolean | null;
+          isWrapped?: boolean | null;
+          gridColumns?:
+            | (
+                | 'grid-cols-[repeat(auto-fill,_minmax(374px,_1fr))]'
+                | 'grid-cols-[repeat(auto-fill,_minmax(324px,_1fr))]'
+                | 'grid-cols-[repeat(auto-fill,_minmax(226px,_1fr))]'
+                | 'grid-cols-[repeat(auto-fill,_minmax(164px,_1fr))]'
+              )
+            | null;
+          gridRows?: ('grid-rows-2' | 'grid-rows-3' | 'grid-rows-4' | 'grid-rows-5' | 'grid-rows-6') | null;
+          gap?: ('gap-xs' | 'gap-sm' | 'gap-md' | 'gap-lg' | 'gap-xl') | null;
+          inlineGap?: ('gap-x-xs' | 'gap-x-sm' | 'gap-x-md' | 'gap-x-lg' | 'gap-x-xl') | null;
+          blockGap?: ('gap-y-xs' | 'gap-y-sm' | 'gap-y-md' | 'gap-y-lg' | 'gap-y-xl') | null;
+          separateGap?: boolean | null;
+        };
+        components?:
+          | (
+              | {
+                  image?: (string | null) | Image;
+                  aspectRatio?:
+                    | ('aspect-auto' | 'aspect-square' | 'aspect-video' | 'aspect-[2/3]' | 'aspect-[3/4]')
+                    | null;
+                  imagePosition?:
+                    | (
+                        | 'object-top'
+                        | 'object-top-left'
+                        | 'object-top-right'
+                        | 'object-left'
+                        | 'object-center'
+                        | 'object-right'
+                        | 'object-bottom'
+                        | 'object-bottom-left'
+                        | 'object-bottom-right'
+                      )
+                    | null;
+                  gridPosition?: {
+                    columns?: ('col-span-2' | 'col-span-3' | 'col-span-4' | 'col-span-5' | 'col-span-6') | null;
+                    rows?: ('row-span-2' | 'row-span-3' | 'row-span-4' | 'row-span-5' | 'row-span-6') | null;
+                  };
+                  spacing?: {
+                    margin?: {
+                      type?: ('my' | 'mx' | 'm') | null;
+                      size?: ('xs' | 'sm' | 'md' | 'lg' | 'xl') | null;
+                      value?: string | null;
+                    };
+                    padding?: {
+                      type?: ('py' | 'px' | 'p') | null;
+                      size?: ('xs' | 'sm' | 'md' | 'lg' | 'xl') | null;
+                      value?: string | null;
+                    };
+                  };
+                  id?: string | null;
+                  blockName?: string | null;
+                  blockType: 'image';
+                }
+              | {
+                  body?: {
+                    root: {
+                      type: string;
+                      children: {
+                        type: string;
+                        version: number;
+                        [k: string]: unknown;
+                      }[];
+                      direction: ('ltr' | 'rtl') | null;
+                      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                      indent: number;
+                      version: number;
+                    };
+                    [k: string]: unknown;
+                  } | null;
+                  gridPosition?: {
+                    columns?: ('col-span-2' | 'col-span-3' | 'col-span-4' | 'col-span-5' | 'col-span-6') | null;
+                    rows?: ('row-span-2' | 'row-span-3' | 'row-span-4' | 'row-span-5' | 'row-span-6') | null;
+                  };
+                  spacing?: {
+                    margin?: {
+                      type?: ('my' | 'mx' | 'm') | null;
+                      size?: ('xs' | 'sm' | 'md' | 'lg' | 'xl') | null;
+                      value?: string | null;
+                    };
+                    padding?: {
+                      type?: ('py' | 'px' | 'p') | null;
+                      size?: ('xs' | 'sm' | 'md' | 'lg' | 'xl') | null;
+                      value?: string | null;
+                    };
+                  };
+                  id?: string | null;
+                  blockName?: string | null;
+                  blockType: 'richText';
+                }
+            )[]
+          | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'container';
@@ -567,76 +823,6 @@ export interface Page {
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "images".
- */
-export interface Image {
-  id: string;
-  title: string;
-  alt?: string | null;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
-  sizes?: {
-    thumbnail?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    small?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    card?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    medium?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    large?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    screen?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1169,52 +1355,124 @@ export interface PagesSelect<T extends boolean = true> {
         container?:
           | T
           | {
-              mobile?:
+              general?:
                 | T
                 | {
-                    layout?:
+                    as?: T;
+                    sectionWidth?: T;
+                    maxWidth?: T;
+                    spacing?:
                       | T
                       | {
-                          layoutType?: T;
-                          layoutOptions?: T;
-                        };
-                  };
-              tablet?:
-                | T
-                | {
-                    layout?:
-                      | T
-                      | {
-                          flexDirection?: T;
-                          isReversed?: T;
-                          isWrapped?: T;
-                          gap?:
+                          margin?:
                             | T
                             | {
-                                gapSize?: T;
-                                inlineGapSize?: T;
-                                blockGapSize?: T;
-                                separateGap?: T;
+                                type?: T;
+                                size?: T;
+                                value?: T;
+                              };
+                          padding?:
+                            | T
+                            | {
+                                type?: T;
+                                size?: T;
+                                value?: T;
                               };
                         };
                   };
-              desktop?:
+              background?:
                 | T
                 | {
-                    layout?:
+                    background?: T;
+                    bgClr?: T;
+                    bgImg?: T;
+                    border?:
                       | T
                       | {
-                          flexDirection?: T;
-                          isReversed?: T;
-                          isWrapped?: T;
-                          gap?:
+                          sides?: T;
+                          color?: T;
+                        };
+                  };
+              layout?:
+                | T
+                | {
+                    type?: T;
+                    flexDirection?: T;
+                    isReversed?: T;
+                    isWrapped?: T;
+                    gridColumns?: T;
+                    gridRows?: T;
+                    gap?: T;
+                    inlineGap?: T;
+                    blockGap?: T;
+                    separateGap?: T;
+                  };
+              components?:
+                | T
+                | {
+                    image?:
+                      | T
+                      | {
+                          image?: T;
+                          aspectRatio?: T;
+                          imagePosition?: T;
+                          gridPosition?:
                             | T
                             | {
-                                gapSize?: T;
-                                inlineGapSize?: T;
-                                blockGapSize?: T;
-                                separateGap?: T;
+                                columns?: T;
+                                rows?: T;
                               };
+                          spacing?:
+                            | T
+                            | {
+                                margin?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      size?: T;
+                                      value?: T;
+                                    };
+                                padding?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      size?: T;
+                                      value?: T;
+                                    };
+                              };
+                          id?: T;
+                          blockName?: T;
+                        };
+                    richText?:
+                      | T
+                      | {
+                          body?: T;
+                          gridPosition?:
+                            | T
+                            | {
+                                columns?: T;
+                                rows?: T;
+                              };
+                          spacing?:
+                            | T
+                            | {
+                                margin?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      size?: T;
+                                      value?: T;
+                                    };
+                                padding?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      size?: T;
+                                      value?: T;
+                                    };
+                              };
+                          id?: T;
+                          blockName?: T;
                         };
                   };
               id?: T;

@@ -4,7 +4,9 @@ import { RichText } from './RichText/config'
 
 export const Components: BlocksField = {
   name: 'components',
-  label: 'Content',
+  labels: { singular: 'component', plural: 'components' },
+  label: false,
   type: 'blocks',
-  blocks: [RichText, Image],
+  blocks: [],
+  blockReferences: [Image, RichText],
 }

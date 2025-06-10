@@ -2,13 +2,22 @@ import Image from 'next/image'
 
 export default function ComponentImage({
   image,
-  position,
-  rows,
-  padding,
+  spacing: {
+    margin: { value: margin },
+    padding: { value: padding },
+  },
+  gridPosition,
   aspectRatio,
   imagePosition,
 }) {
-  if (!image) return <ImagePlaceholder classes={`${position} ${rows} ${padding} ${aspectRatio}`} />
+  let layoutStyle
+  if (gridPosition) {
+    const { columns, rows } = gridPosition
+    layoutStyle = `${columns || ''} ${rows || ''}`
+  }
+
+  if (!image)
+    return <ImagePlaceholder classes={`${layoutStyle} ${padding} ${margin} ${aspectRatio}`} />
   const { url, width, height, alt } = image
 
   return (
@@ -17,7 +26,7 @@ export default function ComponentImage({
       width={width}
       height={height}
       alt={alt}
-      className={`col-auto ${position} ${rows} ${aspectRatio} ${imagePosition} ${padding} self-stretch object-cover`}
+      className={`${layoutStyle} ${aspectRatio} ${imagePosition} ${padding} ${margin} self-stretch object-cover`}
     />
   )
 }

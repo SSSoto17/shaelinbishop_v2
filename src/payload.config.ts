@@ -21,6 +21,7 @@ import {
 
 // GLOBALS
 import { Container } from './components/Container/config'
+import { Image } from './components/Image/config'
 import { Footer } from './globals/Navigation/Footer/config'
 import { Header } from './globals/Navigation/Header/config'
 import { SiteSettings } from './globals/Site/config'
@@ -43,7 +44,7 @@ export default buildConfig({
   },
   globals: [SiteSettings, Header, Footer],
   collections: [Users, Images, Icons, Pages, Publications, PublicationCategories],
-  blocks: [Container],
+  blocks: [Container, Image],
   editor: lexicalEditor({
     features: ({ defaultFeatures }) => [
       ...defaultFeatures,

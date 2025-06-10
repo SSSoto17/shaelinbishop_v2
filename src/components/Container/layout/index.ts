@@ -1,9 +1,7 @@
-import { Field, GroupField, OptionObject, SelectField } from 'payload'
-
-const TypeBlock: OptionObject = {
-  label: 'Default',
-  value: 'block',
-}
+import { OptionObject, SelectField, TabAsField } from 'payload'
+import { FlexOptions } from './flex'
+import { Gap } from './gap'
+import { GridOptions } from './grid'
 
 const TypeGrid: OptionObject = {
   label: 'Grid',
@@ -16,54 +14,23 @@ const TypeFlex: OptionObject = {
 }
 
 const Type: SelectField = {
-  name: 'layoutType',
-  label: 'Choose container type:',
-  type: 'select',
-  options: [TypeBlock, TypeGrid, TypeFlex],
-  admin: {
-    isClearable: false,
-  },
-}
-
-const FlexRow: OptionObject = {
-  label: 'Horizontal',
-  value: 'flexRow',
-}
-
-const FlexCol: OptionObject = {
-  label: 'Vertical',
-  value: 'flexCol',
-}
-
-const GridSingleCol: OptionObject = {
-  label: 'Single - 1 column',
-  value: 'gridSingle',
-}
-
-const LayoutConfiguration: Field = {
-  name: 'layoutOptions',
+  name: 'type',
   label: false,
   type: 'select',
-  options: [
-    FlexRow,
-    FlexCol,
-    GridSingleCol,
-  ],
+  options: [TypeGrid, TypeFlex],
   admin: {
-    condition: (data, { layoutType }) => {
-      return layoutType !== 'block'
-    },
-    isClearable: false,
-    style: { maxWidth: '50%' },
+    placeholder: 'Default',
+    style: { maxWidth: '520px' },
   },
-  defaultValue: 'flexRow',
 }
 
-export const Layout: GroupField = {
+export const Layout: TabAsField = {
   name: 'layout',
-  type: 'group',
+  type: 'tab',
   fields: [
     Type,
-    LayoutConfiguration,
+    FlexOptions,
+    GridOptions,
+    Gap,
   ],
 }

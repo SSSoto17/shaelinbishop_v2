@@ -1,3 +1,4 @@
+import Container from '@/components/Container'
 import ComponentImage from '@/components/Image'
 import { RichText } from '@/components/RichText'
 import { getBleed } from './utils'
@@ -146,6 +147,7 @@ function LayoutBlock({
 function RenderContent({ layoutSections: blocks }) {
   return blocks.map((section, id) => {
     // console.log(section)
+    return <Container key={id} {...section} />
     return <LayoutBlock key={id} {...section} />
   })
 }

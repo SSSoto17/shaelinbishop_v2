@@ -11,6 +11,7 @@ export default function Hero({ type, content }) {
   if (type !== 'none')
     return (
       <ParallaxBG
+        fullBleed={true}
         {...content?.image}
         isPriority
         className="animate-fade-in place-content-end py-sm text-primary-50"

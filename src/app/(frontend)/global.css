@@ -183,6 +183,15 @@
         grid-template-columns: subgrid;
       }
     }
+    [data-full] {
+      display: grid;
+      grid-column: full-bleed;
+      grid-template-columns: subgrid;
+
+      > *:not([data-full]) {
+        grid-column: content;
+      }
+    }
   }
 }
 
@@ -198,7 +207,7 @@
   }
 
   h1 {
-    font-weight: var(--);
+    font-weight: var(--font-weight-black);
     font-size: var(--text-2xl);
   }
 
@@ -228,4 +237,30 @@
 
 @utility clip-path {
   clip-path: inset(0 0 0 0);
+}
+
+.richText {
+  > * + * {
+    margin-block-start: var(--flow-space, 1em);
+  }
+
+  h1 {
+    --flow-space: 0.15em;
+    font-weight: var(--font-weight-black);
+    font-size: var(--text-2xl);
+    line-height: 1;
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    line-height: 1.15;
+    letter-spacing: 1.5;
+    text-transform: uppercase;
+  }
+
+  p {
+    font-weight: var(--font-weight-normal);
+    font-size: var(--text-sm);
+    font-family: var(--font-copy);
+  }
 }

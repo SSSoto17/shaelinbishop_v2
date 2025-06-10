@@ -105,7 +105,7 @@ export default async function Page({ params }) {
 
   if (publication) {
     return (
-      <main id="main" className="animate-fade-in">
+      <main id="main" className="group animate-fade-in">
         {isEnabled && <LivePreview />}
         <PublicationContent {...publication} />
       </main>
@@ -113,7 +113,7 @@ export default async function Page({ params }) {
   }
 
   return (
-    <main id="main" className="animate-fade-in scroll-mt-20 auto-rows-min">
+    <main id="main" className="group animate-fade-in scroll-mt-20 auto-rows-min">
       {isEnabled && <LivePreview />}
       <Content {...page} />
       <TestContent {...page} />

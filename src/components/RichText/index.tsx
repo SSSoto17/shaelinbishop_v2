@@ -4,6 +4,8 @@ import { RichText as Converter } from '@payloadcms/richtext-lexical/react'
 export const RichText = ({
   body,
   data,
+  gridPosition,
+  spacing,
   className,
   disableContainer,
 }: {
@@ -11,22 +13,20 @@ export const RichText = ({
   data: SerializedEditorState
   className: string | undefined
   disableContainer: boolean
+  gridPosition: { columns: string; rows: string }
+  spacing: { margin: { value: string }; padding: { value: string } }
 }) => {
-  const style = [
-    {
-      name: 'paragraphSpace',
-      css: '[>*+*]:',
-    },
-    {
-      name: 'title',
-    },
-    {
-      name: 'subtitle',
-    },
-    {
-      name: 'links',
-    },
-  ]
+  let style = `${className}`
+
+  if (gridPosition) {
+    const { columns, rows } = gridPosition
+    const {
+      margin: { value: margin },
+      padding: { value: padding },
+    } = spacing
+    style = `${columns || ''} ${rows || ''} ${margin || ''} ${padding || ''} richText`
+  }
+
   // return <Converter data={data} disableContainer={disableContainer} />
-  return <Converter data={body || data} className={className} disableContainer={disableContainer} />
+  return <Converter data={body || data} className={style} disableContainer={disableContainer} />
 }
