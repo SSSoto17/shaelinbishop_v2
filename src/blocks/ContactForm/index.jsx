@@ -12,7 +12,7 @@ export default function Contact({ bgImg, info, formFields }) {
           className="col-span-full flow-space *:max-w-108 md:col-start-2 md:-col-end-2 [&_a]:underline [&_a]:transition [&_a]:duration-150 [&_a]:ease-in [&_a]:hover:text-primary-600 [&_h2]:text-lg"
         />
       </article>
-      <ParallaxBG {...bgImg} className="py-2xl md:col-span-8 lg:col-span-7">
+      <ParallaxBG fullBleed={true} {...bgImg} className="py-2xl md:col-span-8 lg:col-span-7">
         <ContactForm data={formFields} />
       </ParallaxBG>
     </section>

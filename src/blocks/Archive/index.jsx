@@ -43,7 +43,7 @@ async function NavSidebar({ navData }) {
 
   return (
     <aside
-      className={`sticky ${user ? 'top-27' : 'top-0'} row-span-full hidden content-start gap-y-2xs py-xl lg:col-span-3 lg:-col-end-1 lg:grid`}
+      className={`sticky ${user ? 'top-30' : 'top-16'} row-span-full hidden content-start gap-y-2xs py-xl lg:col-span-3 lg:-col-end-1 lg:grid`}
     >
       <h2 className="cursor-default font-display text-sm lowercase">Jump to</h2>
       <ul className="font-display font-black lowercase">
@@ -74,7 +74,7 @@ async function Group({ title, navData, categoryJoin: { docs } }) {
       className="relative col-span-full col-start-1 grid scroll-mt-md gap-y-xs py-md lg:col-span-9 lg:*:col-span-9"
     >
       <header
-        className={`sticky col-span-full cursor-default ${user ? 'top-27' : 'top-16 md:top-11'} z-10 bg-primary-50/75 backdrop-blur-xs`}
+        className={`sticky col-span-full cursor-default ${user ? 'top-30' : 'top-16'} z-10 bg-primary-50/75 backdrop-blur-xs`}
       >
         <h3 className="hidden font-display text-xl/16 font-bold tracking-tight lowercase lg:block">
           {title}

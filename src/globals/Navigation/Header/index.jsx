@@ -3,18 +3,24 @@ import { CloseButton, Disclosure, DisclosureButton, DisclosurePanel } from '@hea
 import Link from 'next/link'
 
 import { Hero } from '@/blocks'
+import { checkAuth } from '@/lib/auth'
 import { FaInstagram, FaYoutube } from 'react-icons/fa6'
 import { ImSpinner2 } from 'react-icons/im'
 import { MdOutlineMenu, MdOutlineMenuOpen } from 'react-icons/md'
 import AdminBar from '../AdminBar'
 
-export default function Header({ id, hero }) {
+export default async function Header({ id, hero }) {
+  const user = await checkAuth()
   return (
     <header
-      className={`${hero?.type === 'highImpact' && 'h-screen'} grid-cols-subgrid grid-rows-[auto_1fr]`}
+      className={`${hero?.type === 'highImpact' && 'h-screen'} ${user ? 'min-h-30' : 'min-h-16'} z-20 grid-cols-subgrid`}
     >
       {/* <section className="full-bleed bg-primary-50 drop-shadow-md"> */}
-      <section data-fullbleed="true" className="sticky top-0 z-20 bg-primary-50 drop-shadow-md">
+      <section
+        data-sticky
+        // data-fullbleed="true"
+        className="fixed top-0 right-0 left-0 z-20 bg-primary-50 drop-shadow-md"
+      >
         <AdminBar id={id} />
         <NavBar />
       </section>
@@ -51,7 +57,7 @@ async function NavBar() {
   })
 
   return (
-    <nav className="flex items-center justify-between justify-items-end gap-x-xl justify-self-stretch py-2xs md:grid md:grid-cols-[1fr_auto_auto]">
+    <nav className="col-start-2 -col-end-2 flex h-16 items-center justify-between justify-items-end gap-x-xl justify-self-stretch py-2xs md:grid md:grid-cols-[1fr_auto_auto]">
       <Logo />
       <ul className="hidden flex-wrap gap-x-md font-logo text-sm tracking-tight md:flex">
         {items.map((item, id) => {

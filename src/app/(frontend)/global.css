@@ -264,3 +264,12 @@
     font-family: var(--font-copy);
   }
 }
+[data-sticky] {
+  display: grid;
+  grid-template-columns:
+    [full-bleed-start] minmax(var(--spacing-md), 1fr)
+    [content-start]
+    repeat(12, minmax(0, calc(var(--container-content) / 12)))
+    [content-end]
+    minmax(var(--spacing-md), 1fr) [full-bleed-end];
+}

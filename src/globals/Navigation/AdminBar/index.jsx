@@ -13,7 +13,7 @@ export default async function AdminBar({ id }) {
   return (
     <section
       data-fullbleed="true"
-      className="bg-primary-900 py-2xs font-display text-sm text-primary-50"
+      className="h-14 bg-primary-900 py-2xs font-display text-sm text-primary-50"
     >
       <nav className="grid-cols-[auto_1fr] items-center justify-items-end gap-x-lg">
         {/* <nav className="justify-self-stretch"> */}

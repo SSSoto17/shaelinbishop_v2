@@ -1,10 +1,12 @@
 import ParallaxBG from '@/components/ParallaxBG'
+import { checkAuth } from '@/lib/auth'
 import { payload } from '@/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
 import { MdOutlineKeyboardDoubleArrowRight } from 'react-icons/md'
 
-export default function Hero({ type, content }) {
+export default async function Hero({ type, content }) {
+  const user = await checkAuth()
   // const heroImg = `url(${content?.image?.url})`
   // const { url, alt } = content?.image
 
@@ -14,7 +16,7 @@ export default function Hero({ type, content }) {
         fullBleed={true}
         {...content?.image}
         isPriority
-        className="animate-fade-in place-content-end py-sm text-primary-50"
+        className={`${user ? 'mt-30' : 'mt-16'} animate-fade-in place-content-end py-sm text-primary-50`}
         // className="full-bleed animate-fade-in relative place-content-end bg-cover bg-fixed bg-center py-sm text-primary-50"
       >
         {type === 'highImpact' && <HighImpact {...content} />}
