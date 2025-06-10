@@ -13,7 +13,7 @@ export default function ParallaxBG({ url, alt, isPriority, fullBleed, className,
             alt={alt}
             priority={!!isPriority}
             fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            sizes="100vw"
             className="object-cover"
           />
         </div>
@@ -32,7 +32,7 @@ export default function ParallaxBG({ url, alt, isPriority, fullBleed, className,
           alt={alt}
           priority={!!isPriority}
           fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          sizes="100vw"
           className="object-cover"
         />
       </div>
