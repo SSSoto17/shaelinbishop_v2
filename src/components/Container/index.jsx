@@ -61,7 +61,10 @@ export default function Container({
 
   if (as === 'article')
     return (
-      <article>
+      <article
+        className={style}
+        {...(sectionWidth === 'Full' && { 'data-fullbleed': sectionWidth === 'Full' })}
+      >
         <RenderComponents
           isFullBleed={sectionWidth === 'Full'}
           style={childStyle}
