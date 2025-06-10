@@ -90,7 +90,6 @@ function RenderComponents({ isFullBleed, style, content }) {
       <div className={style}>
         {content.map((item, id) => {
           const { blockType } = item
-          // console.log(item)
           if (blockType === 'image') return <ComponentImage key={id} {...item} />
           if (blockType === 'richText') return <RichText key={id} {...item} />
         })}
